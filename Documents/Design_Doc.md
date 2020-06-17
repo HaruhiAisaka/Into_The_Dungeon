@@ -21,11 +21,11 @@ The game is intended for PCs or any game console which uses a basic controller. 
 
 ### UI During Gameplay
 The screen will display a 2D overhead view of a singular room of the dungeon where the player is. The room will cover the entire screen with small UI elements on the top left and right for health and item’s equipped.
-![UI_During_Gameplay](Assets/Documents/Sketches_Images/ui_gameplay.PNG)
+![UI_During_Gameplay](Sketches_Images/ui_gameplay.PNG)
 
 ### UI During Pause
 A pause menu will also be accessible where the player can equip items and view a map of the dungeon. This map will consist of all rooms visited by the player (if the map item is discovered then the entire dungeon map will be revealed). The player will be free to add pins on to the map to document possible secrets or things of interest.
-![UI_During_Pause](Assets/Documents/Sketches_Images/ui_pause.PNG)
+![UI_During_Pause](Sketches_Images/ui_pause.PNG)
 
 
 ## Gameplay
@@ -86,33 +86,33 @@ What should be generated first is an algorithm that connects the dungeon. The du
 
 **Rules for Dungeon Generation**
 *Key*
-![Dungeon Generation Key](Assets\Documents\Sketches_Images\generation_dungeon_key.PNG)
+![Dungeon Generation Key](Sketches_Images\generation_dungeon_key.PNG)
 1. All rooms must be orderly and within the confines of a 2D square grid.
-![Ordered Dungeon](Assets/Documents/Sketches_Images/generation_dungeon_1_good.PNG)
-![UnOrdered Dungeon](Assets/Documents/Sketches_Images/generation_dungeon_1_bad.PNG)
+![Ordered Dungeon](Sketches_Images/generation_dungeon_1_good.PNG)
+![UnOrdered Dungeon](Sketches_Images/generation_dungeon_1_bad.PNG)
 2. The number of rooms will be between a small random range depending on the difficulty selected.
 3. A group of rooms all connected to eachother by doors is considered a cluster. No more than 4 clusters can exist in a dungeon.
-![Bad Clusters](Assets\Documents\Sketches_Images\generation_dungeon_3_bad.PNG)
-![Good Clusters](Assets\Documents\Sketches_Images\generation_dungeon_3_good.PNG)
+![Bad Clusters](Sketches_Images\generation_dungeon_3_bad.PNG)
+![Good Clusters](Sketches_Images\generation_dungeon_3_good.PNG)
 4. A starting room must be selected.
 5. A chalice room must be selected. The chalice room must only have once enterance.
 6. The room for the final boss must be adjacent to the chalice room. The final boss room must have only two doors, one that connects to the rest of the dungeon. Once that connects the room to the chalice room. The final boss room must not be accessable from the start room.
-![Follows Rules 4-6](Assets\Documents\Sketches_Images\generation_dungeon_6_good.PNG)
-![Invalid Rules 4-6](Assets\Documents\Sketches_Images\generation_dungeon_6_bad.PNG)
+![Follows Rules 4-6](Sketches_Images\generation_dungeon_6_good.PNG)
+![Invalid Rules 4-6](Sketches_Images\generation_dungeon_6_bad.PNG)
 7. All rooms must be connected either by doors or staricases from the starting room. *The definition of "door" will be used for regular, unlocked doors, locked doors, or chacked walls that can be opened with a bomb. In otherwords, a door is simply a connection from once adjacent room to another.*
-![Rooms Connected](Assets\Documents\Sketches_Images\generation_dungeon_7_bad.PNG)
-![Rooms Unconnected](Assets\Documents\Sketches_Images\generation_dungeon_7_good.PNG)
+![Rooms Connected](Sketches_Images\generation_dungeon_7_bad.PNG)
+![Rooms Unconnected](Sketches_Images\generation_dungeon_7_good.PNG)
 8. There will be a limit on the number of staircases. Staircases do not nessecaraly have to be a replacement to doors. A room accessable by both doors and staircases is possible.
-![Staircase and Door](Assets\Documents\Sketches_Images\generation_dungeon_8_good.PNG)
+![Staircase and Door](Sketches_Images\generation_dungeon_8_good.PNG)
 9. The dungeon must be divided into colored sections which are unlocked via the same colored key. For example, the red section of a dungeon can be accessed once the red key is colected. All doors between colored sections will be locked.
-![Colored Sections Seperate](Assets\Documents\Sketches_Images\generation_dungeon_9_seperate.PNG)
-![Colored Sections Overlap](Assets\Documents\Sketches_Images\generation_dungeon_9_overlap.PNG)
+![Colored Sections Seperate](Sketches_Images\generation_dungeon_9_seperate.PNG)
+![Colored Sections Overlap](Sketches_Images\generation_dungeon_9_overlap.PNG)
 10. Keys must be placed where they can be accessed. In otherwords, a red key can not be located in the red section of a dungeon. Atleast one key must be accessable without the use of other keys.
-![Accessable Seperate](Assets\Documents\Sketches_Images\generation_dungeon_10_accessable_seperate.PNG)
-![Accessable Overlap](Assets\Documents\Sketches_Images\generation_dungeon_10_accessable_overlap.PNG)
+![Accessable Seperate](Sketches_Images\generation_dungeon_10_accessable_seperate.PNG)
+![Accessable Overlap](Sketches_Images\generation_dungeon_10_accessable_overlap.PNG)
 11. All other items must be placed and accessable without useing that item. For example, bombs can not be located in a room that can only be accessed by bombing a room.
-![Bomb Accessable](Assets\Documents\Sketches_Images\generation_dungeon_11_good.PNG)
-![Bomb Unaccessable](Assets\Documents\Sketches_Images\generation_dungeon_11_bad.PNG)
+![Bomb Accessable](Sketches_Images\generation_dungeon_11_good.PNG)
+![Bomb Unaccessable](Sketches_Images\generation_dungeon_11_bad.PNG)
 12. Strength of enemies will increase depending on their distance from the starting room (distance meaning the shortest route between the room and the starting room.)
 
 ### Generation of Rooms
