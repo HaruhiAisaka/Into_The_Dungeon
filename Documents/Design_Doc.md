@@ -98,7 +98,6 @@ What should be generated first is an algorithm that connects the dungeon. The du
 5. A chalice room must be selected. The chalice room must only have once enterance.
 6. The room for the final boss must be adjacent to the chalice room. The final boss room must have only two doors, one that connects to the rest of the dungeon. Once that connects the room to the chalice room. The final boss room must not be accessable from the start room.
 ![Follows Rules 4-6](Sketches_Images/generation_dungeon_6_good.PNG)
-![Invalid Rules 4-6](Sketches_Images/generation_dungeon_6_bad.PNG)
 7. All rooms must be connected either by doors or staricases from the starting room. *The definition of "door" will be used for regular, unlocked doors, locked doors, or chacked walls that can be opened with a bomb. In otherwords, a door is simply a connection from once adjacent room to another.*
 ![Rooms Connected](Sketches_Images/generation_dungeon_7_bad.PNG)
 ![Rooms Unconnected](Sketches_Images/generation_dungeon_7_good.PNG)
