@@ -67,8 +67,8 @@ Currently, these should be the only items required to make a basic version of th
 | Item  | Uses | Availability |
 | ----- | ---- | ------------ |
 | Basic Sword | To attack enemies | Given to the player at the beginning of the game|
-| Bombs | Can be thrown by the player, short fuse starts once the bomb is thrown. **Limmited Amunition** Visual indication used to show when the bomb will blow. Used to kill enemies and blow up cracked walls to reveal secret rooms. | Random placement in dungeon. Dropped by enemies once the item is picked up. |
-| Keys | Used to unlock new areas of a dungeon. See key section above. | Random placement in dungeon. |
+| Bombs | It can be thrown by the player, short fuse starts once the bomb is thrown. **Limited Ammunition** Visual indication used to show when the bomb will blow. Used to kill enemies and blow up cracked walls to reveal secret rooms. | Random placement in the dungeon. Dropped by enemies once the item is picked up. |
+| Keys | Used to unlock new areas of a dungeon. See key section above. | Random placement in the dungeon. |
 | Hearts | Used to regain health. | Dropped by enemies. |
 
 ### Chalice
@@ -91,25 +91,25 @@ What should be generated first is an algorithm that connects the dungeon. The du
 ![Ordered Dungeon](Sketches_Images/generation_dungeon_1_good.PNG)
 ![UnOrdered Dungeon](Sketches_Images/generation_dungeon_1_bad.PNG)
 2. The number of rooms will be between a small random range depending on the difficulty selected.
-3. A group of rooms all connected to eachother by doors is considered a cluster. No more than 4 clusters can exist in a dungeon.
+3. A group of rooms all connected to each other by doors is considered a cluster. No more than 4 clusters can exist in a dungeon.
 ![Bad Clusters](Sketches_Images/generation_dungeon_3_bad.PNG)
 ![Good Clusters](Sketches_Images/generation_dungeon_3_good.PNG)
 4. A starting room must be selected.
-5. A chalice room must be selected. The chalice room must only have once enterance.
-6. The room for the final boss must be adjacent to the chalice room. The final boss room must have only two doors, one that connects to the rest of the dungeon. Once that connects the room to the chalice room. The final boss room must not be accessable from the start room.
+5. A chalice room must be selected. The chalice room must only have once entrance.
+6. The room for the final boss must be adjacent to the chalice room. The final boss room must have only two doors, one that connects to the rest of the dungeon. Once that connects the room to the chalice room. The final boss room must not be accessible from the start room.
 ![Follows Rules 4-6](Sketches_Images/generation_dungeon_6_good.PNG)
-7. All rooms must be connected either by doors or staricases from the starting room. *The definition of "door" will be used for regular, unlocked doors, locked doors, or chacked walls that can be opened with a bomb. In otherwords, a door is simply a connection from once adjacent room to another.*
+7. All rooms must be connected either by doors or staircases from the starting room. *The definition of "door" will be used for regular, unlocked doors, locked doors, or cracked walls that can be opened with a bomb. In other words, a door is simply a connection from one adjacent room to another.*
 ![Rooms Connected](Sketches_Images/generation_dungeon_7_bad.PNG)
 ![Rooms Unconnected](Sketches_Images/generation_dungeon_7_good.PNG)
-8. There will be a limit on the number of staircases. Staircases do not nessecaraly have to be a replacement to doors. A room accessable by both doors and staircases is possible.
+8. There will be a limit on the number of staircases. Staircases do not necessarily have to be a replacement to doors. A room accessible by both doors and staircases is possible.
 ![Staircase and Door](Sketches_Images/generation_dungeon_8_good.PNG)
-9. The dungeon must be divided into colored sections which are unlocked via the same colored key. For example, the red section of a dungeon can be accessed once the red key is colected. All doors between colored sections will be locked.
+9. The dungeon must be divided into colored sections that are unlocked via the same colored key. For example, the red section of a dungeon can be accessed once the red key is collected. All doors between colored sections will be locked.
 ![Colored Sections Seperate](Sketches_Images/generation_dungeon_9_seperate.PNG)
 ![Colored Sections Overlap](Sketches_Images/generation_dungeon_9_overlap.PNG)
-10. Keys must be placed where they can be accessed. In otherwords, a red key can not be located in the red section of a dungeon. Atleast one key must be accessable without the use of other keys.
+10. Keys must be placed where they can be accessed. In other words, a red key can not be located in the red section of a dungeon. At least one key must be accessible without the use of other keys.
 ![Accessable Seperate](Sketches_Images/generation_dungeon_10_accessable_seperate.PNG)
 ![Accessable Overlap](Sketches_Images/generation_dungeon_10_accessable_overlap.PNG)
-11. All other items must be placed and accessable without useing that item. For example, bombs can not be located in a room that can only be accessed by bombing a room.
+11. All other items must be placed and accessible without using that item. For example, bombs can not be located in a room that can only be accessed by bombing a room.
 ![Bomb Accessable](Sketches_Images/generation_dungeon_11_good.PNG)
 ![Bomb Unaccessable](Sketches_Images/generation_dungeon_11_bad.PNG)
 12. Strength of enemies will increase depending on their distance from the starting room (distance meaning the shortest route between the room and the starting room.)
@@ -118,7 +118,7 @@ What should be generated first is an algorithm that connects the dungeon. The du
 Once the dungeon is generated, individual rooms will be generated also. Each room will have data that records what items the player can have access too. This data will determine the placement of enemies or secrets.
 
 **Rules for Room Generation**
-1. All enterances and exits must be accessable by the player.
-2. All walkable tiles of a room must be accessable.
+1. All entrances and exits must be accessible by the player.
+2. All walkable tiles of a room must be accessible.
 3. There will be a limit on the number of enemies per room so that the player will not be overwhelmed by projectiles or enemies.
 4. All movable blocks must be movable.
