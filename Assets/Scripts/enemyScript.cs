@@ -10,6 +10,8 @@ public class enemyScript : MonoBehaviour
     float xMin;
     float xMax;
 
+    float speed = 3f;
+
     float attackCooldown = 0f;
 
     float meleeRange = 3f;
@@ -21,6 +23,7 @@ public class enemyScript : MonoBehaviour
         xMax= Camera.main.ViewportToWorldPoint( new Vector3(1, 0, 0) ).x;        
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +31,11 @@ public class enemyScript : MonoBehaviour
         if (distanceToPlayer.magnitude < meleeRange){
             meleeAttack();
         }
+
+
+        distanceToPlayer.Normalize();
+        rb.velocity = distanceToPlayer * speed;
+
         
     }
 
@@ -37,6 +45,7 @@ public class enemyScript : MonoBehaviour
 
 
     void meleeAttack(){
+        Debug.Log("melee");
 
     }
 
