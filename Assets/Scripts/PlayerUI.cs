@@ -28,33 +28,28 @@ public class PlayerUI : MonoBehaviour
 
     // ----- Updating UI
 
-    public updateUI(Player player) {
-        updateHealth(player.health);
-        updateEquippedWeapon(player.equippedWeapon);
-        updateEquippedItem(player.equippedItem);
+    public void updateUI(Player player) {
+        //updateHealth(player.health);
+        //updateEquippedWeapon(player.equippedWeapon);
+        //updateEquippedItem(player.equippedItem);
     }
 
-    public updateHealth(int newHealth) {
+    public void updateHealth(int newHealth) {
         displayedHealth = newHealth;
         // update hearts display
     }
 
-    public updateEquippedWeapon(/* weapon class */) {
+    public void updateEquippedWeapon(/* weapon class */) {
         //equippedWeapon = newWeapon;
         // TODO : update ui
     }
 
-    public updateEquippedItem(/* item class */) {
-        equippedItem = newItem;
+    public void updateEquippedItem(/* item class */) {
+        //equippedItem = newItem;
         // TODO : update ui
     }
 
-    public updateEquippedWeapon(/* weapon class */) {
-        equippedWeapon = newWeapon;
-        // TODO : update ui
-    }
-
-    public updateKeys(/* Keys Object */) {
+    public void updateKeys(/* Keys Object */) {
         //keys = newKeys;
         // TODO : update ui
         // key object should have fields for color, so this just draws it on
