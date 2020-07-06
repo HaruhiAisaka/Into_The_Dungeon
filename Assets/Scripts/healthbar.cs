@@ -23,27 +23,17 @@ public class healthbar : MonoBehaviour
     }
 
     void Update() {
-         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("adding");
-            updateHearts(currentHealth + 1, maxHealth );
-        } else if (Input.GetKeyDown(KeyCode.Minus)) {
-            Debug.Log("subbing");
-            updateHearts(currentHealth - 1, maxHealth );
-
-        }
     }
 
     public void updateHearts(int currentHealth, int maxHealth) {
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
 
+        Debug.Log("Starting this");
+
         // Assert Ranges
         Debug.Assert(this.currentHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Current Health OOB in health bar script.");
         Debug.Assert(this.maxHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Max Health OOB in health bar script");
-
-        Debug.Log("cur: " + currentHealth);
-        Debug.Log("max: " + maxHealth);
 
         int numberOfHalfHearts = currentHealth % 2;
         int numberOfFullHearts = (currentHealth - numberOfHalfHearts) / 2;
@@ -51,10 +41,6 @@ public class healthbar : MonoBehaviour
 
         // and the rest are locked
         int cur = 0;
-
-        Debug.Log("numberOfFullHearts: " + numberOfFullHearts);
-        Debug.Log("numberOfHalfHearts: " + numberOfHalfHearts);
-        Debug.Log("numberOfEmptyHearts: " + numberOfEmptyHearts);
 
         // full hearts
         for (int i = 0; i < numberOfFullHearts; i++) {
@@ -77,14 +63,6 @@ public class healthbar : MonoBehaviour
             cur++;
         }
 
-    }
-
-    public void setCurrentHealth(int newHealth) {
-        currentHealth = newHealth;
-    }
-
-    public void setMaxHealth(int newMax) {
-        maxHealth = newMax;
     }
 
 }
