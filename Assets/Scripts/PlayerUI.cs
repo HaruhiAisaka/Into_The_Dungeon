@@ -9,10 +9,16 @@ public class PlayerUI : MonoBehaviour
 {
 
     // player data
-    [SerializeField] int displayedHealth = 4; // 1 point = half heart
+    [SerializeField] healthbar healthbar;
     [SerializeField] string equippedWeapon = ""; // TODO: replace with script class
     [SerializeField] string equippedItem = "";// TODO: replace with script class
     private string[] keys = {}; // TODO: replace with array of Key Objects
+
+    // --- Debug -----
+    // Testing Health Bar
+    [SerializeField] int currentHealth = 10;
+    [SerializeField] int maxHealth = 14;
+    // ---------------
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +30,18 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         // animation for weapon icons ???
+        // ...
+
+        // DEBUG---------
+         if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("[Player UI] adding 1 health");
+            currentHealth += 1;
+            updateHealth(currentHealth + 1, maxHealth);
+        } else if (Input.GetKeyDown(KeyCode.Minus)) {
+            Debug.Log("[Player UI] subbing 1 health");
+            currentHealth -= 1;
+            updateHealth(currentHealth - 1, maxHealth);
+        }
     }
 
     // ----- Updating UI
@@ -34,9 +52,8 @@ public class PlayerUI : MonoBehaviour
         //updateEquippedItem(player.equippedItem);
     }
 
-    public void updateHealth(int newHealth) {
-        displayedHealth = newHealth;
-        // update hearts display
+    public void updateHealth(int newCurrentHealth, int newMaxHealth) {
+        healthbar.updateHearts(newCurrentHealth, newMaxHealth);
     }
 
     public void updateEquippedWeapon(/* weapon class */) {
