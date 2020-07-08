@@ -45,7 +45,8 @@ public class enemyScript : MonoBehaviour
 
 
     void meleeAttack(){
-        Debug.Log("melee");
+        
+        // Debug.Log("melee");
 
     }
 
