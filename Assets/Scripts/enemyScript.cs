@@ -15,6 +15,9 @@ public class enemyScript : MonoBehaviour
     float attackCooldown = 0f;
 
     float meleeRange = 3f;
+
+
+    private float health = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,19 +41,39 @@ public class enemyScript : MonoBehaviour
 
         
     }
-
-    void moveTowardsPlayer(){
-
-    }
-
-
+    // Melee attack player
     void meleeAttack(){
-        Debug.Log("melee");
+        
+        // Debug.Log("melee");
 
     }
-
+    // Range attack player
     void rangedAttack(){
 
+    }
+    // Returns the health of this enemy
+    public float getHealth(){
+        return health;
+    }
+    /** Reduces health
+    * param damage: amount of health lost */
+    
+    public void takeDamage(float damage){
+        health -= damage;
+        if (health < 0f){
+            die();
+        }
+    }
+    
+    // Drop loot on the ground for player to pick up
+    private void dropLoot(){
+
+    }
+
+    // Enemy is destroyed and drops loot
+    void die(){
+        dropLoot();
+        Debug.Log("die");
     }
 }
 
