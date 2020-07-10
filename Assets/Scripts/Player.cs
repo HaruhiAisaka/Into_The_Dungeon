@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float speed = 1f;
     public Transform player;
+    public int playerHealth;
 
     [SerializeField] Rigidbody2D myRigidBody2D;
 
@@ -18,32 +19,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // MoveHorizontal();
-        // MoveVertical();
+        
         Move();
     }
-
-    //Code is not used
-    // -------------------------------------------------------------------------
-    // private void Move() {
-    //     if (Input.GetKey("left") || Input.GetKey("a")) {
-    //         float deltaX = -speed * Time.deltaTime;
-    //         player.position = new Vector2( player.position.x + deltaX, player.position.y );
-    //     }
-    //     if (Input.GetKey("right") || Input.GetKey("d")) {
-    //         float deltaX = speed * Time.deltaTime;
-    //         player.position = new Vector2(player.position.x + deltaX, player.position.y );
-    //     }
-    //     if (Input.GetKey("up") || Input.GetKey("w")) {
-    //         float deltaY = speed * Time.deltaTime;
-    //         player.position = new Vector2( player.position.x, player.position.y + deltaY );
-    //     }
-    //     if (Input.GetKey("down") || Input.GetKey("s")) {
-    //         float deltaY = -speed * Time.deltaTime;
-    //         player.position = new Vector2( player.position.x, player.position.y + deltaY );
-    //     }
-    // }
-    //-------------------------------------------------------------------------
     
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
     private void Move() {
@@ -51,10 +29,5 @@ public class Player : MonoBehaviour
         float deltaX = Input.GetAxisRaw("Horizontal") * speed;
         float deltaY = Input.GetAxisRaw("Vertical") * speed;
         myRigidBody2D.velocity = new Vector2(deltaX, deltaY);
-    }
-
-    // Move vertically
-    private void MoveVertical() {
-        
     }
 }
