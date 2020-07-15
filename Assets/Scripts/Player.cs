@@ -6,11 +6,8 @@ public class Player : MonoBehaviour
 {
     [Header("Player Movement")]
     public float speed = 1f;
-<<<<<<< HEAD
-=======
     public Transform player;
     public int playerHealth;
->>>>>>> 02ffdca68006fd973713c0fb9c7bf6e15794146d
 
     [SerializeField] Rigidbody2D myRigidBody2D;
 
