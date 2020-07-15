@@ -52,7 +52,7 @@ public class CurrentRoom : MonoBehaviour
         var playerPosition = player.transform.position;
         float xPlayerDistanceFromCenter = playerPosition.x / xFactor;
         float yPlayerDistanceFromCenter = playerPosition.y / yFactor;
-        if (xPlayerDistanceFromCenter > yPlayerDistanceFromCenter){
+        if (Mathf.Abs(xPlayerDistanceFromCenter) > Mathf.Abs(yPlayerDistanceFromCenter)){
             if (xPlayerDistanceFromCenter < roomCoordinate.x){
                 roomCoordinate.x --;
             } 
