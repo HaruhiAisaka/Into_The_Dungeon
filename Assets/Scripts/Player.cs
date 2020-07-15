@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Movement")]
     public float speed = 1f;
-    public Transform player;
 
     [SerializeField] Rigidbody2D myRigidBody2D;
 
@@ -51,10 +51,5 @@ public class Player : MonoBehaviour
         float deltaX = Input.GetAxisRaw("Horizontal") * speed;
         float deltaY = Input.GetAxisRaw("Vertical") * speed;
         myRigidBody2D.velocity = new Vector2(deltaX, deltaY);
-    }
-
-    // Move vertically
-    private void MoveVertical() {
-        
     }
 }

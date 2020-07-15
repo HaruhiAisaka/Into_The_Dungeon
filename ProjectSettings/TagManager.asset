@@ -57,6 +57,9 @@ TagManager:
   - name: Enemies
     uniqueID: 904420813
     locked: 0
+  - name: Doors
+    uniqueID: 836739929
+    locked: 0
   - name: Player
     uniqueID: 1440735357
     locked: 0
