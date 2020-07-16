@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
 
     private Animator myAnimator;
 
+    // direction of player for use by attack function
+    private int directionX = 0;
+    private int directionY = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,9 +72,27 @@ public class Player : MonoBehaviour
     }
 
     private void Attack(){
+        // set direction
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_down") ) {
+            directionX = 0;
+            directionY = -1;
+        }
+        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_up") ) {
+            directionX = 0;
+            directionY = 1;
+        }
+        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_left") ) {
+            directionX = -1;
+            directionY = 0;
+        }
+        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_right") ) {
+            directionX = 1;
+            directionY = 0;
+        }
+        // attaaack!
         attackHitBox.transform.position = 
-            new Vector3(attackHitBox.transform.position.x, 
-            attackHitBox.transform.position.y - 1, 
+            new Vector3(attackHitBox.transform.position.x + directionX, 
+            attackHitBox.transform.position.y + directionY, 
             attackHitBox.transform.position.z);
         myAnimator.SetTrigger("attack");
         attackHitBox.enabled = true;
@@ -78,8 +100,8 @@ public class Player : MonoBehaviour
 
     private void AttackEnd(){
         attackHitBox.transform.position = 
-            new Vector3(attackHitBox.transform.position.x, 
-            attackHitBox.transform.position.y + 1, 
+            new Vector3(attackHitBox.transform.position.x - directionX, 
+            attackHitBox.transform.position.y - directionY, 
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
     }
