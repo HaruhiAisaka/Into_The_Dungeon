@@ -12,8 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] healthbar healthbar;
     [SerializeField] string equippedWeapon = ""; // TODO: replace with script class
     [SerializeField] string equippedItem = "";// TODO: replace with script class
-    private string[] keys = {}; // TODO: replace with array of Key Objects
-
+    [SerializeField] KeysBar keys;
     // --- Debug -----
     // Testing Health Bar
     [SerializeField] int currentHealth = 10;
@@ -33,7 +32,8 @@ public class PlayerUI : MonoBehaviour
         // ...
 
         // DEBUG---------
-         if (Input.GetKeyDown(KeyCode.Space)) {
+        // Health
+        if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("[Player UI] adding 1 health");
             currentHealth += 1;
             updateHealth(currentHealth + 1, maxHealth);
@@ -41,6 +41,11 @@ public class PlayerUI : MonoBehaviour
             Debug.Log("[Player UI] subbing 1 health");
             currentHealth -= 1;
             updateHealth(currentHealth - 1, maxHealth);
+        }
+        // Keys
+        if (Input.GetKeyDown(KeyCode.K)) {
+            Debug.Log("Keybar update for 2 keys");
+            updateKeys();
         }
     }
 
@@ -67,9 +72,6 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void updateKeys(/* Keys Object */) {
-        //keys = newKeys;
-        // TODO : update ui
-        // key object should have fields for color, so this just draws it on
-        // screen
+        keys.updateKeys(true, true, false);
     }
 }

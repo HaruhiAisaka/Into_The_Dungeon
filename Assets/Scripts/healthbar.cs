@@ -26,14 +26,14 @@ public class healthbar : MonoBehaviour
     }
 
     public void updateHearts(int currentHealth, int maxHealth) {
-        this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
-
-        Debug.Log("Starting this");
+        this.currentHealth = currentHealth > maxHealth ? maxHealth : currentHealth;
 
         // Assert Ranges
         Debug.Assert(this.currentHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Current Health OOB in health bar script.");
         Debug.Assert(this.maxHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Max Health OOB in health bar script");
+
+        Debug.Log("current: " + this.currentHealth + ", max: " + this.maxHealth);
 
         int numberOfHalfHearts = currentHealth % 2;
         int numberOfFullHearts = (currentHealth - numberOfHalfHearts) / 2;
@@ -58,7 +58,7 @@ public class healthbar : MonoBehaviour
             cur++;
         }
         // locked
-        for (int i = cur; i < (maxHealth / 2); i++) {
+        for (int i = cur; i < (maxDisplayedHealth / 2); i++) {
             hearts[cur].sprite = lockedHeart;
             cur++;
         }
