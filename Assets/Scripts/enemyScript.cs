@@ -6,7 +6,6 @@ using System;
 public class enemyScript : MonoBehaviour
 {
     Rigidbody2D rb;
-    public Transform player;
     float xMin;
     float xMax;
 
@@ -21,10 +20,10 @@ public class enemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody2D>();       
+
         xMin = Camera.main.ViewportToWorldPoint( new Vector3(0, 0, 0) ).x;
         xMax= Camera.main.ViewportToWorldPoint( new Vector3(1, 0, 0) ).x;        
-        InvokeRepeating("move1", 0.01f, 2f);
 
     }
 
@@ -32,48 +31,16 @@ public class enemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //move();
+        
 
         
     }
 
-    // Enemy moves Towards Player
-    void move(){
-        Vector2 distanceToPlayer = player.position - transform.position;
-        if (distanceToPlayer.magnitude < meleeRange){
-            meleeAttack();
-        }
+    
 
-
-        distanceToPlayer.Normalize();
-        rb.velocity = distanceToPlayer * speed;
-    }
-
-    // Object that generates random numbers
-    System.Random rnd = new System.Random();
-    // Enemy moves left, right, down, or up randomly
-    void move1(){
-        int dir = rnd.Next(0,4);
-        switch(dir){
-            case(0):
-                rb.velocity = new Vector2(0,1);
-                break;
-            case(1):
-                rb.velocity = new Vector2(1,0);
-                break;
-            case(2):
-                rb.velocity = new Vector2(0,-1);
-                break;
-            case(3):
-                rb.velocity = new Vector2(-1,0);
-                break;
-
-        }
-        rb.velocity = rb.velocity * speed;
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collision){
-        Debug.Log("collision");
         if (collision.gameObject.tag == "wall"){
             rb.velocity *= -1;
         }
@@ -112,7 +79,7 @@ public class enemyScript : MonoBehaviour
     // Enemy is destroyed and drops loot
     void die(){
         dropLoot();
-        Debug.Log("die");
+        
     }
 }
 
