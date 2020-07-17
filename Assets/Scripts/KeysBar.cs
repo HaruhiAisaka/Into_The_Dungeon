@@ -23,17 +23,17 @@ public class KeysBar : MonoBehaviour
     {
     }
 
-    public void updateKeys(bool key1, bool key2, bool key3) {
+    public void updateKeys(bool[] keysArr) {
         // update each key in turn
-        if (key1) {
+        if (keysArr[0]) {
             this.key1.sprite = key;
         }
 
-        if (key2) {
+        if (keysArr[1]) {
             this.key2.sprite = key;
         }
 
-        if (key3) {
+        if (keysArr[2]) {
             this.key3.sprite = key;
         }
     }

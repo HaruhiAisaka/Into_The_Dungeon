@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] string equippedWeapon = ""; // TODO: replace with script class
     [SerializeField] string equippedItem = "";// TODO: replace with script class
     [SerializeField] KeysBar keys;
+
     // --- Debug -----
     // Testing Health Bar
     [SerializeField] int currentHealth = 10;
@@ -22,16 +23,13 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        // animation for weapon icons ???
-        // ...
-
         // DEBUG---------
+        // Keybinds that change various properties of UI
         // Health
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("[Player UI] adding 1 health");
@@ -45,16 +43,20 @@ public class PlayerUI : MonoBehaviour
         // Keys
         if (Input.GetKeyDown(KeyCode.K)) {
             Debug.Log("Keybar update for 2 keys");
-            updateKeys();
+            updateKeys(new bool[] {true, true, false});
         }
     }
 
     // ----- Updating UI
 
     public void updateUI(Player player) {
-        //updateHealth(player.health);
-        //updateEquippedWeapon(player.equippedWeapon);
-        //updateEquippedItem(player.equippedItem);
+        updateHealth(player.playerHealth, 14);
+        // 14 As player does not have a max health field
+
+        //updateEquippedWeapon(player.equippedWeapon); // TODO when we have weapons
+        //updateEquippedItem(player.equippedItem); // TODO when we have Items
+
+        updateKeys(new bool[] {true, true, false});
     }
 
     public void updateHealth(int newCurrentHealth, int newMaxHealth) {
@@ -71,7 +73,7 @@ public class PlayerUI : MonoBehaviour
         // TODO : update ui
     }
 
-    public void updateKeys(/* Keys Object */) {
-        keys.updateKeys(true, true, false);
+    public void updateKeys(bool[] keysArr) {
+        keys.updateKeys(keysArr);
     }
 }
