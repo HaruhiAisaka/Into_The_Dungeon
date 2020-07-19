@@ -78,6 +78,8 @@ public class enemyScript : MonoBehaviour
 
     // Enemy is destroyed and drops loot
     void die(){
+        Destroy(gameObject);
+
         dropLoot();
         
     }
