@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float speed = 1f;
 
+    public bool freezePlayer = false;
+
     public int playerHealth;
 
     public BoxCollider2D attackHitBox;
@@ -104,5 +106,18 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.y - directionY, 
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
+    }
+        //FreezePlayer() Freezes the player in place.
+    public void FreezePlayer(){
+        freezePlayer = true;
+    }
+
+    //UnfreezePlayer() Allows the player to move again.
+    public void UnfreezePlayer(){
+        freezePlayer = false;
+    }
+
+    public bool GetFreezePlayer(){
+        return freezePlayer;
     }
 }
