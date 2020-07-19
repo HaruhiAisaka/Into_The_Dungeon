@@ -20,6 +20,8 @@ public class Sword : MonoBehaviour
     void OnTriggerEnter2D(Collider2D Collision) {
         if (Collision.gameObject.tag == "enemy") {
             Debug.Log("HIT");
+            enemyScript es = Collision.gameObject.GetComponent<enemyScript>();
+            es.takeDamage(5f);
             // TO IMPLEMENT: damage the enemy
             // TO IMPLEMENT: knock the enemy back
         }
