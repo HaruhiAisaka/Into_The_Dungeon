@@ -32,10 +32,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        if(Input.GetButtonDown("Attack1")){
-            Attack();
+        if (!freezePlayer){
+            Move();
+            if(Input.GetButtonDown("Attack1")){
+                Attack();
+            }
         }
+        
     }
     
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
@@ -98,6 +101,7 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.z);
         myAnimator.SetTrigger("attack");
         attackHitBox.enabled = true;
+        FreezePlayer();
     }
 
     private void AttackEnd(){
@@ -106,8 +110,10 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.y - directionY, 
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
+        UnfreezePlayer();
     }
-        //FreezePlayer() Freezes the player in place.
+    
+    //FreezePlayer() Freezes the player in place.
     public void FreezePlayer(){
         freezePlayer = true;
     }
