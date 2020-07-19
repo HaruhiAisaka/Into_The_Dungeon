@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float speed = 1f;
 
+    public bool freezePlayer = false;
+
     public int playerHealth;
 
     public BoxCollider2D attackHitBox;
@@ -30,10 +32,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        if(Input.GetButtonDown("Attack1")){
+        if(Input.GetButtonDown("Attack1") && !freezePlayer){
             Attack();
         }
+        if (!freezePlayer){
+            Move();
+        } 
     }
     
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
@@ -96,6 +100,7 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.z);
         myAnimator.SetTrigger("attack");
         attackHitBox.enabled = true;
+        FreezePlayer();
     }
 
     private void AttackEnd(){
@@ -104,5 +109,22 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.y - directionY, 
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
+        UnfreezePlayer();
+        Debug.Log("Called");
+    }
+    
+    //FreezePlayer() Freezes the player in place.
+    public void FreezePlayer(){
+        freezePlayer = true;
+        myRigidBody2D.velocity = new Vector2(0,0);
+    }
+
+    //UnfreezePlayer() Allows the player to move again.
+    public void UnfreezePlayer(){
+        freezePlayer = false;
+    }
+
+    public bool GetFreezePlayer(){
+        return freezePlayer;
     }
 }
