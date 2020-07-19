@@ -32,13 +32,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButtonDown("Attack1") && !freezePlayer){
+            Attack();
+        }
         if (!freezePlayer){
             Move();
-            if(Input.GetButtonDown("Attack1")){
-                Attack();
-            }
-        }
-        
+        } 
     }
     
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
@@ -111,11 +110,13 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
         UnfreezePlayer();
+        Debug.Log("Called");
     }
     
     //FreezePlayer() Freezes the player in place.
     public void FreezePlayer(){
         freezePlayer = true;
+        myRigidBody2D.velocity = new Vector2(0,0);
     }
 
     //UnfreezePlayer() Allows the player to move again.
