@@ -457,7 +457,7 @@ MonoBehaviour:
   healthbar: {fileID: 2079913080}
   equippedWeapon: 
   equippedItem: 
-  keys: {fileID: 201246198}
+  keys: {fileID: 0}
   currentHealth: 10
   maxHealth: 10
 --- !u!1001 &531437561
@@ -2020,6 +2020,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7235803257414263216, guid: 05588fb3b0c1a412d9fd67a1f785bd31,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7235803257414263217, guid: 05588fb3b0c1a412d9fd67a1f785bd31,
         type: 3}
       propertyPath: m_LocalPosition.x
