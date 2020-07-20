@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class healthbar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
 
     // Player/Displayed Health
@@ -25,7 +25,7 @@ public class healthbar : MonoBehaviour
     void Update() {
     }
 
-    public void updateHearts(int currentHealth, int maxHealth) {
+    public void UpdateHearts(int currentHealth, int maxHealth) {
         this.maxHealth = maxHealth;
         this.currentHealth = currentHealth > maxHealth ? maxHealth : currentHealth;
 
