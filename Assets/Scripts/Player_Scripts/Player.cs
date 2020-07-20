@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         attackHitBox.enabled = false;
         myRigidBody2D = this.GetComponent<Rigidbody2D>();
         myAnimator = this.GetComponent<Animator>();
+        playerHealth = 10;
     }
 
     // Update is called once per frame
@@ -103,6 +104,12 @@ public class Player : MonoBehaviour
         FreezePlayer();
     }
 
+    public int GetHealth(){
+        return playerHealth;
+    }
+    public void DamagePlayer(int damage) {
+        playerHealth -= damage;
+    }
     private void AttackEnd(){
         attackHitBox.transform.position =
             new Vector3(attackHitBox.transform.position.x - directionX,
