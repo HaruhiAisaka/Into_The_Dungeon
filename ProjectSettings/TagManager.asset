@@ -64,3 +64,6 @@ TagManager:
   - name: Player
     uniqueID: 1440735357
     locked: 1
+  - name: DoorsTop
+    uniqueID: 2005859991
+    locked: 0

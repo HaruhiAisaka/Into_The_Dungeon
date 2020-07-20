@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
         UnfreezePlayer();
-        Debug.Log("Called");
     }
     
     //FreezePlayer() Freezes the player in place.
@@ -124,7 +123,12 @@ public class Player : MonoBehaviour
         freezePlayer = false;
     }
 
+    //Get Functions
     public bool GetFreezePlayer(){
         return freezePlayer;
+    }
+
+    public float GetSpeed(){
+        return speed;
     }
 }

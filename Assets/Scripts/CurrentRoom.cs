@@ -17,9 +17,17 @@ public class CurrentRoom : MonoBehaviour
     To find the real world position of the center of the room the player is in,
     call the getRealRoomCoordinate() function. 
     The center of the origin room must be (0,0)*/
-    public (int x,int y) roomCoordinate;
+    public Vector2 roomCoordinate;
 
+    /* The xFactor is the distance between the centers of two rooms 
+    in the horizontal direction. 
+    For example, if the current room is positioned at (0,0), 
+    then the center of the room on the left is positioned at (-xFactor,0).*/
     private int xFactor = 18;
+    /* The yFactor is the distance between the centers of two rooms 
+    in the vertical direction. 
+    For example, if the current room is positioned at (0,0), 
+    then the center of the room above is positioned at (0,yFactor).*/
     private int yFactor = 10;
 
     private Player player;
@@ -27,7 +35,7 @@ public class CurrentRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roomCoordinate = (0,0);
+        roomCoordinate = new Vector2(0,0);
         player = FindObjectOfType<Player>();
     }
 
@@ -38,12 +46,12 @@ public class CurrentRoom : MonoBehaviour
     }
 
     //Functions that deal with setting and getting the room cordinate.
-    public (int x,int y) GetRoomCoordinate(){
+    public Vector2 GetRoomCoordinate(){
         return roomCoordinate;
     }
 
-    public (int x,int y) GetRealRoomCoordinate(){
-        return (roomCoordinate.x * xFactor, roomCoordinate.y * yFactor);
+    public Vector2 GetRealRoomCoordinate(){
+        return new Vector2 (roomCoordinate.x * xFactor, roomCoordinate.y * yFactor);
     }
 
     /* UpdateRoomByDoor() updates the room the player is in when the player 
@@ -68,5 +76,13 @@ public class CurrentRoom : MonoBehaviour
                 roomCoordinate.y ++;
             }
         }
+    }
+
+    public int GetXFactor(){
+        return xFactor;
+    }
+
+    public int GetYFactor(){
+        return yFactor;
     }
 }
