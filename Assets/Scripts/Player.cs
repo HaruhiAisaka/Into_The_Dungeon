@@ -37,9 +37,9 @@ public class Player : MonoBehaviour
         }
         if (!freezePlayer){
             Move();
-        } 
+        }
     }
-    
+
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
     private void Move() {
         //Changed Input.GetAxis to Input.GetAxisRaw this gives out values of either 0 or 1.
@@ -94,9 +94,9 @@ public class Player : MonoBehaviour
             directionY = 0;
         }
         // attaaack!
-        attackHitBox.transform.position = 
-            new Vector3(attackHitBox.transform.position.x + directionX, 
-            attackHitBox.transform.position.y + directionY, 
+        attackHitBox.transform.position =
+            new Vector3(attackHitBox.transform.position.x + directionX,
+            attackHitBox.transform.position.y + directionY,
             attackHitBox.transform.position.z);
         myAnimator.SetTrigger("attack");
         attackHitBox.enabled = true;
@@ -104,14 +104,14 @@ public class Player : MonoBehaviour
     }
 
     private void AttackEnd(){
-        attackHitBox.transform.position = 
-            new Vector3(attackHitBox.transform.position.x - directionX, 
-            attackHitBox.transform.position.y - directionY, 
+        attackHitBox.transform.position =
+            new Vector3(attackHitBox.transform.position.x - directionX,
+            attackHitBox.transform.position.y - directionY,
             attackHitBox.transform.position.z);
         attackHitBox.enabled = false;
         UnfreezePlayer();
     }
-    
+
     //FreezePlayer() Freezes the player in place.
     public void FreezePlayer(){
         freezePlayer = true;

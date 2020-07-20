@@ -28,23 +28,6 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // DEBUG---------
-        // Keybinds that change various properties of UI
-        // Health
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("[Player UI] adding 1 health");
-            currentHealth += 1;
-            updateHealth(currentHealth + 1, maxHealth);
-        } else if (Input.GetKeyDown(KeyCode.Minus)) {
-            Debug.Log("[Player UI] subbing 1 health");
-            currentHealth -= 1;
-            updateHealth(currentHealth - 1, maxHealth);
-        }
-        // Keys
-        if (Input.GetKeyDown(KeyCode.K)) {
-            Debug.Log("Keybar update for 2 keys");
-            updateKeys(new bool[] {true, true, false});
-        }
     }
 
     // ----- Updating UI
