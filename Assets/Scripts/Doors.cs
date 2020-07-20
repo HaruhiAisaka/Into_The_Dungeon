@@ -69,6 +69,16 @@ public class Doors : MonoBehaviour
 
     IEnumerator DoorAnimation(){
         player.FreezePlayer();
+        if (doorEntered == Direction.NORTH){
+            playerAnimator.SetBool("walkLeft", false);
+            playerAnimator.SetBool("walkRight", false);
+            playerAnimator.SetBool("walkUp", true);
+        }
+        else if(doorEntered == Direction.SOUTH){
+            playerAnimator.SetBool("walkLeft", false);
+            playerAnimator.SetBool("walkRight", false);
+            playerAnimator.SetBool("walkDown", true);
+        }
         //Move player into the door
         Coroutine a = StartCoroutine(MovePlayerIntoDoor());
         yield return a;
