@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class enemyScript : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
     float xMin;
     float xMax;
+
+    private bool freezeEnemy = false;
 
     float speed = 3f;
 
     float attackCooldown = 0f;
 
     float meleeRange = 3f;
+
+    public Component movement;
 
 
     private float health = 10f;
@@ -82,6 +86,18 @@ public class enemyScript : MonoBehaviour
 
         dropLoot();
         
+    }
+
+    public void FreezeEnemy(){
+        freezeEnemy = true;
+    }
+
+    public void UnfreezeEnemy(){
+        freezeEnemy = false;
+    }
+
+    public bool GetFreezeEnemy(){
+        return freezeEnemy;
     }
 }
 
