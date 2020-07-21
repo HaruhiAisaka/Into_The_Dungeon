@@ -9,7 +9,7 @@ public class PlayerUI : MonoBehaviour
 {
 
     // player data
-    [SerializeField] healthbar healthbar;
+    [SerializeField] HealthBar healthbar;
     [SerializeField] string equippedWeapon = ""; // TODO: replace with script class
     [SerializeField] string equippedItem = "";// TODO: replace with script class
     [SerializeField] KeysBar keys;
@@ -32,31 +32,31 @@ public class PlayerUI : MonoBehaviour
 
     // ----- Updating UI
 
-    public void updateUI(Player player) {
-        updateHealth(player.playerHealth, 14);
+    public void UpdateUI(Player player) {
+        UpdateHealth(player.playerHealth, 14);
         // 14 As player does not have a max health field
 
         //updateEquippedWeapon(player.equippedWeapon); // TODO when we have weapons
         //updateEquippedItem(player.equippedItem); // TODO when we have Items
 
-        updateKeys(new bool[] {true, true, false});
+        UpdateKeys(new bool[] {true, true, false});
     }
 
-    public void updateHealth(int newCurrentHealth, int newMaxHealth) {
-        healthbar.updateHearts(newCurrentHealth, newMaxHealth);
+    public void UpdateHealth(int newCurrentHealth, int newMaxHealth) {
+        healthbar.UpdateHearts(newCurrentHealth, newMaxHealth);
     }
 
-    public void updateEquippedWeapon(/* weapon class */) {
+    public void UpdateEquippedWeapon(/* weapon class */) {
         //equippedWeapon = newWeapon;
         // TODO : update ui
     }
 
-    public void updateEquippedItem(/* item class */) {
+    public void UpdateEquippedItem(/* item class */) {
         //equippedItem = newItem;
         // TODO : update ui
     }
 
-    public void updateKeys(bool[] keysArr) {
-        keys.updateKeys(keysArr);
+    public void UpdateKeys(bool[] keysArr) {
+        keys.UpdateKeys(keysArr);
     }
 }
