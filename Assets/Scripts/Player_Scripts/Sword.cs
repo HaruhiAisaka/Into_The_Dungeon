@@ -21,7 +21,7 @@ public class Sword : MonoBehaviour
         if (Collision.gameObject.tag == "enemy") {
             Debug.Log("HIT");
             Enemy es = Collision.gameObject.GetComponent<Enemy>();
-            es.takeDamage(5f);
+            es.TakeDamage(5f);
             // TO IMPLEMENT: damage the enemy
             // TO IMPLEMENT: knock the enemy back
         }

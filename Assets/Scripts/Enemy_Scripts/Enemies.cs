@@ -8,6 +8,7 @@ public class Enemies : MonoBehaviour
     private Enemy[] enemies;
     private void Start() {
         enemies = this.GetComponentsInChildren<Enemy>();
+        
     }
     //Freezes all the enemies.
     public void FreezeAllEnemies(){
@@ -15,4 +16,6 @@ public class Enemies : MonoBehaviour
             enemy.FreezeEnemy();
         }
     }
+
+    
 }
