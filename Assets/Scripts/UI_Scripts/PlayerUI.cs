@@ -33,7 +33,7 @@ public class PlayerUI : MonoBehaviour
     // ----- Updating UI
 
     public void UpdateUI(Player player) {
-        UpdateHealth(player.playerHealth, 14);
+        UpdateHealth(player.GetHealth(), 14);
         // 14 As player does not have a max health field
 
         //updateEquippedWeapon(player.equippedWeapon); // TODO when we have weapons
