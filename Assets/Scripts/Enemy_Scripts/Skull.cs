@@ -14,7 +14,6 @@ public class Skull : Enemy
 
     public override void Move(){
 
-        Debug.Log("skull move");
     }
 
     // Bounces off walls

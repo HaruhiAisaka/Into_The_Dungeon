@@ -13,7 +13,6 @@ public class Blob : Enemy
     public override void DerivedUpdate(){}
 
     public override void Move(){
-        Debug.Log("blob move");
     }
 
     // Bounces off walls

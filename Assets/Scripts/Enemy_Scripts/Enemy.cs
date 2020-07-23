@@ -44,8 +44,8 @@ public abstract class Enemy : MonoBehaviour
     {
         DerivedUpdate();
         Move();
-        
-        
+
+
     }
 
 
@@ -63,13 +63,14 @@ public abstract class Enemy : MonoBehaviour
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Stun"))
         {
-            sprite.enabled = false;
             animator.SetTrigger("stun");
             health -= damage;
             if (health < 0f)
             {
                 Die();
             }
+            sprite.enabled = false;
+
         }
     }
 
@@ -105,8 +106,14 @@ public abstract class Enemy : MonoBehaviour
         sprite.enabled = true;
     }
 
-    private void blink(){
+    private void Blink()
+    {
         sprite.enabled = !sprite.enabled;
+    }
+
+    private void Invisible()
+    {
+        sprite.enabled = false;
     }
 }
 
