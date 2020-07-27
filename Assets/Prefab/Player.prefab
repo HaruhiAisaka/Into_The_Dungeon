@@ -119,9 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e7ffd73962f402fa36b08ed863aea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   freezePlayer: 0
   playerHealth: 0
+  playerUI: {fileID: 0}
   attackHitBox: {fileID: 6567293902991171841}
 --- !u!114 &445698500437630075
 MonoBehaviour:
@@ -135,8 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4857952a381074cae5055186975049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatabase: {fileID: 7132664950031570097, guid: e364c4d007f13be49bd3045538c72e4c,
-    type: 3}
 --- !u!212 &7235803257414263216
 SpriteRenderer:
   m_ObjectHideFlags: 0
