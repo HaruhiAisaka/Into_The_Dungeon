@@ -17,7 +17,7 @@ public class CurrentRoom : MonoBehaviour
     To find the real world position of the center of the room the player is in,
     call the getRealRoomCoordinate() function. 
     The center of the origin room must be (0,0)*/
-    [SerializeField] private Vector2 roomCoordinate;
+    public Vector2 roomCoordinate;
 
     /* The xFactor is the distance between the centers of two rooms 
     in the horizontal direction. 

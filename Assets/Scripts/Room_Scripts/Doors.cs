@@ -7,12 +7,12 @@ public class Doors : MonoBehaviour
     [Header("Animation Settings")]
     /*Delay between when the player is first dirrected to enter the door 
     and when the camera starts to move to the over room.*/
-    [SerializeField] private float cameraMoveDelay = 1f;
-    [SerializeField] private float cameraMovementTime = 2f;
+    public float cameraMoveDelay = 1f;
+    public float cameraMovementTime = 2f;
 
     /*Used to determine how far the player should walk until he is 
     considered away from the door.*/
-    [SerializeField] private float distanceFromDoor = 2f;
+    public float distanceFromDoor = 2f;
 
     private CurrentRoom currentRoom;
     private Player player;
