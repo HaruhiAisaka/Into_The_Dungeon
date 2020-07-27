@@ -11,8 +11,6 @@ public class Player : MonoBehaviour
 
     public int playerHealth;
 
-    [SerializeField] PlayerUI playerUI;
-
     public BoxCollider2D attackHitBox;
 
     private Rigidbody2D myRigidBody2D;
@@ -124,14 +122,11 @@ public class Player : MonoBehaviour
         FreezePlayer();
     }
 
+    public int GetHealth(){
+        return playerHealth;
+    }
     public void DamagePlayer(int damage) {
         playerHealth -= damage;
-
-        // Update health in UI, if player has one
-        if (playerUI != null) {
-            playerUI.UpdateHealth(playerHealth, 14);
-        }
-
     }
     private void AttackEnd(){
         attackHitBox.transform.position =
@@ -160,9 +155,5 @@ public class Player : MonoBehaviour
 
     public float GetSpeed(){
         return speed;
-    }
-
-    public int GetHealth(){
-        return playerHealth;
     }
 }

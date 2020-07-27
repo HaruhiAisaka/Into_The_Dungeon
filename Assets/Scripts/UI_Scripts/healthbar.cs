@@ -26,8 +26,8 @@ public class HealthBar : MonoBehaviour
     }
 
     public void UpdateHearts(int currentHealth, int maxHealth) {
-        this.maxHealth = Clamp(maxHealth, 0, maxDisplayedHealth);
-        this.currentHealth = Clamp(currentHealth, 0, maxHealth);
+        this.maxHealth = maxHealth;
+        this.currentHealth = currentHealth > maxHealth ? maxHealth : currentHealth;
 
         // Assert Ranges
         Debug.Assert(this.currentHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Current Health OOB in health bar script.");
@@ -63,16 +63,6 @@ public class HealthBar : MonoBehaviour
             cur++;
         }
 
-    }
-
-    private int Clamp(int value, int lower, int upper) {
-        if (value < lower) {
-            return lower;
-        } else if (value > upper) {
-            return upper;
-        } else {
-            return value;
-        }
     }
 
 }
