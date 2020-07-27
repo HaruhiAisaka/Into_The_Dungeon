@@ -56,6 +56,96 @@ TextureImporter:
   - first:
       213: -9075495081560004678
     second: blue_dungeon_wall_compressed_17
+  - first:
+      213: -7506849745466935205
+    second: blue_dungeon_wall_compressed_0
+  - first:
+      213: 5595352108703465751
+    second: blue_dungeon_wall_compressed_1
+  - first:
+      213: 3400491936583259303
+    second: blue_dungeon_wall_compressed_2
+  - first:
+      213: 1619411501554075019
+    second: blue_dungeon_wall_compressed_3
+  - first:
+      213: 6186541348984870052
+    second: blue_dungeon_wall_compressed_4
+  - first:
+      213: 3193928516133836382
+    second: blue_dungeon_wall_compressed_5
+  - first:
+      213: -6155199385598112153
+    second: blue_dungeon_wall_compressed_6
+  - first:
+      213: 217131080239759806
+    second: blue_dungeon_wall_compressed_7
+  - first:
+      213: -6915464760663856086
+    second: blue_dungeon_wall_compressed_8
+  - first:
+      213: 6722780518862705191
+    second: blue_dungeon_wall_compressed_9
+  - first:
+      213: -6873851178916022293
+    second: blue_dungeon_wall_compressed_10
+  - first:
+      213: 1568786494869765142
+    second: blue_dungeon_wall_compressed_11
+  - first:
+      213: 1745678221319952572
+    second: blue_dungeon_wall_compressed_12
+  - first:
+      213: -5245467097200398091
+    second: blue_dungeon_wall_compressed_13
+  - first:
+      213: -4562526829327313121
+    second: blue_dungeon_wall_compressed_14
+  - first:
+      213: 2562051239802205217
+    second: blue_dungeon_wall_compressed_15
+  - first:
+      213: -1725473758020930764
+    second: blue_dungeon_wall_compressed_16
+  - first:
+      213: 7799701391645272764
+    second: blue_dungeon_wall_compressed_17
+  - first:
+      213: 520544440896279902
+    second: blue_dungeon_wall_compressed_18
+  - first:
+      213: -469565139553992532
+    second: blue_dungeon_wall_compressed_19
+  - first:
+      213: 1347942567847606874
+    second: blue_dungeon_wall_compressed_20
+  - first:
+      213: 5849461137057547576
+    second: blue_dungeon_wall_compressed_21
+  - first:
+      213: -1108294452805623985
+    second: blue_dungeon_wall_compressed_22
+  - first:
+      213: -5027049679750200877
+    second: blue_dungeon_wall_compressed_23
+  - first:
+      213: -1975523604750065132
+    second: blue_dungeon_wall_compressed_18
+  - first:
+      213: -7122650957309789247
+    second: blue_dungeon_wall_compressed_19
+  - first:
+      213: -4647453887625232024
+    second: blue_dungeon_wall_compressed_20
+  - first:
+      213: -6906362213583580576
+    second: blue_dungeon_wall_compressed_21
+  - first:
+      213: 1582148758598803232
+    second: blue_dungeon_wall_compressed_22
+  - first:
+      213: 3313082820156704551
+    second: blue_dungeon_wall_compressed_23
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,7 +208,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -130,7 +220,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -145,7 +235,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -155,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a3c943dc4c6f1400800000000000000
-      internalID: 297075177647883174
+      spriteID: b583633fdef42d790800000000000000
+      internalID: -7506849745466935205
       vertices: []
       indices: 
       edges: []
@@ -166,7 +256,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -176,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1945467a7c73bd8c0800000000000000
-      internalID: -3973520915577940847
+      spriteID: 711c080f81fa6ad40800000000000000
+      internalID: 5595352108703465751
       vertices: []
       indices: 
       edges: []
@@ -187,7 +277,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -197,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc9b536f17a702b30800000000000000
-      internalID: 4260539877373098445
+      spriteID: 7a410a55669f03f20800000000000000
+      internalID: 3400491936583259303
       vertices: []
       indices: 
       edges: []
@@ -208,7 +298,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -218,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf54e5647354ea00800000000000000
-      internalID: 784843994460086207
+      spriteID: b85005f3e2e497610800000000000000
+      internalID: 1619411501554075019
       vertices: []
       indices: 
       edges: []
@@ -229,7 +319,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -239,8 +329,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ada451c859d83c690800000000000000
-      internalID: -7583061674121934118
+      spriteID: 4a4528644920bd550800000000000000
+      internalID: 6186541348984870052
       vertices: []
       indices: 
       edges: []
@@ -250,6 +340,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56d522301d135c20800000000000000
+      internalID: 3193928516133836382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_6
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 16
         height: 16
@@ -260,29 +371,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 034ea8df7c89f24d0800000000000000
-      internalID: -3157136829043776464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7115173e7065f7510800000000000000
-      internalID: 1549051388719354135
+      spriteID: 76ec8bb35c6549aa0800000000000000
+      internalID: -6155199385598112153
       vertices: []
       indices: 
       edges: []
@@ -292,6 +382,111 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1436b2197630300800000000000000
+      internalID: 217131080239759806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c26eb90755700a0800000000000000
+      internalID: -6915464760663856086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7225ab9534d1c4d50800000000000000
+      internalID: 6722780518862705191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be77fc1a5cc2b90a0800000000000000
+      internalID: -6873851178916022293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c742b510375c510800000000000000
+      internalID: 1568786494869765142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 16
         width: 16
         height: 16
@@ -302,14 +497,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30305889f80662820800000000000000
-      internalID: 2893105980487566083
+      spriteID: cb859e1e715e93810800000000000000
+      internalID: 1745678221319952572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_8
+      name: blue_dungeon_wall_compressed_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f0fe5e777b5437b0800000000000000
+      internalID: -5245467097200398091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_dungeon_wall_compressed_14
       rect:
         serializedVersion: 2
         x: 32
@@ -323,14 +539,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a234f5f98252a0460800000000000000
-      internalID: 7208615009962640170
+      spriteID: f1791c3a506aea0c0800000000000000
+      internalID: -4562526829327313121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_9
+      name: blue_dungeon_wall_compressed_15
       rect:
         serializedVersion: 2
         x: 48
@@ -344,14 +560,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5ffb93844cc54140800000000000000
-      internalID: 4703389980496232285
+      spriteID: 12472cc370c3e8320800000000000000
+      internalID: 2562051239802205217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_10
+      name: blue_dungeon_wall_compressed_16
       rect:
         serializedVersion: 2
         x: 64
@@ -365,14 +581,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18e6361a70c68bf00800000000000000
-      internalID: 1132774086311898753
+      spriteID: 43377ef42c2ed08e0800000000000000
+      internalID: -1725473758020930764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_11
+      name: blue_dungeon_wall_compressed_17
       rect:
         serializedVersion: 2
         x: 80
@@ -386,14 +602,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 799ab60941cecc710800000000000000
-      internalID: 1715005131187792279
+      spriteID: cbae223571b1e3c60800000000000000
+      internalID: 7799701391645272764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_12
+      name: blue_dungeon_wall_compressed_18
       rect:
         serializedVersion: 2
         x: 0
@@ -407,14 +623,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f04122c81632c7c70800000000000000
-      internalID: 8970083459685028879
+      spriteID: 412297d8fb78594e0800000000000000
+      internalID: -1975523604750065132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_13
+      name: blue_dungeon_wall_compressed_19
       rect:
         serializedVersion: 2
         x: 16
@@ -428,14 +644,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 250b21697d4d9e020800000000000000
-      internalID: 2371660701188141138
+      spriteID: 1cb347611b2472d90800000000000000
+      internalID: -7122650957309789247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_14
+      name: blue_dungeon_wall_compressed_20
       rect:
         serializedVersion: 2
         x: 32
@@ -449,14 +665,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e821da91e5daadf60800000000000000
-      internalID: 8059945102802227854
+      spriteID: 861071eff4de08fb0800000000000000
+      internalID: -4647453887625232024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_15
+      name: blue_dungeon_wall_compressed_21
       rect:
         serializedVersion: 2
         x: 48
@@ -470,14 +686,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd6f199e35941d380800000000000000
-      internalID: -8948290359858694435
+      spriteID: 0629b21882ca720a0800000000000000
+      internalID: -6906362213583580576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_16
+      name: blue_dungeon_wall_compressed_22
       rect:
         serializedVersion: 2
         x: 64
@@ -491,14 +707,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dbe9c077d44e3650800000000000000
-      internalID: 6214480227918801876
+      spriteID: 02f5b12d9ebe4f510800000000000000
+      internalID: 1582148758598803232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_wall_compressed_17
+      name: blue_dungeon_wall_compressed_23
       rect:
         serializedVersion: 2
         x: 80
@@ -512,8 +728,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab7afceae4d5d0280800000000000000
-      internalID: -9075495081560004678
+      spriteID: 727c3ee754f6afd20800000000000000
+      internalID: 3313082820156704551
       vertices: []
       indices: 
       edges: []

@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float speed = 1f;
 
+    // This vector records the direction in which the player is 
+    //trying to move reguardless of collision events.
+    private Vector2 playerDirection;
+
     public bool freezePlayer = false;
 
     public int playerHealth;
@@ -39,6 +43,7 @@ public class Player : MonoBehaviour
         if (!freezePlayer){
             Move();
         }
+        UpdatePlayerDirection();
     }
 
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
@@ -74,6 +79,10 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("walkUp", false);
             myAnimator.SetBool("walkRight", false);
         }
+    }
+
+    private void UpdatePlayerDirection(){
+        playerDirection = myRigidBody2D.velocity.normalized;
     }
 
     private void Attack(){
@@ -137,5 +146,13 @@ public class Player : MonoBehaviour
 
     public float GetSpeed(){
         return speed;
+    }
+
+    public Vector2 GetVelocity(){
+        return myRigidBody2D.velocity;
+    }
+
+    public Vector2 GetPlayerDirection(){
+        return playerDirection;
     }
 }
