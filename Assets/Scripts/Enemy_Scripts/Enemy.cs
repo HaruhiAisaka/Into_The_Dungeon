@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
 
     float meleeRange = 3f;
 
+    public Component movement;
+
+
     private float health = 10f;
     // Start is called before the first frame update
     void Start()
