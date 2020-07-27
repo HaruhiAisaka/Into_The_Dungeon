@@ -177,7 +177,8 @@ public class Player : MonoBehaviour
 
     public Vector2 GetPlayerDirection(){
         return playerDirection;
-
+    }
+    
     public int GetHealth(){
         return playerHealth;
 
