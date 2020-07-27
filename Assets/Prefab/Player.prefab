@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 7235803257414263217}
   - component: {fileID: 7235803257414263216}
   - component: {fileID: 7235803257414263219}
+  - component: {fileID: 950952675564827066}
   - component: {fileID: 6567293901036704794}
   - component: {fileID: 6567293901036704797}
   - component: {fileID: 6567293901036704795}
@@ -169,10 +170,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e7ffd73962f402fa36b08ed863aea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   freezePlayer: 0
-  playerHealth: 0
+  playerHealth: 5
+  playerUI: {fileID: 0}
   attackHitBox: {fileID: 6567293902991171841}
+--- !u!114 &950952675564827066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235803257414263218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4857952a381074cae5055186975049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &6567293901036704794
 Rigidbody2D:
   serializedVersion: 4
