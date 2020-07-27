@@ -162,6 +162,15 @@ public class Player : MonoBehaviour
         return speed;
     }
 
+    public Vector2 GetVelocity(){
+        return myRigidBody2D.velocity;
+    }
+
+    public Vector2 GetPlayerDirection(){
+        return playerDirection;
+    }
+    
+
     public int GetHealth(){
         return playerHealth;
     }
