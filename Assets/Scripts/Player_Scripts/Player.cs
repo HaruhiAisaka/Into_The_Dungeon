@@ -15,11 +15,14 @@ public class Player : MonoBehaviour
 
     public int playerHealth;
 
+    [SerializeField] PlayerUI playerUI;
+
     public BoxCollider2D attackHitBox;
 
     private Rigidbody2D myRigidBody2D;
 
     private Animator myAnimator;
+    private bool swordIsVertical;
 
     // direction of player for use by attack function
     private int directionX = 0;
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
         myRigidBody2D = this.GetComponent<Rigidbody2D>();
         myAnimator = this.GetComponent<Animator>();
         playerHealth = 10;
+        swordIsVertical = true;
     }
 
     // Update is called once per frame
@@ -90,18 +94,34 @@ public class Player : MonoBehaviour
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_down") ) {
             directionX = 0;
             directionY = -1;
+            if (!swordIsVertical) {
+                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+                swordIsVertical = true;
+            }
         }
         else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_up") ) {
             directionX = 0;
             directionY = 1;
+            if (!swordIsVertical) {
+                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+                swordIsVertical = true;
+            }
         }
         else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_left") ) {
             directionX = -1;
             directionY = 0;
+            if (swordIsVertical) {
+                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+                swordIsVertical = false;
+            }
         }
         else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_right") ) {
             directionX = 1;
             directionY = 0;
+            if (swordIsVertical) {
+                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+                swordIsVertical = false;
+            }
         }
         // attaaack!
         attackHitBox.transform.position =
@@ -113,11 +133,14 @@ public class Player : MonoBehaviour
         FreezePlayer();
     }
 
-    public int GetHealth(){
-        return playerHealth;
-    }
     public void DamagePlayer(int damage) {
         playerHealth -= damage;
+
+        // Update health in UI, if player has one
+        if (playerUI != null) {
+            playerUI.UpdateHealth(playerHealth, 14);
+        }
+
     }
     private void AttackEnd(){
         attackHitBox.transform.position =
@@ -154,5 +177,9 @@ public class Player : MonoBehaviour
 
     public Vector2 GetPlayerDirection(){
         return playerDirection;
+
+    public int GetHealth(){
+        return playerHealth;
+
     }
 }
