@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: blue_dungeon_wall_compressed_9
+  m_Name: blue_dungeon_wall_compressed_16
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 4703389980496232285, guid: 6dce6276ed29e394a8a80858017ac8de,
+  m_Sprite: {fileID: 6214480227918801876, guid: 6dce6276ed29e394a8a80858017ac8de,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:

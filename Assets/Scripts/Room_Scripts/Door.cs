@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     
     [Header("Shared With All Doors")]
     // The amount of time the player must push on the door until it is unlocked.
-    private const float unlockDelay = 0.6f;
+    private const float unlockDelay = 0.5f;
     private float currentUnlockDelay;
 
     public enum DoorState {open, closed, locked};
