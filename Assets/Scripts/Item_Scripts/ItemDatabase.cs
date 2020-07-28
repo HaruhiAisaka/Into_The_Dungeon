@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
 {
-    [Header("Keys")]
     [SerializeField]
-    private Key redKey = new Key();
+    private Key redKey, blueKey, greenKey, yellowKey, purpleKey = new Key();
 
     // All items are organized into these two dictionaries. 
     // One references items by name. The other by id number.
@@ -40,5 +39,9 @@ public class ItemDatabase : MonoBehaviour
 
     void Awake() {
         AddItem(redKey);
+        AddItem(blueKey);
+        AddItem(greenKey);
+        AddItem(yellowKey);
+        AddItem(purpleKey);
     }
 }

@@ -46,6 +46,30 @@ MonoBehaviour:
   redKey:
     name: Red Key
     itemID: 0
-    description: Key used to open red doors
+    description: Used to open red doors
     sprite: {fileID: 21300000, guid: b0bafc8ed886c774d9b082ebe9f8774d, type: 3}
     color: 1
+  blueKey:
+    name: Blue Key
+    itemID: 1
+    description: Used to open blue doors
+    sprite: {fileID: 21300000, guid: 4f76bb8af5b1fb9479125a919a0695a0, type: 3}
+    color: 2
+  greenKey:
+    name: Green Key
+    itemID: 2
+    description: Used to open green doors
+    sprite: {fileID: 21300000, guid: dd25101f7384b36408fa80dc99aed60a, type: 3}
+    color: 3
+  yellowKey:
+    name: Yellow Key
+    itemID: 3
+    description: Used to open yellow doors
+    sprite: {fileID: 21300000, guid: cb5c96f8f94fae2458793d465bb6c6db, type: 3}
+    color: 4
+  purpleKey:
+    name: Purple Key
+    itemID: 4
+    description: Used to open purple doors
+    sprite: {fileID: 21300000, guid: f1c2d993ebdd20a4094c51164e18e2d1, type: 3}
+    color: 5
