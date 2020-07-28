@@ -27,7 +27,7 @@ Currently, these two items are empty, but I presume that they will eventually be
 The classes that represent specific items should then be specificed further, inhereting from those two classes. Currently, the only specified item that has it's own class is Keys. Keys is inhereted from the class NonEquipableItem.
 
 Again, **Non of the classes bellow inheret monobehavior** so they can not be directly attatched to gameObjects as components.
-![Item Classes](ItemDoc_Images/Item_Class_Structure.png)
+![Item Classes](ItemDoc_Images/Item_Class_Structure.PNG)
 
 ## ItemDatabase
 The item database stores all items that exist in the game. All items are initialized in this class. Items can be initialized in the inspector once a variable in the class that is assigned to the item is declared. For example, in order to initialize a Red Key, a variable redKey is created in the class ItemDatabase and then the fields of the Item can be specified in the Inspector.The item must then be put into the method AddItem(item) in the Awake() method. AddItem is a private method that adds the newly created item into appropreate dictionaries in ItemDatabase.
@@ -46,4 +46,4 @@ There is also a method that searches if a specific key is in the inventory KeyIn
 Item Drop is used in the prefab, ItemDrop which is used whenever any item is dropped into the dungeon. For example, a key can be lying on the floor in the dungon. All you need to do is type the name *or* ID of the item into the appropreate fields, and (if the item was properly instanciated in ItemDatabase) the item will appear on the floor of the dungeon.
 Whenever a player comes in contact with the Item Drop gameObject, the gameObject is destroyed and the Item is added into the player inventory.
 
-![How it all comes together](ItemDoc_Images/All_Item_Classes.png)
+![How it all comes together](ItemDoc_Images/All_Item_Classes.PNG)
