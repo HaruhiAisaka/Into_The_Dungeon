@@ -19,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
             inventory.Add(item);
 
             // If the item was a [key], we have to update the UI to reflect that
-            if (item is Key key) {
+            if (item is Key key && playerUI != null) {
                 playerUI.UpdateKeys(inventory.GetKeys());
             }
 

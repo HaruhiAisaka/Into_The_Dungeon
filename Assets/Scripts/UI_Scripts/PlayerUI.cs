@@ -55,6 +55,8 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void UpdateKeys(List<Key> keysArr) {
-        keysBar.UpdateKeys(keysArr);
+        if (keysBar != null) {
+            keysBar.UpdateKeys(keysArr);
+        }
     }
 }
