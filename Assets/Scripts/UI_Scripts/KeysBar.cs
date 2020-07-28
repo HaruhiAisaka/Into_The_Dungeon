@@ -23,10 +23,10 @@ public class KeysBar : MonoBehaviour
     {
     }
 
-    public void UpdateKeys(List<Item> keyList) {
+    public void UpdateKeys(List<Key> keyList) {
         // update each key in turn
-        keyImage1.sprite = keyList[0];
-        keyImage2.sprite = keyList[1];
-        keyImage3.sprite = keyList[2];
+        keyImage1.sprite = keyList[0] == null ? null : keyList[0].sprite;
+        keyImage2.sprite = keyList[1] == null ? null : keyList[1].sprite;
+        keyImage3.sprite = keyList[2] == null ? null : keyList[2].sprite;
     }
 }

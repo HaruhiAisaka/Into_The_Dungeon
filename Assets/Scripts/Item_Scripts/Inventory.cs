@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-private class Inventory {
-    private List<Item> equipInventory = new List<EquipableItem>();
-    private List<Item> nonequipInventory = new List<NonEquipableItem>();
-    private List<Item> keyInventory = new List<Key>();
+class Inventory {
+    private List<EquipableItem> equipInventory = new List<EquipableItem>();
+    private List<NonEquipableItem> nonequipInventory = new List<NonEquipableItem>();
+    private List<Key> keyInventory = new List<Key>();
 
     private delegate bool SearchCriteria(Item item); // Used in GetItem for searches
 
     public void Add(Item item) {
         switch (item) {
-            case EquipableItem item:
-                equipInventory.Add(item);
-                break;
-            case NonEquipableItem item:
-                nonequipInventory.Add(item);
+            case EquipableItem equipable:
+                equipInventory.Add(equipable);
                 break;
             case Key key:
                 keyInventory.Add(key);
+                break;
+            case NonEquipableItem nonEquipable:
+                nonequipInventory.Add(nonEquipable);
                 break;
         }
     }
 
     public Item GetItem(string itemName) {
-        return GetItem(item => item.itemName == itemName);
+        return GetItem(item => item.name == itemName);
     }
 
     public Item GetItem(int itemID) {
@@ -33,18 +33,18 @@ private class Inventory {
 
     /** Returns the first item that matches the searchCriteria, and null otherwise  */
     private Item GetItem(SearchCriteria searchCriteria) {
-        foreach (Item item : equipInventory) {
+        foreach (Item item in equipInventory) {
             if (searchCriteria(item)) {
                 return item;
             }
         }
-        foreach (Item item : nonequipInventory) {
-            if (searchCriteria) {
+        foreach (Item item in nonequipInventory) {
+            if (searchCriteria(item)) {
                 return item;
             }
         }
-        foreach (Item item : keyInventory) {
-            if (searchCriteria) {
+        foreach (Item item in keyInventory) {
+            if (searchCriteria(item)) {
                 return item;
             }
         }
@@ -59,11 +59,11 @@ private class Inventory {
             equipInventory.Exists(item => item.name == itemName);
     }
 
-    public bool InInventory(int itemId) {
+    public bool InInventory(int itemID) {
         return
-            keyInventory.Exists(item => item.itemId == itemId) ||
-            nonequipInventory.Exists(item => item.itemId == itemId) ||
-            equipInventory.Exists(item => item.itemId == itemId)
+            keyInventory.Exists(item => item.itemID == itemID) ||
+            nonequipInventory.Exists(item => item.itemID == itemID) ||
+            equipInventory.Exists(item => item.itemID == itemID);
     }
 
     public bool KeyInInventory(Door.LockedDoorColor color) {

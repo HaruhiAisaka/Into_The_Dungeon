@@ -54,7 +54,7 @@ public class PlayerUI : MonoBehaviour
         // TODO : update ui
     }
 
-    public void UpdateKeys(List<Item> keysArr) {
+    public void UpdateKeys(List<Key> keysArr) {
         keysBar.UpdateKeys(keysArr);
     }
 }
