@@ -7,9 +7,9 @@ public class KeysBar : MonoBehaviour
 {
 
     // Key Images
-    [SerializeField] Image key1;
-    [SerializeField] Image key2;
-    [SerializeField] Image key3;
+    [SerializeField] Image keyImage1;
+    [SerializeField] Image keyImage2;
+    [SerializeField] Image keyImage3;
     // Key Sprites
     [SerializeField] Sprite key;
 
@@ -23,18 +23,10 @@ public class KeysBar : MonoBehaviour
     {
     }
 
-    public void UpdateKeys(bool[] keysArr) {
+    public void UpdateKeys(List<Item> keyList) {
         // update each key in turn
-        if (keysArr[0]) {
-            this.key1.sprite = key;
-        }
-
-        if (keysArr[1]) {
-            this.key2.sprite = key;
-        }
-
-        if (keysArr[2]) {
-            this.key3.sprite = key;
-        }
+        keyImage1.sprite = keyList[0];
+        keyImage2.sprite = keyList[1];
+        keyImage3.sprite = keyList[2];
     }
 }

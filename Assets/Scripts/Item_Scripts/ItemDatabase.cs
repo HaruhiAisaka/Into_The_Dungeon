@@ -7,12 +7,12 @@ public class ItemDatabase : MonoBehaviour
     [SerializeField]
     private Key redKey, blueKey, greenKey, yellowKey, purpleKey = new Key();
 
-    // All items are organized into these two dictionaries. 
+    // All items are organized into these two dictionaries.
     // One references items by name. The other by id number.
     private Dictionary<string, Item> itemDatabaseByString = new Dictionary<string, Item>();
     private Dictionary<int, Item> itemDatabaseByID = new Dictionary<int, Item>();
 
-    // Seperate Dictionary for Keys. 
+    // Seperate Dictionary for Keys.
     // All keys can also be accessed through the items database.
     private Dictionary<Door.LockedDoorColor, Key> keyDatabase = new Dictionary<Door.LockedDoorColor, Key>();
 

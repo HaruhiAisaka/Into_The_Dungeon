@@ -6,7 +6,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private DoorState state;
     [SerializeField] private LockedDoorColor lockedDoorColor;
-    
+
     [Header("Shared With All Doors")]
     // The amount of time the player must push on the door until it is unlocked.
     private const float unlockDelay = 0.5f;
@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
 
 
 
-    private Dictionary<LockedDoorColor, Sprite[]> lockedDoorSprites = 
+    private Dictionary<LockedDoorColor, Sprite[]> lockedDoorSprites =
         new Dictionary<LockedDoorColor, Sprite[]>();
     void Start(){
         lockedDoorSprites.Add(LockedDoorColor.red, lockedRedDoor);
@@ -43,8 +43,8 @@ public class Door : MonoBehaviour
     }
 
 
-    // Sets the sprites for the door. 
-    // The top part of the door sprite should be the first element of sprites. 
+    // Sets the sprites for the door.
+    // The top part of the door sprite should be the first element of sprites.
     // The bottom part of the door sprite should be the second element.
     private void SetDoorSprite(Sprite[] sprites){
         Sprite doorTop = sprites[0];
@@ -74,7 +74,7 @@ public class Door : MonoBehaviour
                 SetDoorSprite(lockedDoorSprites[this.lockedDoorColor]);
                 break;
         }
-            
+
     }
 
     // Start is called before the first frame update
@@ -105,23 +105,23 @@ public class Door : MonoBehaviour
         OpenDoor();
     }
 
-    //Called when the Door Collider has it's CollisionStay2D triggered. 
+    //Called when the Door Collider has it's CollisionStay2D triggered.
     //Called whenever any object is touching the door.
     public void CollisionStay(Collision2D other) {
         // Need to check if the player is going towards the door.
         if(other.gameObject.GetComponent<Player>() && this.state == DoorState.locked){
             GameObject player = other.gameObject;
             bool correctKey = player.GetComponent<PlayerInventory>().KeyInInventory(lockedDoorColor);
-            float distancePlayerFromDoor = 
-                Vector2.Distance(player.transform.position, 
+            float distancePlayerFromDoor =
+                Vector2.Distance(player.transform.position,
                 this.transform.position);
             Vector2 normalizedPlayerVelocity =
                 player.GetComponent<Player>().GetPlayerDirection();
-            float distancePlayerPlusPlayerVelocityFromDoor = 
-                Vector2.Distance((Vector2) player.transform.position + 
+            float distancePlayerPlusPlayerVelocityFromDoor =
+                Vector2.Distance((Vector2) player.transform.position +
                 normalizedPlayerVelocity,
                 this.transform.position);
-            bool playerGoingTowardsDoor = 
+            bool playerGoingTowardsDoor =
                 (distancePlayerPlusPlayerVelocityFromDoor < distancePlayerFromDoor);
             if(currentUnlockDelay <= 0 && playerGoingTowardsDoor && correctKey){
                 UnlockDoor();

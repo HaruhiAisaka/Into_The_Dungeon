@@ -4,35 +4,41 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+
     private ItemDatabase itemDatabase;
-    private List<Item> inventory = new List<Item>();
+    private PlayerUI playerUI;
+    private Inventory inventory = new Inventory();
 
     private void Start() {
         itemDatabase = FindObjectOfType<ItemDatabase>();
+        playerUI = FindObjectOfType<PlayerUI>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.GetComponent<ItemDrop>()){
             Item item = other.GetComponent<ItemDrop>().GetItem();
+
             inventory.Add(item);
+
+            // If the item was a [key], we have to update the UI to reflect that
+            if (typeof(item)IsInstanceOfType(Key)) {
+            }
+
             Object.Destroy(other.gameObject);
         }
     }
 
     public bool InInventory(string itemName){
-        Item item = itemDatabase.GetItem(itemName);
-        return inventory.Contains(item);
+        return inventory.InInventory(itemName);
     }
 
     public bool InInventory(int itemID){
-        Item item = itemDatabase.GetItem(itemID);
-        return inventory.Contains(item);
+        return inventory.InInventory(itemID);
     }
 
     public bool KeyInInventory(Door.LockedDoorColor color){
-        Key key = itemDatabase.GetKey(color);
-        return inventory.Contains(key);
+        return inventory.KeyInInventory(color);
     }
 
-    
+
 }
