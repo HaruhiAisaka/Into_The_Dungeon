@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +8,9 @@ public class KeysBar : MonoBehaviour
 {
 
     // Key Images
-    [SerializeField] Image key1;
-    [SerializeField] Image key2;
-    [SerializeField] Image key3;
+    [SerializeField] Image[] keyImages = {};
     // Key Sprites
-    [SerializeField] Sprite key;
+    [SerializeField] Sprite emptySlot;
 
     // Start is called before the first frame update
     void Start()
@@ -23,18 +22,10 @@ public class KeysBar : MonoBehaviour
     {
     }
 
-    public void UpdateKeys(bool[] keysArr) {
+    public void UpdateKeys(List<Key> keyList) {
         // update each key in turn
-        if (keysArr[0]) {
-            this.key1.sprite = key;
-        }
-
-        if (keysArr[1]) {
-            this.key2.sprite = key;
-        }
-
-        if (keysArr[2]) {
-            this.key3.sprite = key;
+        for (int i = 0; i < keyImages.Length; i++) {
+            keyImages[i].sprite = i < keyList.Count ? keyList[i].sprite : emptySlot;
         }
     }
 }

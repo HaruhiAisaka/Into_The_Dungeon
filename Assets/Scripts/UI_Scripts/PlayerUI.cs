@@ -12,7 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] HealthBar healthbar;
     [SerializeField] string equippedWeapon = ""; // TODO: replace with script class
     [SerializeField] string equippedItem = "";// TODO: replace with script class
-    [SerializeField] KeysBar keys;
+    [SerializeField] KeysBar keysBar;
 
     // --- Debug -----
     // Testing Health Bar
@@ -38,8 +38,6 @@ public class PlayerUI : MonoBehaviour
 
         //updateEquippedWeapon(player.equippedWeapon); // TODO when we have weapons
         //updateEquippedItem(player.equippedItem); // TODO when we have Items
-
-        UpdateKeys(new bool[] {true, true, false});
     }
 
     public void UpdateHealth(int newCurrentHealth, int newMaxHealth) {
@@ -56,7 +54,9 @@ public class PlayerUI : MonoBehaviour
         // TODO : update ui
     }
 
-    public void UpdateKeys(bool[] keysArr) {
-        keys.UpdateKeys(keysArr);
+    public void UpdateKeys(List<Key> keysArr) {
+        if (keysBar != null) {
+            keysBar.UpdateKeys(keysArr);
+        }
     }
 }
