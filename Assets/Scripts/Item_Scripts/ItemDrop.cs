@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemDrop : MonoBehaviour
 {
     [SerializeField]
-    private string itemName;
+    private string itemName = null;
 
     [SerializeField]
     private int itemID = -1;

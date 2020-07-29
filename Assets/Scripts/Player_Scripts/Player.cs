@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         myAnimator = this.GetComponent<Animator>();
         playerHealth = 10;
         swordIsVertical = true;
+
     }
 
     // Update is called once per frame
