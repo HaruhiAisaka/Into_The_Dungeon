@@ -15,8 +15,14 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        ItemDrop itemDrop = other.GetComponent<ItemDrop>();
-        if (itemDrop != null && itemDrop.GetItem() is Item item){
+        if (other.GetComponent<ItemDrop>() is ItemDrop itemDrop) {
+            PickUpItem(itemDrop);
+            Object.Destroy(itemDrop.gameObject);
+        }
+    }
+
+    private void PickUpItem(ItemDrop drop) {
+        if (drop != null && drop.GetItem() is Item item){
             inventory.Add(item);
 
             // If the item was a [key], we have to update the UI to reflect that
@@ -24,8 +30,19 @@ public class PlayerInventory : MonoBehaviour
                 playerUI.UpdateKeys(inventory.GetKeys());
             }
 
-            Object.Destroy(itemDrop.gameObject);
         }
+    }
+
+    public void Add(Item item) {
+        inventory.Add(item);
+    }
+
+    public Item Remove(string itemName) {
+        return inventory.Remove(itemName);
+    }
+
+    public Item Remove(int itemID) {
+        return inventory.Remove(itemID);
     }
 
     public bool InInventory(string itemName){

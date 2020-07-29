@@ -23,6 +23,41 @@ class Inventory {
         }
     }
 
+    public Item Remove(string itemName) {
+        return Remove(item => item.name == itemName);
+    }
+
+    public Item Remove(int itemID) {
+        return Remove(item => item.itemID == itemID);
+    }
+
+    private Item Remove(SearchCriteria searchCriteria) {
+        for (int i = 0; i < equipInventory.Count; i++) {
+            if (searchCriteria(equipInventory[i])) {
+                Item item = equipInventory[i];
+                equipInventory.RemoveAt(i);
+                return item;
+            }
+        }
+        for (int i = 0; i < nonequipInventory.Count; i++) {
+            if (searchCriteria(nonequipInventory[i])) {
+                Item item = nonequipInventory[i];
+                nonequipInventory.RemoveAt(i);
+                return item;
+            }
+        }
+
+        for (int i = 0; i < keyInventory.Count; i++) {
+            if (searchCriteria(keyInventory[i])) {
+                Item item = keyInventory[i];
+                keyInventory.RemoveAt(i);
+                return item;
+            }
+        }
+
+        return null;
+    }
+
     public Item GetItem(string itemName) {
         return GetItem(item => item.name == itemName);
     }
