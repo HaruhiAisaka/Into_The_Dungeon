@@ -11,7 +11,11 @@ public class RoomCoordinate
     To find the real world position of the center of the room the player is in,
     call the getRealRoomCoordinate() function. 
     The center of the origin room must be (0,0)*/
-    private Vector2 roomCoordinate;
+    public Vector2 roomCoordinate{get; private set;}
+
+    public int x {get; private set;}
+
+    public int y {get; private set;}
 
     /* The xFactor is the distance between the centers of two rooms 
     in the horizontal direction. 
@@ -26,6 +30,8 @@ public class RoomCoordinate
     private int yFactor = 10;
 
     public RoomCoordinate(int x, int y){
+        this.x = x;
+        this.y = y;
         this.roomCoordinate = new Vector2 (x,y);
     }
 
@@ -35,5 +41,22 @@ public class RoomCoordinate
 
     public Vector2 GetRoomWorldPosition(){
         return new Vector2(roomCoordinate.x * xFactor, roomCoordinate.y * yFactor);
+    }
+}
+
+public class RoomCoordinateEqual : EqualityComparer<RoomCoordinate>{
+    public override bool Equals(RoomCoordinate r1, RoomCoordinate r2){
+        if (r1 == null && r2 == null){
+            return true;
+        }
+        else if (r1 == null || r2 == null){
+            return false;
+        }
+        return (r1.x == r2.x && r1.y == r2.y);
+    }
+
+    public override int GetHashCode(RoomCoordinate r){
+        int hCode = r.x ^ r.y;
+        return hCode.GetHashCode();
     }
 }

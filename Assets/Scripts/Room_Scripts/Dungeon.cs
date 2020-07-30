@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Dungeon : MonoBehaviour
 {
-    private Dictionary<RoomCoordinate, Room> rooms = new Dictionary<RoomCoordinate, Room>();
+    private static RoomCoordinateEqual roomCoorEqual = new RoomCoordinateEqual();
+    private Dictionary<RoomCoordinate, Room> rooms = new Dictionary<RoomCoordinate, Room>(roomCoorEqual);
 
     private Room startRoom = new Room(0,0);
 

@@ -19,13 +19,10 @@ public class Door : MonoBehaviour
 
     private Player player;
     private CurrentRoom currentRoom;
-    private Camera mainCamera;
+    private CameraMovement mainCamera;
     private Animator playerAnimator;
 
     [Header("Animation Settings")]
-    /*Delay between when the player is first dirrected to enter the door 
-    and when the camera starts to move to the over room.*/
-    [SerializeField] private float cameraMoveDelay = 1f;
     [SerializeField] private float cameraMovementTime = 2f;
 
     /*Used to determine how far the player should walk until he is 
@@ -60,7 +57,7 @@ public class Door : MonoBehaviour
         currentUnlockDelay = unlockDelay;
         currentRoom = FindObjectOfType<CurrentRoom>();
         player = FindObjectOfType<Player>();
-        mainCamera = FindObjectOfType<Camera>();
+        mainCamera = FindObjectOfType<CameraMovement>();
         playerAnimator = player.GetComponent<Animator>();
         ChangeDoorState(state);
         SetDirection();
@@ -130,63 +127,29 @@ public class Door : MonoBehaviour
         }
 
         //Move player into the door
-        Coroutine a = StartCoroutine(MovePlayerIntoDoor());
+        Coroutine a = 
+            StartCoroutine(player.MovePlayerToPoint(
+                (Vector2)this.transform.position,
+                player.GetSpeed()));
         yield return a;
         //Update the current room
         Room nextRoom = currentRoom.GetCurrentRoom().GetAdjacentRoom(direction);
         currentRoom.SetCurrentRoom(nextRoom);
-        Debug.Log(currentRoom.GetCurrentRoom().GetRoomCoordinate().GetRoomCoordinateVector2());
         //Moves camera to new room
-        Coroutine b = StartCoroutine(MoveCameraToNewRoom());
+        Coroutine b = 
+            StartCoroutine(mainCamera.MoveCameraToNewRoom(
+            currentRoom.GetCurrentRoom(),
+            cameraMovementTime));
         yield return b;
         // Move player out of the door into the room
-        Coroutine c = StartCoroutine(MovePlayerOutOfDoor());
+        Coroutine c = 
+            StartCoroutine(player.MovePlayerToPoint(
+                (Vector2)this.transform.position + 
+                CardinalDirection.CardinalDirection4ToVector2(direction, distanceFromDoor),
+                player.GetSpeed()));
         yield return c;
         SetDirection();
         player.UnfreezePlayer();
-
-    }
-
-    IEnumerator MovePlayerIntoDoor(){
-        Vector2 initialPlayerPosition = (Vector2) player.transform.position;
-        float t = 0f;
-        float distance = Vector2.Distance(initialPlayerPosition, (Vector2) this.transform.position);
-        while (Vector2.Distance(player.transform.position, this.transform.position)>0){
-            // player.FreezePlayer();
-            t += Time.deltaTime;
-            player.transform.position = 
-                Vector2.Lerp(initialPlayerPosition, this.transform.position, t/(distance/player.GetSpeed()));
-            yield return null;
-        }
-    }
-
-    IEnumerator MoveCameraToNewRoom(){
-        Vector3 initialCameraPosition = mainCamera.transform.position;
-        Vector3 newCenter = currentRoom.GetCurrentRoomCoordinate().GetRoomWorldPosition();
-        newCenter.z = mainCamera.transform.position.z;
-        float t = 0;
-        while (Vector3.Distance(mainCamera.transform.position, newCenter)>0){
-            // player.FreezePlayer();
-            t += Time.deltaTime;
-            mainCamera.transform.position = Vector3.Lerp(initialCameraPosition, newCenter, t / cameraMovementTime);
-            yield return null;
-        }
-    }
-
-    IEnumerator MovePlayerOutOfDoor(){
-        Vector2 pointOutOfDoor = 
-            (Vector2) this.transform.position + 
-            CardinalDirection.CardinalDirection4ToVector2(direction, distanceFromDoor);
-        Debug.Log(pointOutOfDoor);
-        Vector2 initialPlayerPos = player.transform.position;
-        float distance = Vector2.Distance(player.transform.position,pointOutOfDoor);
-        float t = 0;
-        while (Vector2.Distance(player.transform.position,pointOutOfDoor)>0){
-            // player.FreezePlayer();
-            t += Time.deltaTime;
-            player.transform.position = Vector2.Lerp(initialPlayerPos, pointOutOfDoor, t/(distance/player.GetSpeed()));
-            yield return null;
-        }
     }
 
     #endregion
