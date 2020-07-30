@@ -4,6 +4,6 @@ using UnityEngine;
 
 [System.Serializable]
 public class Key : NonEquipableItem
-{   
+{
     public Door.LockedDoorColor color;
 }

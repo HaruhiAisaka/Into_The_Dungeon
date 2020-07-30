@@ -43,7 +43,7 @@ There is also a mehtod InInventory(itemName) or InInventory(itemID) that returns
 There is also a method that searches if a specific key is in the inventory KeyInInventory(Door.LockedDoorColor color).
 
 ## ItemDrop
-Item Drop is used in the prefab, ItemDrop which is used whenever any item is dropped into the dungeon. For example, a key can be lying on the floor in the dungon. All you need to do is type the name *or* ID of the item into the appropreate fields, and (if the item was properly instanciated in ItemDatabase) the item will appear on the floor of the dungeon.
+Item Drop is used in the prefab, ItemDrop which is used whenever any item is dropped into the dungeon. For example, a key can be lying on the floor in the dungon. All you need to do is type the name *or* ID of the item into the appropriate fields, and (if the item was properly instantiated in ItemDatabase) the item will appear on the floor of the dungeon.
 Whenever a player comes in contact with the Item Drop gameObject, the gameObject is destroyed and the Item is added into the player inventory.
 
 ![How it all comes together](ItemDoc_Images/All_Item_Classes.PNG)

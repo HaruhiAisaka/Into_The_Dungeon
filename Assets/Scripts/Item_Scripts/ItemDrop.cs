@@ -26,7 +26,7 @@ public class ItemDrop : MonoBehaviour
         else{
             throw new System.InvalidOperationException("Invalid itemID or itemName. Please specify atleast one of them when creating an ItemDrop object");
         }
-        
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = item.sprite;
     }
