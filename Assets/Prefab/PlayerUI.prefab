@@ -418,13 +418,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f40cf4a55474770abf014a321d8026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 10
-  maxHeartsDisplayed: 14
-  fullHeart: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  halfHeart: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  emptyHeart: {fileID: 21301162, guid: c2957f4d831870a48af4ec016652548d, type: 3}
-  lockedHeart: {fileID: 21300000, guid: 15df1b76f73374c4081424aefc564659, type: 3}
+  currentHealth: 12
+  maxHealth: 14
+  maxHeartsDisplayed: 18
+  fullHeart: {fileID: 21301090, guid: c2957f4d831870a48af4ec016652548d, type: 3}
+  halfHeart: {fileID: 21301094, guid: c2957f4d831870a48af4ec016652548d, type: 3}
+  emptyHeart: {fileID: 21301098, guid: c2957f4d831870a48af4ec016652548d, type: 3}
+  lockedHeart: {fileID: 21300000, guid: cb5c96f8f94fae2458793d465bb6c6db, type: 3}
 --- !u!114 &6376354117893352944
 MonoBehaviour:
   m_ObjectHideFlags: 0

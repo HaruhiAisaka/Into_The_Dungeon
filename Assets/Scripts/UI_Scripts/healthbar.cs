@@ -33,7 +33,7 @@ public class HealthBar : MonoBehaviour
         heartImages.Clear();
 
         // Add New
-        for (int i = 0; i < maxHeartsDisplayed + 1; i += 2) {
+        for (int i = 0; i < maxHeartsDisplayed; i += 2) {
             GameObject obj = new GameObject();
             Image image = obj.AddComponent<Image>();
             obj.GetComponent<RectTransform>().SetParent(this.gameObject.transform);
@@ -58,22 +58,22 @@ public class HealthBar : MonoBehaviour
 
         // full hearts
         for (int i = 0; i < numberOfFullHearts; i++) {
-            heartImages[i].sprite = fullHeart;
+            heartImages[cur].sprite = fullHeart;
             cur++;
         }
         // half hearts
         for (int i = 0; i < numberOfHalfHearts; i++) {
-            heartImages[i].sprite = halfHeart;
+            heartImages[cur].sprite = halfHeart;
             cur++;
         }
         // empty
         for (int i = 0; i < numberOfEmptyHearts; i++) {
-            heartImages[i].sprite = emptyHeart;
+            heartImages[cur].sprite = emptyHeart;
             cur++;
         }
         // locked
         for (int i = cur; i < (maxHeartsDisplayed / 2); i++) {
-            heartImages[i].sprite = lockedHeart;
+            heartImages[cur].sprite = lockedHeart;
             cur++;
         }
 
