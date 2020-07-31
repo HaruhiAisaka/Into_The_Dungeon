@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         myAnimator = this.GetComponent<Animator>();
         playerHealth = 10;
         swordIsVertical = true;
+
     }
 
     // Update is called once per frame
@@ -87,6 +88,20 @@ public class Player : MonoBehaviour
 
     private void UpdatePlayerDirection(){
         playerDirection = myRigidBody2D.velocity.normalized;
+    }
+    
+    // Added by Liam R. Forces the player to move to point with speed.
+    // Used for animations to move player through doors and stairs.
+    public IEnumerator MovePlayerToPoint(Vector2 point, float speed){
+        Vector2 initialPlayerPosition = (Vector2) this.transform.position;
+        float t = 0f;
+        float distance = Vector2.Distance(initialPlayerPosition, point);
+        while (Vector2.Distance(this.transform.position, point)> Mathf.Epsilon){
+            t += Time.deltaTime;
+            this.transform.position = 
+                Vector2.Lerp(initialPlayerPosition, point, t/(distance/speed));
+            yield return null;
+        }
     }
 
     private void Attack(){

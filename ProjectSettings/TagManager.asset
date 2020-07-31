@@ -49,17 +49,20 @@ TagManager:
   - name: Walls
     uniqueID: 814260725
     locked: 0
-  - name: Items
-    uniqueID: 1848367447
-    locked: 0
-  - name: Blocks
-    uniqueID: 2950345311
+  - name: Doors
+    uniqueID: 836739929
     locked: 0
   - name: Enemies
     uniqueID: 904420813
     locked: 0
-  - name: Doors
-    uniqueID: 836739929
+  - name: Blocks
+    uniqueID: 2950345311
+    locked: 0
+  - name: Stairs
+    uniqueID: 1669047535
+    locked: 0
+  - name: Items
+    uniqueID: 1848367447
     locked: 0
   - name: Player
     uniqueID: 1440735357
