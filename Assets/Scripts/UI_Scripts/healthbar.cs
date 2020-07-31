@@ -9,70 +9,74 @@ public class HealthBar : MonoBehaviour
     // Player/Displayed Health
     [SerializeField] int currentHealth = 0; // 1 = 1 half heart
     [SerializeField] int maxHealth = 14;
-    [SerializeField] int maxDisplayedHealth = 14; // Divide by 2 to get number of hearts
+    [SerializeField] int maxHeartsDisplayed = 14; // Divide by 2 to get number of hearts
 
-    [SerializeField] Image[] hearts;
+    // Heart Images
+    List<Image> heartImages = new List<Image>();
+
+    // Sprite Constants
     [SerializeField] Sprite fullHeart;
     [SerializeField] Sprite halfHeart;
     [SerializeField] Sprite emptyHeart;
     [SerializeField] Sprite lockedHeart;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public void Start() {
+        UpdateHeartsDisplay(maxHeartsDisplayed);
+        UpdateHealth(currentHealth, maxHealth);
     }
 
-    void Update() {
+    public void UpdateHeartsDisplay(int maxHeartsDisplayed) {
+        // Destroy Existing
+        foreach (Image image in heartImages) {
+            Destroy(image.gameObject);
+        }
+        heartImages.Clear();
+
+        // Add New
+        for (int i = 0; i < maxHeartsDisplayed + 1; i += 2) {
+            GameObject obj = new GameObject();
+            Image image = obj.AddComponent<Image>();
+            obj.GetComponent<RectTransform>().SetParent(this.gameObject.transform);
+            obj.SetActive(true);
+            image.sprite = fullHeart;
+
+            heartImages.Add(image);
+        }
     }
 
-    public void UpdateHearts(int currentHealth, int maxHealth) {
-        this.maxHealth = Clamp(maxHealth, 0, maxDisplayedHealth);
-        this.currentHealth = Clamp(currentHealth, 0, maxHealth);
-
-        // Assert Ranges
-        Debug.Assert(this.currentHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Current Health OOB in health bar script.");
-        Debug.Assert(this.maxHealth >= 0 && this.currentHealth < maxDisplayedHealth, "Max Health OOB in health bar script");
-
-        Debug.Log("current: " + this.currentHealth + ", max: " + this.maxHealth);
+    public void UpdateHealth(int currentHealth, int maxHealth) {
+        // Keep health in bounds
+        this.maxHealth = Mathf.Clamp(maxHealth, 0, maxHeartsDisplayed);
+        this.currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         int numberOfHalfHearts = currentHealth % 2;
         int numberOfFullHearts = (currentHealth - numberOfHalfHearts) / 2;
         int numberOfEmptyHearts = (maxHealth / 2) - numberOfHalfHearts - numberOfFullHearts;
-
         // and the rest are locked
+
         int cur = 0;
 
         // full hearts
         for (int i = 0; i < numberOfFullHearts; i++) {
-            hearts[cur].sprite = fullHeart;
+            heartImages[i].sprite = fullHeart;
             cur++;
         }
         // half hearts
         for (int i = 0; i < numberOfHalfHearts; i++) {
-            hearts[cur].sprite = halfHeart;
+            heartImages[i].sprite = halfHeart;
             cur++;
         }
         // empty
         for (int i = 0; i < numberOfEmptyHearts; i++) {
-            hearts[cur].sprite = emptyHeart;
+            heartImages[i].sprite = emptyHeart;
             cur++;
         }
         // locked
-        for (int i = cur; i < (maxDisplayedHealth / 2); i++) {
-            hearts[cur].sprite = lockedHeart;
+        for (int i = cur; i < (maxHeartsDisplayed / 2); i++) {
+            heartImages[i].sprite = lockedHeart;
             cur++;
         }
 
-    }
-
-    private int Clamp(int value, int lower, int upper) {
-        if (value < lower) {
-            return lower;
-        } else if (value > upper) {
-            return upper;
-        } else {
-            return value;
-        }
     }
 
 }

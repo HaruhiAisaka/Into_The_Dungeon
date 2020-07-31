@@ -11,10 +11,10 @@ public class Room
     private Room eastRoom;
     private Room westRoom;
 
-    public Room(int x, int y, 
-        Room northRoom = null, 
-        Room southRoom = null, 
-        Room eastRoom = null, 
+    public Room(int x, int y,
+        Room northRoom = null,
+        Room southRoom = null,
+        Room eastRoom = null,
         Room westRoom = null)
     {
         this.roomCoordinate = new RoomCoordinate(x,y);
@@ -49,5 +49,5 @@ public class Room
         }
     }
 
-    
+
 }

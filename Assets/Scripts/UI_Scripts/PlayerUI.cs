@@ -20,7 +20,11 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void UpdateHealth(int newCurrentHealth, int newMaxHealth) {
-        healthbar.UpdateHearts(newCurrentHealth, newMaxHealth);
+        healthbar.UpdateHealth(newCurrentHealth, newMaxHealth);
+    }
+
+    public void UpdateHeartsDisplay(int newMaxHealth) {
+        healthbar.UpdateHeartsDisplay(newMaxHealth);
     }
 
     public void UpdateEquippedWeapon(EquipableItem weapon) {
