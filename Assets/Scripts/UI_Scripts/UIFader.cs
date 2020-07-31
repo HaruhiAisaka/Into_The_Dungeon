@@ -12,20 +12,20 @@ public class UIFader : MonoBehaviour
         uiElement = gameObject.GetComponent<CanvasGroup>();
     }
 
-    public IEnumerator FadeCanvasGroupGradual(float endAlpha, float speed){
+    public IEnumerator FadeCanvasGroupGradual(float endAlpha, float totalTime){
         float t = 0;
         float initialAlpha = uiElement.alpha;
         while (uiElement.alpha != endAlpha){
             t += Time.deltaTime;
-            float newAlpha = Mathf.Lerp(initialAlpha, endAlpha, t / speed);
+            float newAlpha = Mathf.Lerp(initialAlpha, endAlpha, t / totalTime);
             uiElement.alpha = newAlpha;
             yield return null;
         }
     }
 
-    public IEnumerator FadeCanvasGroupDistinct(float[] alphaValues, float speed){
+    public IEnumerator FadeCanvasGroupDistinct(float[] alphaValues, float totalTime){
         float t = 0;
-        float timeToChangeAlpha = speed/alphaValues.Length;
+        float timeToChangeAlpha = totalTime/alphaValues.Length;
         int i = 0;
         while (i <= alphaValues.Length - 1){
             t += Time.deltaTime;

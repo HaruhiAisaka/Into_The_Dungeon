@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour
         this.transform.position = newCenter;
     }
 
-    public IEnumerator MoveCameraToNewRoom(Room room, float speed){
+    public IEnumerator MoveCameraToNewRoom(Room room, float totalTime){
         Vector3 initialCameraPosition = this.transform.position;
         Vector3 newCenter = room.GetRoomCoordinate().GetRoomWorldPosition();
         newCenter.z = this.transform.position.z;
@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour
         while (Vector3.Distance(this.transform.position, newCenter)>0){
             // player.FreezePlayer();
             t += Time.deltaTime;
-            this.transform.position = Vector3.Lerp(initialCameraPosition, newCenter, t / speed);
+            this.transform.position = Vector3.Lerp(initialCameraPosition, newCenter, t / totalTime);
             yield return null;
         }
     }
