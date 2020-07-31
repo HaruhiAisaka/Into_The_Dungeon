@@ -157,8 +157,6 @@ public class Player : MonoBehaviour
 
     }
     private void AttackEnd(){
-        DamagePlayer(1);
-
         attackHitBox.transform.position =
             new Vector3(attackHitBox.transform.position.x - directionX,
             attackHitBox.transform.position.y - directionY,
