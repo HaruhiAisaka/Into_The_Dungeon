@@ -13,14 +13,12 @@ public class CurrentRoom : MonoBehaviour
     
     [SerializeField] private Room currentRoom;
 
-    private Player player;
     private Dungeon dungeon;
     
     // Start is called before the first frame update
     void Awake()
     {
         dungeon = FindObjectOfType<Dungeon>();
-        player = FindObjectOfType<Player>();
         currentRoom = dungeon.GetStartRoom();
     }
 
