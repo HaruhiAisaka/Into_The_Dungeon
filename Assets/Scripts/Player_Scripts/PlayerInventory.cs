@@ -4,35 +4,58 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+
     private ItemDatabase itemDatabase;
-    private List<Item> inventory = new List<Item>();
+    private PlayerUI playerUI;
+    private Inventory inventory = new Inventory();
 
     private void Start() {
         itemDatabase = FindObjectOfType<ItemDatabase>();
+        playerUI = FindObjectOfType<PlayerUI>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.GetComponent<ItemDrop>()){
-            Item item = other.GetComponent<ItemDrop>().GetItem();
-            inventory.Add(item);
-            Object.Destroy(other.gameObject);
+        if (other.GetComponent<ItemDrop>() is ItemDrop itemDrop) {
+            PickUpItem(itemDrop);
+            Object.Destroy(itemDrop.gameObject);
         }
     }
 
+    private void PickUpItem(ItemDrop drop) {
+        if (drop != null && drop.GetItem() is Item item){
+            inventory.Add(item);
+
+            // If the item was a [key], we have to update the UI to reflect that
+            if (item is Key key && playerUI != null) {
+                playerUI.UpdateKeys(inventory.GetKeys());
+            }
+
+        }
+    }
+
+    public void Add(Item item) {
+        inventory.Add(item);
+    }
+
+    public Item Remove(string itemName) {
+        return inventory.Remove(itemName);
+    }
+
+    public Item Remove(int itemID) {
+        return inventory.Remove(itemID);
+    }
+
     public bool InInventory(string itemName){
-        Item item = itemDatabase.GetItem(itemName);
-        return inventory.Contains(item);
+        return inventory.InInventory(itemName);
     }
 
     public bool InInventory(int itemID){
-        Item item = itemDatabase.GetItem(itemID);
-        return inventory.Contains(item);
+        return inventory.InInventory(itemID);
     }
 
     public bool KeyInInventory(Door.LockedDoorColor color){
-        Key key = itemDatabase.GetKey(color);
-        return inventory.Contains(key);
+        return inventory.KeyInInventory(color);
     }
 
-    
+
 }
