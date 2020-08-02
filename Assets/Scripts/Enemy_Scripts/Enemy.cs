@@ -3,101 +3,120 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Enemy : MonoBehaviour
-{
-    Rigidbody2D rb;
-    float xMin;
-    float xMax;
+public abstract class Enemy : MonoBehaviour
+{   // Will be called before the first frame update
+    public abstract void DerivedStart();
+    // function that moves enemy, to be implemented differently by each type of enemy
+    public abstract void Move();
+    // will be called once per frame
+    public abstract void DerivedUpdate();
+
+
+
+    protected Rigidbody2D rb;
+
+    protected Animator animator;
+
+    protected SpriteRenderer sprite;
 
     private bool freezeEnemy = false;
+    private Vector2 prevVelocity;
 
-    float speed = 3f;
+    protected float speed;
 
-    float attackCooldown = 0f;
-
-    float meleeRange = 3f;
-
-    public Component movement;
+    private float stunBlinkSpeed = 0.2f;
 
 
     private float health = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();       
-
-        xMin = Camera.main.ViewportToWorldPoint( new Vector3(0, 0, 0) ).x;
-        xMax= Camera.main.ViewportToWorldPoint( new Vector3(1, 0, 0) ).x;        
+        sprite = this.GetComponent<SpriteRenderer>();
+        rb = this.GetComponent<Rigidbody2D>();
+        speed = 3f;
+        animator = this.GetComponent<Animator>();
+        DerivedStart();
 
     }
-
 
     // Update is called once per frame
     void Update()
     {
-        
+        DerivedUpdate();
+        Move();
 
-        
-    }
-
-    
-
-    
-
-    void OnTriggerEnter2D(Collider2D collision){
-        if (collision.gameObject.tag == "wall"){
-            rb.velocity *= -1;
-        }
-    
 
     }
-    // Melee attack player
-    void meleeAttack(){
-        
-        // Debug.Log("melee");
 
-    }
-    // Range attack player
-    void rangedAttack(){
 
-    }
+
     // Returns the health of this enemy
-    public float getHealth(){
+    public float GetHealth()
+    {
         return health;
     }
+
     /** Reduces health
     * param damage: amount of health lost */
-    
-    public void takeDamage(float damage){
-        health -= damage;
-        if (health < 0f){
-            die();
+
+    public void takeDamage(float damage)
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Stun"))
+        {
+            animator.SetTrigger("stun");
+            health -= damage;
+            if (health < 0f)
+            {
+                Die();
+            }
+            sprite.enabled = false;
+
         }
     }
-    
-    // Drop loot on the ground for player to pick up
-    private void dropLoot(){
 
-    }
+
 
     // Enemy is destroyed and drops loot
-    void die(){
+    void Die()
+    {
         Destroy(gameObject);
-
-        dropLoot();
-        
     }
 
-    public void FreezeEnemy(){
+    public void FreezeEnemy()
+    {
         freezeEnemy = true;
+        prevVelocity = new Vector2(rb.velocity.x, rb.velocity.y);
+        rb.velocity = Vector2.zero;
     }
 
-    public void UnfreezeEnemy(){
+    public void UnfreezeEnemy()
+    {
         freezeEnemy = false;
+        rb.velocity = prevVelocity;
     }
 
-    public bool GetFreezeEnemy(){
+    public bool GetFreezeEnemy()
+    {
         return freezeEnemy;
     }
+
+    private void StunEnd()
+    {
+        Debug.Log("end stun");
+        sprite.enabled = true;
+    }
+
+    private void Blink()
+    {
+        sprite.enabled = !sprite.enabled;
+        Debug.Log("blink");
+    }
+
+    private void Invisible()
+    {
+        sprite.enabled = false;
+    }
 }
+
+
 
