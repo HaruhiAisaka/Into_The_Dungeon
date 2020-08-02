@@ -102,14 +102,12 @@ public abstract class Enemy : MonoBehaviour
 
     private void StunEnd()
     {
-        Debug.Log("end stun");
         sprite.enabled = true;
     }
 
     private void Blink()
     {
         sprite.enabled = !sprite.enabled;
-        Debug.Log("blink");
     }
 
     private void Invisible()
