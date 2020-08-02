@@ -11,9 +11,9 @@ public class Dungeon : MonoBehaviour
 
     private void Awake() {
         AddRoom(startRoom);
-        AddRoom(new Room(-1,0, eastRoom: startRoom));
-        AddRoom(new Room(1,0, westRoom: startRoom));
-        AddRoom(new Room(0,1, southRoom: startRoom));
+        AddRoom(new Room(-1,0, eastRoomByDoor: startRoom));
+        AddRoom(new Room(1,0, westRoomByDoor: startRoom));
+        AddRoom(new Room(0,1, southRoomByDoor: startRoom));
     }
 
     private void AddRoom(Room room){

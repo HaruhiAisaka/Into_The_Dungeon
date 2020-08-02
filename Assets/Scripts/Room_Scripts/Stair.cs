@@ -51,6 +51,7 @@ public class Stair : MonoBehaviour
         if (canEnterStairs&&other.GetComponent<AltPlayerHitBox>()){
             canEnterStairs = false;
             nextStair.canEnterStairs = false;
+            player.GetComponent<CurrentRoom>().SetCurrentRoom(nextRoom);
             StartCoroutine(StairAnimation());
         }
     }

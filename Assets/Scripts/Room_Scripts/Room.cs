@@ -6,26 +6,26 @@ using UnityEngine;
 public class Room
 {
     [SerializeField] private RoomCoordinate roomCoordinate;
-    private Room northRoom;
-    private Room southRoom;
-    private Room eastRoom;
-    private Room westRoom;
+    private Room northRoomByDoor;
+    private Room southRoomByDoor;
+    private Room eastRoomByDoor;
+    private Room westRoomByDoor;
 
     public Room(int x, int y, 
-        Room northRoom = null, 
-        Room southRoom = null, 
-        Room eastRoom = null, 
-        Room westRoom = null)
+        Room northRoomByDoor = null, 
+        Room southRoomByDoor = null, 
+        Room eastRoomByDoor = null, 
+        Room westRoomByDoor = null)
     {
         this.roomCoordinate = new RoomCoordinate(x,y);
-        this.northRoom = northRoom;
-        if (northRoom != null) northRoom.southRoom = this;
-        this.southRoom = southRoom;
-        if (southRoom != null) southRoom.northRoom = this;
-        this.eastRoom = eastRoom;
-        if (eastRoom != null) eastRoom.westRoom = this;
-        this.westRoom = westRoom;
-        if (westRoom != null) westRoom.eastRoom = this;
+        this.northRoomByDoor = northRoomByDoor;
+        if (northRoomByDoor != null) northRoomByDoor.southRoomByDoor = this;
+        this.southRoomByDoor = southRoomByDoor;
+        if (southRoomByDoor != null) southRoomByDoor.northRoomByDoor = this;
+        this.eastRoomByDoor = eastRoomByDoor;
+        if (eastRoomByDoor != null) eastRoomByDoor.westRoomByDoor = this;
+        this.westRoomByDoor = westRoomByDoor;
+        if (westRoomByDoor != null) westRoomByDoor.eastRoomByDoor = this;
     }
 
     public RoomCoordinate GetRoomCoordinate(){
@@ -35,13 +35,13 @@ public class Room
     public Room GetAdjacentRoom (CardinalDirection.Direction4 direction){
         switch (direction){
             case CardinalDirection.Direction4.EAST:
-                return this.eastRoom;
+                return this.eastRoomByDoor;
             case CardinalDirection.Direction4.NORTH:
-                return this.northRoom;
+                return this.northRoomByDoor;
             case CardinalDirection.Direction4.WEST:
-                return this.westRoom;
+                return this.westRoomByDoor;
             case CardinalDirection.Direction4.SOUTH:
-                return this.southRoom;
+                return this.southRoomByDoor;
             case CardinalDirection.Direction4.ZERO_VECTOR:
                 throw new System.ArgumentException("direction can not be ZERO_VECTOR");
             default:

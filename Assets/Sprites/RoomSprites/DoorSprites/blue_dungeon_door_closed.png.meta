@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 0fd689e08d66ad24992646c84d92c195
+guid: 1ce40db8c59058149b905176a541170f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2250924667013045614
-    second: blue_dungeon_door_red_0
+      213: -3998189140126603742
+    second: blue_dungeon_door_closed_0
   - first:
-      213: 8454262299529706142
-    second: blue_dungeon_door_red_1
+      213: 4882372380622770877
+    second: blue_dungeon_door_closed_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,7 +93,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blue_dungeon_door_red_0
+      name: blue_dungeon_door_closed_0
       rect:
         serializedVersion: 2
         x: 0
@@ -107,14 +107,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 292e586f0fb13c0e0800000000000000
-      internalID: -2250924667013045614
+      spriteID: 226eded09249388c0800000000000000
+      internalID: -3998189140126603742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blue_dungeon_door_red_1
+      name: blue_dungeon_door_closed_1
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9af171d4c2935570800000000000000
-      internalID: 8454262299529706142
+      spriteID: db2d230ffcba1c340800000000000000
+      internalID: 4882372380622770877
       vertices: []
       indices: 
       edges: []

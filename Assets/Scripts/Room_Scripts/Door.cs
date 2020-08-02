@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    #region Fields
+    #region Fields Unique to Door
     [SerializeField] private CardinalDirection.Direction4 direction = CardinalDirection.Direction4.ZERO_VECTOR;
     [SerializeField] private DoorState state = DoorState.open;
     [SerializeField] private LockedDoorColor lockedDoorColor = LockedDoorColor.none;
     
+    #endregion
+
+    #region Fields shared with all doors.
     [Header("Shared With All Doors")]
     // The amount of time the player must push on the door until it is unlocked.
     private const float unlockDelay = 0.5f;
     private float currentUnlockDelay;
-
-    public enum DoorState {open, closed, locked};
+    
+    // DoorState is the state of the door. 
+    // There are currenlty 4 states though more will be added.
+    // None means that there is no door, 
+    // the sprite renderer is disabled and what is left is the doorCollider.
+    public enum DoorState {none, open, closed, locked};
     public enum LockedDoorColor {none, red, blue, green, yellow, purple};
 
     private Player player;
@@ -74,6 +81,7 @@ public class Door : MonoBehaviour
     // The top part of the door sprite should be the first element of sprites. 
     // The bottom part of the door sprite should be the second element.
     private void SetDoorSprite(Sprite[] sprites){
+        SpriteRenderersEnable(true);
         Sprite doorTop = sprites[0];
         Sprite doorBottom = sprites[1];
         this.doorTop[0].sprite = doorTop;
@@ -82,9 +90,21 @@ public class Door : MonoBehaviour
         this.doorBottom[1].sprite = doorBottom;
     }
 
+    // Enables or disables all sprite renderers of this door.
+    private void SpriteRenderersEnable(bool enable){
+        this.doorTop[0].enabled = enable;
+        this.doorTop[1].enabled = enable;
+        this.doorBottom[0].enabled = enable;
+        this.doorBottom[1].enabled = enable;
+    }
+
     private void ChangeDoorState(DoorState state){
         this.state = state;
         switch (state){
+            case DoorState.none:
+                SpriteRenderersEnable(false);
+                doorCollider.enabled = true;
+                break;
             case DoorState.open:
                 doorCollider.enabled = false;
                 SetDoorSprite(openDoor);
