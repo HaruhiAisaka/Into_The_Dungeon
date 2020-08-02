@@ -1173,14 +1173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a857bef11615ce041981623458ca5cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMoveDelay: 1
-  cameraMovementTime: 2
-  distanceFromDoor: 2.5
-  currentRoom: {fileID: 0}
-  player: {fileID: 0}
-  mainCamera: {fileID: 0}
-  playerAnimator: {fileID: 0}
-  doorEntered: 0
 --- !u!4 &1717178962
 Transform:
   m_ObjectHideFlags: 0
