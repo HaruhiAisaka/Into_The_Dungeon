@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
         return myRigidBody2D.velocity;
     }
 
-    public Vector2 GetPlayerDirection(){
+    public Vector2 GetPlayerDirectionVector(){
         return playerDirection;
     }
     

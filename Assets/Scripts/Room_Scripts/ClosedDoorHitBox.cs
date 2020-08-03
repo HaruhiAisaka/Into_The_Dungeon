@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ClosedDoorHitBox : MonoBehaviour
 {   
-    [SerializeField] private Door door;
+    [SerializeField] private DoorDisplay doorDisplay;
     //Method used for when the player attempts to run into a door to unlock it.
     private void OnCollisionStay2D(Collision2D other) {
-        door.CollisionStay(other);
+        doorDisplay.CollisionStay(other);
     }
     private void OnCollisionExit2D(Collision2D other) {
-        door.CollisionExit(other);
+        doorDisplay.CollisionExit(other);
     }
 }

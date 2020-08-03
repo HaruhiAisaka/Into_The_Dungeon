@@ -2,52 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Room
 {
-    [SerializeField] private RoomCoordinate roomCoordinate;
-    private Room northRoomByDoor;
-    private Room southRoomByDoor;
-    private Room eastRoomByDoor;
-    private Room westRoomByDoor;
+    public RoomCoordinate roomCoordinate {get; private set;}
 
-    public Room(int x, int y, 
-        Room northRoomByDoor = null, 
-        Room southRoomByDoor = null, 
-        Room eastRoomByDoor = null, 
-        Room westRoomByDoor = null)
+    private static RoomCoordinateEqual roomCoorEqual = new RoomCoordinateEqual();
+
+    public List<RoomConnector> roomConnectors = new List<RoomConnector>();
+
+    // Is the doors that exist in this room.
+    public Room(int x, int y)
     {
+        // Sets Room Coordinate for the room.
         this.roomCoordinate = new RoomCoordinate(x,y);
-        this.northRoomByDoor = northRoomByDoor;
-        if (northRoomByDoor != null) northRoomByDoor.southRoomByDoor = this;
-        this.southRoomByDoor = southRoomByDoor;
-        if (southRoomByDoor != null) southRoomByDoor.northRoomByDoor = this;
-        this.eastRoomByDoor = eastRoomByDoor;
-        if (eastRoomByDoor != null) eastRoomByDoor.westRoomByDoor = this;
-        this.westRoomByDoor = westRoomByDoor;
-        if (westRoomByDoor != null) westRoomByDoor.eastRoomByDoor = this;
     }
 
-    public RoomCoordinate GetRoomCoordinate(){
-        return roomCoordinate;
+    public Room BlankRoom(){
+        return new Room(0,0);
     }
-
-    public Room GetAdjacentRoom (CardinalDirection.Direction4 direction){
-        switch (direction){
-            case CardinalDirection.Direction4.EAST:
-                return this.eastRoomByDoor;
-            case CardinalDirection.Direction4.NORTH:
-                return this.northRoomByDoor;
-            case CardinalDirection.Direction4.WEST:
-                return this.westRoomByDoor;
-            case CardinalDirection.Direction4.SOUTH:
-                return this.southRoomByDoor;
-            case CardinalDirection.Direction4.ZERO_VECTOR:
-                throw new System.ArgumentException("direction can not be ZERO_VECTOR");
-            default:
-                throw new System.ArgumentException("Invalid entry");
-        }
-    }
-
     
+    public static bool IsRoomAdjacent(Room room1, Room room2){
+        Vector2 room1V = room1.roomCoordinate.GetVector2();
+        Vector2 room2V = room2.roomCoordinate.GetVector2();
+        float distance = Vector2.Distance(room1V,room2V);
+        return (distance == 1);
+    }
 }
