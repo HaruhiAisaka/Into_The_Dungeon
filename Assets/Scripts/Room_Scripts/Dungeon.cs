@@ -28,8 +28,12 @@ public class Dungeon : MonoBehaviour
             new Door(GetRoom(1,0),GetRoom(0,0),Door.DoorState.open));
         roomConnectors.Add(
             new Door(GetRoom(0,1),GetRoom(0,0),Door.DoorState.locked, Door.LockedDoorColor.red));
+        roomConnectors.Add(
+            new Stair(GetRoom(0,1),GetRoom(-1,0), new Vector2(.5f,.5f), new Vector2(.5f,.5f))
+        );
         currentRoomGenerator = InstantiateRoom(startRoom);
-        currentRoomGenerator.EnableDoorAnimations();
+        currentRoomGenerator.EnableDoorAnimations(true);
+        currentRoomGenerator.EnableStairAnimations(true);
     }
 
     private void AddRoom(Room room){
@@ -54,6 +58,7 @@ public class Dungeon : MonoBehaviour
     public RoomGenerator InstantiateRoom(Room room){
         RoomGenerator newRoom = Instantiate(roomGenerator);
         newRoom.GenerateRoom(room);
+        currentRoomGenerator = newRoom;
         return newRoom;
     }
 }

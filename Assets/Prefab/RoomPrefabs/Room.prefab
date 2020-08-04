@@ -203,6 +203,8 @@ MonoBehaviour:
   - {fileID: 6790749224476622687}
   - {fileID: 6790749223096528098}
   - {fileID: 6790749224042947462}
+  stairDisplay: {fileID: 1790183759769312240, guid: 7e2ae9c756c3a4a4f974679f81657384,
+    type: 3}
 --- !u!1 &1510142672311258306
 GameObject:
   m_ObjectHideFlags: 0

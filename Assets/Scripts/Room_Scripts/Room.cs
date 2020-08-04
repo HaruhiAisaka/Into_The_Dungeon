@@ -10,6 +10,11 @@ public class Room
 
     public List<RoomConnector> roomConnectors = new List<RoomConnector>();
 
+
+    // Dimentions of a room.
+    public const int LENGTH_FROM_CENTER_X = 7;
+    public const int LENGTH_FROM_CENTER_Y = 3;
+
     // Is the doors that exist in this room.
     public Room(int x, int y)
     {
@@ -27,4 +32,42 @@ public class Room
         float distance = Vector2.Distance(room1V,room2V);
         return (distance == 1);
     }
+
+    #region IsInRoom Methods
+
+    public static bool IsInRoom(GameObject gameObject){
+        float x = gameObject.transform.position.x;
+        float y = gameObject.transform.position.y;
+        float xSize = gameObject.transform.localScale.x;
+        float ySize = gameObject.transform.localScale.y;
+        bool inX = 
+            (x - xSize >= -LENGTH_FROM_CENTER_X && 
+            x + xSize <= LENGTH_FROM_CENTER_X);
+        bool inY = 
+            (y - ySize >= -LENGTH_FROM_CENTER_Y &&
+            y + ySize <= LENGTH_FROM_CENTER_Y);
+        return (inX && inY);
+    }
+
+    public static bool IsInRoom(float x, float y, float xSize, float ySize){
+        bool inX = 
+            (x - xSize >= -LENGTH_FROM_CENTER_X && 
+            x + xSize <= LENGTH_FROM_CENTER_X);
+        bool inY = 
+            (y - ySize >= -LENGTH_FROM_CENTER_Y &&
+            y + ySize <= LENGTH_FROM_CENTER_Y);
+        return (inX && inY);
+    }
+
+    public static bool IsInRoom(Vector2 position, float xSize, float ySize){
+        bool inX = 
+            (position.x - xSize >= -LENGTH_FROM_CENTER_X && 
+            position.x + xSize <= LENGTH_FROM_CENTER_X);
+        bool inY = 
+            (position.y - ySize >= -LENGTH_FROM_CENTER_Y &&
+            position.y + ySize <= LENGTH_FROM_CENTER_Y);
+        return (inX && inY);
+    }
+
+    #endregion
 }

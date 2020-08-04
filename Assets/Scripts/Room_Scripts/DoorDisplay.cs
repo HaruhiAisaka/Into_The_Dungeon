@@ -113,8 +113,8 @@ public class DoorDisplay : MonoBehaviour
 
     #region DoorEnterAnimation
     // Enable Door Animations, enables the ability for the door to do animations
-    public void EnableAnimations(){
-        doorOpenHitBox.enabled = true;
+    public void EnableAnimations(bool enable){
+        doorOpenHitBox.enabled = enable;
     }
 
     // Triggers door animation when player enters door.
@@ -125,11 +125,18 @@ public class DoorDisplay : MonoBehaviour
     }
 
     IEnumerator DoorAnimation(){
-        Debug.Log("Called");
+        // Freezes player movement
         player.FreezePlayer();
-        RoomGenerator nextRoomGenerator = 
+        
+        // Instantiates the NextRoom
+        RoomGenerator newRoomGenerator = 
             FindObjectOfType<Dungeon>()
             .InstantiateRoom(door.GetNextRoom(currentRoom.GetCurrentRoom()));
+
+        // Disables Door Animations For the new Room
+        newRoomGenerator.EnableDoorAnimations(false);
+
+        // Changes the player animation to walk in appropreate direction.
         if (direction == Cardinal4.Direction.NORTH){
             playerAnimator.SetBool("walkLeft", false);
             playerAnimator.SetBool("walkRight", false);
@@ -165,7 +172,7 @@ public class DoorDisplay : MonoBehaviour
         yield return c;
 
         // Enable Door Animations for the Next Room
-        nextRoomGenerator.EnableDoorAnimations();
+        newRoomGenerator.EnableDoorAnimations(true);
         // Allow for Player Movement
         player.UnfreezePlayer();
         // Destroy current RoomGenerator
