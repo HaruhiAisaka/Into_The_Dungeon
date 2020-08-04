@@ -35,7 +35,7 @@ public class RoomCoordinate
         this.roomCoordinate = new Vector2 (x,y);
     }
 
-    public Vector2 GetRoomCoordinateVector2() {
+    public Vector2 GetVector2() {
         return roomCoordinate;
     }
 

@@ -70,13 +70,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3113386451907294163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f525f48efe8a545bede1c4144c8517, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c6e8c0f74be7994286ca28d8d791c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: -1
-  state: 0
-  lockedDoorColor: 0
-  cameraMovementTime: 1
+  direction: 0
+  currentRoomGenerator: {fileID: 0}
+  cameraMovementTime: 2
   distanceFromDoor: 2
   openDoor:
   - {fileID: 23517867199702739, guid: 5aeb64e094fc6854ca8590de04009dfc, type: 3}
@@ -105,7 +104,8 @@ MonoBehaviour:
   doorTop:
   - {fileID: 5388711653606423238}
   - {fileID: 5388711653350013826}
-  doorCollider: {fileID: 5388711652450181399}
+  doorClosedCollider: {fileID: 5388711652450181399}
+  doorOpenHitBox: {fileID: 7089496071098651343}
 --- !u!1 &5388711652450181394
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5388711652450181396}
   - component: {fileID: 5388711652450181398}
   m_Layer: 0
-  m_Name: DoorCollider
+  m_Name: DoorColliderClosed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e905da22b68881249a60a6bac4ecd1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 5388711652779321864}
+  doorDisplay: {fileID: 5388711652779321864}
 --- !u!1 &5388711652786802918
 GameObject:
   m_ObjectHideFlags: 0

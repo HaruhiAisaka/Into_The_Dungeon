@@ -2,61 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stair : MonoBehaviour
-{
-    [SerializeField] private Stair nextStair;
-    [SerializeField] private bool canEnterStairs = true;
+public class Stair : RoomConnector
+{   
+    // x and y are the position the stair is located relative to the center of the room.
 
-    // Temporary Serialization for testing. Eventually, the variable nextRoom will be initialized when the stair is created based on roomData.
-    [SerializeField] private int x;
-    [SerializeField] private int y;
-
-    #region Animation Fields
-    private float[] alphaValuesFadeBlack = {.3f,.7f,1f};
-    private float[] alphaValuesFadeReturn = {.7f,.3f,0f};
-    private float timeToFade = .5f;
-    #endregion
+    public Vector2 stairPosition1;
+    public Vector2 stairPosition2;
     
-    private UIFader fader;
-    private Room nextRoom;
-    private Player player;
-    private CameraMovement mainCamera;
+    public const float squareSize = 1;
 
-    private void Start() {
-        fader = FindObjectOfType<PlayerUI>().GetComponentInChildren<UIFader>();
-        mainCamera = FindObjectOfType<CameraMovement>();
-        player = FindObjectOfType<Player>();
-        // Temporary
-        nextRoom = FindObjectOfType<Dungeon>().GetRoom(new RoomCoordinate(x,y));
-    }   
 
-    IEnumerator StairAnimation(){
-        player.FreezePlayer();
-        Coroutine a = StartCoroutine(player.MovePlayerToPoint(
-            (Vector2) this.transform.position,
-            player.GetSpeed()));
-        yield return a;
-        Coroutine b = StartCoroutine(
-            fader.FadeCanvasGroupDistinct(alphaValuesFadeBlack,timeToFade));
-        yield return b;
-        player.transform.position = nextStair.transform.position;
-        mainCamera.SetCameraToNewRoom(nextRoom);
-        Coroutine c = StartCoroutine(
-            fader.FadeCanvasGroupDistinct(alphaValuesFadeReturn,timeToFade));
-        yield return c;
-        player.UnfreezePlayer();
+    public Stair (
+        Room room1, Room room2,
+        Vector2 stairPosition1, Vector2 stairPosition2
+    ) : base (room1, room2)
+    {
+        // Assurtions
+        if (!Room.IsInRoom(stairPosition1, squareSize, squareSize)||
+            !Room.IsInRoom(stairPosition2, squareSize, squareSize))
+        {
+            throw new System.ArgumentException ("Stairs must fit inside of the room");
+        }
+        this.stairPosition1 = stairPosition1;
+        this.stairPosition2 = stairPosition2;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (canEnterStairs&&other.GetComponent<AltPlayerHitBox>()){
-            canEnterStairs = false;
-            nextStair.canEnterStairs = false;
-            StartCoroutine(StairAnimation());
-        }
+
+    // Get the stair position relative to the center of the room
+    public Vector2 GetStairPosition(Room room){
+        if (room == base.room1) return stairPosition1;
+        else return stairPosition2;
     }
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.GetComponent<AltPlayerHitBox>()){
-            canEnterStairs = true;
-        }
+
+    // Get the stair position relative to the world origin/scene
+    public Vector2 GetStairWorldPosition(Room room){
+        return GetStairPosition(room) + room.roomCoordinate.GetRoomWorldPosition();
     }
 }

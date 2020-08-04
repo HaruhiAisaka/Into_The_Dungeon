@@ -10,8 +10,7 @@ This includes:
 */
 public class CurrentRoom : MonoBehaviour
 {
-    
-    [SerializeField] private Room currentRoom;
+    public Room currentRoom {get; set;}
 
     private Dungeon dungeon;
     
@@ -22,12 +21,12 @@ public class CurrentRoom : MonoBehaviour
         currentRoom = dungeon.GetStartRoom();
     }
 
-    public Room GetCurrentRoom(){
-        return currentRoom;
+    public RoomCoordinate GetCurrentRoomCoordinate(){
+        return currentRoom.roomCoordinate;
     }
 
-    public RoomCoordinate GetCurrentRoomCoordinate(){
-        return currentRoom.GetRoomCoordinate();
+    public Room GetCurrentRoom(){
+        return currentRoom;
     }
 
     public void SetCurrentRoom(Room room){
