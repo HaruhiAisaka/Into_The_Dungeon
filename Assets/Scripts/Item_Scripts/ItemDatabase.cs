@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
 {
-    [SerializeField]
-    private Key redKey, blueKey, greenKey, yellowKey, purpleKey = new Key();
+    #region Non-Equipable-Items
+    
+    [SerializeField] private Key redKey, blueKey, greenKey, yellowKey, purpleKey = new Key();
+    [SerializeField] private Map map = new Map();
+    [SerializeField] private Compass compass = new Compass();
+    [SerializeField] private Heart heart = new Heart();
+    [SerializeField] private Armor leatherArmor, chainArmor, legendaryArmor = new Armor();
+    [SerializeField] private Chalice chalice = new Chalice();
+    #endregion
+
+    #region Equipable-Items
+    [SerializeField] private Boomberang boomberang, legendaryBoomberang = new Boomberang();
+    [SerializeField] private Instrument piccolo = new Instrument();
+    [SerializeField] private ProjectileWeapon bow = new ProjectileWeapon();
+    [SerializeField] private Sword woodenSword, whiteSword , legendarySword = new Sword();
+
+    #endregion
+
 
     // All items are organized into these two dictionaries.
     // One references items by name. The other by id number.
