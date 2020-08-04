@@ -83,6 +83,14 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("walkUp", false);
             myAnimator.SetBool("walkRight", false);
         }
+
+        // Pauses Animation if there is no movement
+        if (deltaX == 0 && deltaY == 0){
+            myAnimator.speed = 0;
+        }
+        else {
+            myAnimator.speed = 1;
+        }
     }
 
     private void UpdatePlayerDirection(){
@@ -104,6 +112,8 @@ public class Player : MonoBehaviour
     }
 
     private void Attack(){
+        // Ensures that the attack animation is never paused.
+        myAnimator.speed = 1;
         // set direction
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_down") ) {
             directionX = 0;
