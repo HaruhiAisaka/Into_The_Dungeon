@@ -12,10 +12,6 @@ public abstract class EquipableItem : Item
     // presses the "action" button.
     public abstract void Action();
 
-    // SecondaryAction should be triggered if the player has equiped this item
-    // and pressed the "secondary-action" button.
-    public abstract void SecondaryAction();
-
     // OnUnEquip() is triggered after the player unequips the item
     // and exits the pause screen.
     public abstract void OnUnEquip();

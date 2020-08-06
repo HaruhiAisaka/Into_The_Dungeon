@@ -11,7 +11,7 @@ public class DoorDisplay : MonoBehaviour
     #region Fields shared with all doors.
     [Header("Shared With All DoorsDisplays")]
     // The amount of time the player must push on the door until it is unlocked.
-    private const float unlockDelay = 0.5f;
+    private const float unlockDelay = 0.3f;
     private float currentUnlockDelay;
 
     private Player player;

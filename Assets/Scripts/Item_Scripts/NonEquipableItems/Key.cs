@@ -6,4 +6,8 @@ using UnityEngine;
 public class Key : NonEquipableItem
 {
     public Door.LockedDoorColor color;
+
+    public override void OnPickUp(){
+
+    }
 }

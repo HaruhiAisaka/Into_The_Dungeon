@@ -15,21 +15,30 @@ public class Dungeon : MonoBehaviour
     private List<RoomConnector> roomConnectors = 
         new List<RoomConnector>();
 
-    private Room startRoom = new Room(0,0);
+    private Room startRoom = new Room(0,0, startRoom:true);
+    private Room endRoom = new Room(0,2, endRoom : true);
+
 
     private void Awake() {
         AddRoom(startRoom);
         AddRoom(new Room(-1,0));
         AddRoom(new Room(1,0));
         AddRoom(new Room(0,1));
+        AddRoom(endRoom);
         roomConnectors.Add(
             new Door(GetRoom(-1,0),GetRoom(0,0),Door.DoorState.open));
         roomConnectors.Add(
             new Door(GetRoom(1,0),GetRoom(0,0),Door.DoorState.open));
         roomConnectors.Add(
-            new Door(GetRoom(0,1),GetRoom(0,0),Door.DoorState.locked, Door.LockedDoorColor.red));
+            new Door(GetRoom(0,1),GetRoom(0,0),Door.DoorState.locked, 
+            Door.LockedDoorColor.red)
+        );
         roomConnectors.Add(
-            new Stair(GetRoom(0,1),GetRoom(-1,0), new Vector2(.5f,.5f), new Vector2(.5f,.5f))
+            new Stair(GetRoom(0,1),GetRoom(-1,0), 
+            new Vector2(.5f,.5f), new Vector2(.5f,.5f))
+        );
+        roomConnectors.Add(
+            new Door(GetRoom(0,1),GetRoom(0,2),Door.DoorState.open)
         );
         currentRoomGenerator = InstantiateRoom(startRoom);
         currentRoomGenerator.EnableDoorAnimations(true);

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class NonEquipableItem : Item
 {
-  
+    public abstract void OnPickUp();
 }
