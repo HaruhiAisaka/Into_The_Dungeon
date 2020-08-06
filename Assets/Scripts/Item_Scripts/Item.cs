@@ -8,4 +8,5 @@ public abstract class Item
     public int itemID;
     public string description;
     public Sprite sprite;
+    
 }

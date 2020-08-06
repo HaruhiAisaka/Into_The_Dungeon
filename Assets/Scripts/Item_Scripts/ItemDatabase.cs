@@ -11,7 +11,6 @@ public class ItemDatabase : MonoBehaviour
     [SerializeField] private Compass compass = new Compass();
     [SerializeField] private Heart heart = new Heart();
     [SerializeField] private Armor leatherArmor, chainArmor, legendaryArmor = new Armor();
-    [SerializeField] private Chalice chalice = new Chalice();
     #endregion
 
     #region Equipable-Items

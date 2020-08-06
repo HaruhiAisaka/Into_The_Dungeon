@@ -7,6 +7,7 @@ public class RoomGenerator : MonoBehaviour
 {
     private RoomCoordinate roomCoordinate;
     private Room room;
+    [SerializeField] private Chalice chalice;
     [SerializeField] private DoorDisplay[] doorDisplays;
     [SerializeField] private StairDisplay stairDisplay;
     private List<StairDisplay> stairDisplays = 
@@ -18,6 +19,11 @@ public class RoomGenerator : MonoBehaviour
         this.room = room;
         roomCoordinate = room.roomCoordinate;
         this.transform.position = roomCoordinate.GetRoomWorldPosition();
+        // Spawns the chalice if it is the end room
+        if(room.endRoom == true){
+            Instantiate(chalice, this.transform);
+            chalice.transform.localPosition = new Vector2 (0,0);
+        }
         GenerateRoomConnections();
     }
 

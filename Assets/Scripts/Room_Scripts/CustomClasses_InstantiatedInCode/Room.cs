@@ -10,16 +10,21 @@ public class Room
 
     public List<RoomConnector> roomConnectors = new List<RoomConnector>();
 
+    public bool startRoom = false;
+    public bool endRoom = false;
+
 
     // Dimentions of a room.
     public const int LENGTH_FROM_CENTER_X = 7;
     public const int LENGTH_FROM_CENTER_Y = 3;
 
     // Is the doors that exist in this room.
-    public Room(int x, int y)
+    public Room(int x, int y, bool startRoom = false, bool endRoom = false)
     {
         // Sets Room Coordinate for the room.
         this.roomCoordinate = new RoomCoordinate(x,y);
+        this.startRoom = startRoom;
+        this.endRoom = endRoom;
     }
 
     public Room BlankRoom(){

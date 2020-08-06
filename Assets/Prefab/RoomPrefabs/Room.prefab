@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e72b31374f6da45af70dbfdddc51aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chalice: {fileID: 3812020689664491020, guid: 34a340ca09b1a8540b6223bcf58d3462, type: 3}
   doorDisplays:
   - {fileID: 6790749223076063406}
   - {fileID: 6790749224476622687}
