@@ -8,55 +8,44 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviour
 {
 
-    // player data
+    // UI Fields
     [SerializeField] HealthBar healthbar;
-    [SerializeField] string equippedWeapon = ""; // TODO: replace with script class
-    [SerializeField] string equippedItem = "";// TODO: replace with script class
-    [SerializeField] KeysBar keys;
+    [SerializeField] EquippedWeaponUI equippedWeaponUI;
+    [SerializeField] EquippedItemUI equippedItemUI;
+    [SerializeField] KeysBar keysBar;
 
-    // --- Debug -----
-    // Testing Health Bar
-    [SerializeField] int currentHealth = 10;
-    [SerializeField] int maxHealth = 14;
-    // ---------------
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    // ----- Updating UI
-
-    public void UpdateUI(Player player) {
-        UpdateHealth(player.playerHealth, 14);
-        // 14 As player does not have a max health field
-
-        //updateEquippedWeapon(player.equippedWeapon); // TODO when we have weapons
-        //updateEquippedItem(player.equippedItem); // TODO when we have Items
-
-        UpdateKeys(new bool[] {true, true, false});
+    /// Updates all UI components based on the player
+    public void UpdateAll(Player player) {
+        UpdateHealth(player.GetHealth(), 14);
     }
 
     public void UpdateHealth(int newCurrentHealth, int newMaxHealth) {
-        healthbar.UpdateHearts(newCurrentHealth, newMaxHealth);
+        if (healthbar != null) {
+            healthbar.UpdateHealth(newCurrentHealth, newMaxHealth);
+        }
     }
 
-    public void UpdateEquippedWeapon(/* weapon class */) {
-        //equippedWeapon = newWeapon;
-        // TODO : update ui
+    public void UpdateHeartsDisplay(int newMaxHealth) {
+        if (healthbar != null) {
+            healthbar.UpdateHeartsDisplay(newMaxHealth);
+        }
     }
 
-    public void UpdateEquippedItem(/* item class */) {
-        //equippedItem = newItem;
-        // TODO : update ui
+    public void UpdateEquippedWeapon(EquipableItem weapon) {
+        if (equippedWeaponUI != null) {
+            equippedWeaponUI.UpdateItemImage(weapon);
+        }
     }
 
-    public void UpdateKeys(bool[] keysArr) {
-        keys.UpdateKeys(keysArr);
+    public void UpdateEquippedItem(EquipableItem item) {
+        if (equippedItemUI != null) {
+            equippedItemUI.UpdateItemImage(item);
+        }
+    }
+
+    public void UpdateKeys(List<Key> keysArr) {
+        if (keysBar != null) {
+            keysBar.UpdateKeys(keysArr);
+        }
     }
 }

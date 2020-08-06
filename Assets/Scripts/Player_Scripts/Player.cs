@@ -7,9 +7,15 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float speed = 1f;
 
+    // This vector records the direction in which the player is 
+    //trying to move reguardless of collision events.
+    private Vector2 playerDirection;
+
     public bool freezePlayer = false;
 
     public int playerHealth;
+
+    [SerializeField] PlayerUI playerUI;
 
     public BoxCollider2D attackHitBox;
 
@@ -41,6 +47,7 @@ public class Player : MonoBehaviour
         if (!freezePlayer){
             Move();
         }
+        UpdatePlayerDirection();
     }
 
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
@@ -76,9 +83,37 @@ public class Player : MonoBehaviour
             myAnimator.SetBool("walkUp", false);
             myAnimator.SetBool("walkRight", false);
         }
+
+        // Pauses Animation if there is no movement
+        if (deltaX == 0 && deltaY == 0){
+            myAnimator.speed = 0;
+        }
+        else {
+            myAnimator.speed = 1;
+        }
+    }
+
+    private void UpdatePlayerDirection(){
+        playerDirection = myRigidBody2D.velocity.normalized;
+    }
+
+    // Added by Liam R. Forces the player to move to point with speed.
+    // Used for animations to move player through doors and stairs.
+    public IEnumerator MovePlayerToPoint(Vector2 point, float speed){
+        Vector2 initialPlayerPosition = (Vector2) this.transform.position;
+        float t = 0f;
+        float distance = Vector2.Distance(initialPlayerPosition, point);
+        while (Vector2.Distance(this.transform.position, point)> Mathf.Epsilon){
+            t += Time.deltaTime;
+            this.transform.position = 
+                Vector2.Lerp(initialPlayerPosition, point, t/(distance/speed));
+            yield return null;
+        }
     }
 
     private void Attack(){
+        // Ensures that the attack animation is never paused.
+        myAnimator.speed = 1;
         // set direction
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_down") ) {
             directionX = 0;
@@ -122,11 +157,14 @@ public class Player : MonoBehaviour
         FreezePlayer();
     }
 
-    public int GetHealth(){
-        return playerHealth;
-    }
     public void DamagePlayer(int damage) {
         playerHealth -= damage;
+
+        // Update health in UI, if player has one
+        if (playerUI != null) {
+            playerUI.UpdateHealth(playerHealth, 14);
+        }
+
     }
     private void AttackEnd(){
         attackHitBox.transform.position =
@@ -155,5 +193,18 @@ public class Player : MonoBehaviour
 
     public float GetSpeed(){
         return speed;
+    }
+
+    public Vector2 GetVelocity(){
+        return myRigidBody2D.velocity;
+    }
+
+    public Vector2 GetPlayerDirectionVector(){
+        return playerDirection;
+    }
+    
+    public int GetHealth(){
+        return playerHealth;
+
     }
 }
