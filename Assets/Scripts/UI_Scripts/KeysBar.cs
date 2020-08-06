@@ -7,24 +7,25 @@ public class KeysBar : MonoBehaviour
 {
 
     // Key Images
-    [SerializeField] Image[] keyImages = {};
-    // Key Sprites
-    [SerializeField] Sprite emptySlot;
+    List<Image> images = new List<Image>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    /// Render each key in keyList
     public void UpdateKeys(List<Key> keyList) {
-        // update each key in turn
-        for (int i = 0; i < keyImages.Length; i++) {
-            keyImages[i].sprite = i < keyList.Count ? keyList[i].sprite : emptySlot;
+        // Destroy Existing
+        foreach (Image image in images) {
+            Destroy(image.gameObject);
+        }
+        images.Clear();
+
+        // Add New
+        foreach (Key key in keyList) {
+            GameObject obj = new GameObject();
+            Image image = obj.AddComponent<Image>();
+            image.sprite = key.sprite;
+            obj.GetComponent<RectTransform>().SetParent(this.gameObject.transform);
+            obj.SetActive(true);
+
+            images.Add(image);
         }
     }
 }
