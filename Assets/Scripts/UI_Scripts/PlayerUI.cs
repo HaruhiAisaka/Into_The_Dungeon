@@ -20,19 +20,27 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void UpdateHealth(int newCurrentHealth, int newMaxHealth) {
-        healthbar.UpdateHealth(newCurrentHealth, newMaxHealth);
+        if (healthbar != null) {
+            healthbar.UpdateHealth(newCurrentHealth, newMaxHealth);
+        }
     }
 
     public void UpdateHeartsDisplay(int newMaxHealth) {
-        healthbar.UpdateHeartsDisplay(newMaxHealth);
+        if (healthbar != null) {
+            healthbar.UpdateHeartsDisplay(newMaxHealth);
+        }
     }
 
     public void UpdateEquippedWeapon(EquipableItem weapon) {
-        equippedWeaponUI.UpdateItemImage(weapon);
+        if (equippedWeaponUI != null) {
+            equippedWeaponUI.UpdateItemImage(weapon);
+        }
     }
 
     public void UpdateEquippedItem(EquipableItem item) {
-        equippedItemUI.UpdateItemImage(item);
+        if (equippedItemUI != null) {
+            equippedItemUI.UpdateItemImage(item);
+        }
     }
 
     public void UpdateKeys(List<Key> keysArr) {

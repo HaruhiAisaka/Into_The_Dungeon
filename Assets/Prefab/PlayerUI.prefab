@@ -341,8 +341,8 @@ GameObject:
   - component: {fileID: 5194361008665126443}
   - component: {fileID: 5194361008665126441}
   - component: {fileID: 5194361008665126440}
-  - component: {fileID: 5194361008665126438}
   - component: {fileID: 6376354117893352944}
+  - component: {fileID: 2467645734729946796}
   m_Layer: 5
   m_Name: HeartsBackground
   m_TagString: Untagged
@@ -406,25 +406,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5194361008665126438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5194361008665126442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40f40cf4a55474770abf014a321d8026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 12
-  maxHealth: 14
-  maxHeartsDisplayed: 18
-  fullHeart: {fileID: 21301090, guid: c2957f4d831870a48af4ec016652548d, type: 3}
-  halfHeart: {fileID: 21301094, guid: c2957f4d831870a48af4ec016652548d, type: 3}
-  emptyHeart: {fileID: 21301098, guid: c2957f4d831870a48af4ec016652548d, type: 3}
-  lockedHeart: {fileID: 21300000, guid: cb5c96f8f94fae2458793d465bb6c6db, type: 3}
 --- !u!114 &6376354117893352944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +431,25 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
+--- !u!114 &2467645734729946796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194361008665126442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f40cf4a55474770abf014a321d8026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10
+  maxHealth: 14
+  maxHeartsDisplayed: 14
+  fullHeart: {fileID: 21301090, guid: c2957f4d831870a48af4ec016652548d, type: 3}
+  halfHeart: {fileID: 21301094, guid: c2957f4d831870a48af4ec016652548d, type: 3}
+  emptyHeart: {fileID: 21301098, guid: c2957f4d831870a48af4ec016652548d, type: 3}
+  lockedHeart: {fileID: 21301166, guid: c2957f4d831870a48af4ec016652548d, type: 3}
 --- !u!1 &5194361008693444609
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eede4369232f463f89a552d371435f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthbar: {fileID: 5194361008665126438}
+  healthbar: {fileID: 2467645734729946796}
   equippedWeaponUI: {fileID: 0}
   equippedItemUI: {fileID: 0}
   keysBar: {fileID: 5194361010543777704}

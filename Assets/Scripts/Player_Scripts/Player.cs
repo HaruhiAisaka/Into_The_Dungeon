@@ -104,6 +104,7 @@ public class Player : MonoBehaviour
     }
 
     private void Attack(){
+        DamagePlayer(1); // TODO delete
         // set direction
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_down") ) {
             directionX = 0;
