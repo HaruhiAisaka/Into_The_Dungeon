@@ -8,6 +8,8 @@ public class Dungeon : MonoBehaviour
         new RoomCoordinateEqual();
     [SerializeField] private RoomGenerator roomGenerator;
 
+    [SerializeField] private Curtains curtains;
+
     private RoomGenerator currentRoomGenerator;
     private Dictionary<RoomCoordinate, Room> rooms = 
         new Dictionary<RoomCoordinate, Room>(roomCoorEqual);
@@ -40,9 +42,12 @@ public class Dungeon : MonoBehaviour
         roomConnectors.Add(
             new Door(GetRoom(0,1),GetRoom(0,2),Door.DoorState.open)
         );
+    }
+
+    private void Start() {
         currentRoomGenerator = InstantiateRoom(startRoom);
-        currentRoomGenerator.EnableDoorAnimations(true);
-        currentRoomGenerator.EnableStairAnimations(true);
+        currentRoomGenerator.EnableDoorAnimations(false);
+        StartCoroutine(EnterDungeonAnimation());
     }
 
     private void AddRoom(Room room){
@@ -69,5 +74,28 @@ public class Dungeon : MonoBehaviour
         newRoom.GenerateRoom(room);
         currentRoomGenerator = newRoom;
         return newRoom;
+    }
+
+
+    private IEnumerator EnterDungeonAnimation(){
+        Player player = FindObjectOfType<Player>();
+        player.FreezePlayer();
+        player.UnfreezeAnimation();
+        player.GetComponent<Animator>().SetFloat("deltaY", 1);
+        player.GetComponent<Animator>().speed = 1;
+        curtains.SetCurtainsClosed();
+        Coroutine a = 
+            StartCoroutine(curtains.OpenCurtains());
+        yield return a;
+        Destroy(curtains.gameObject);
+        player.transform.position = new Vector2(0, -5);
+        Vector2 movePlayerHere = startRoom.roomCoordinate.GetRoomWorldPosition() + new Vector2(0,-2.5f);
+        Coroutine b = StartCoroutine(player.MovePlayerToPoint(movePlayerHere, player.speed));
+        yield return b;
+        Door dummyDoor = (Door) startRoom.roomConnectors.Find(door => door.HasRoom(new RoomCoordinate(0,-1)));
+        dummyDoor.ChangeState(Door.DoorState.closed);
+        player.UnfreezePlayer();
+        currentRoomGenerator.EnableDoorAnimations(true);
+        currentRoomGenerator.EnableStairAnimations(true);
     }
 }

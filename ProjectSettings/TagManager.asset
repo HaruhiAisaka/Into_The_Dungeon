@@ -70,3 +70,9 @@ TagManager:
   - name: DoorsTop
     uniqueID: 2005859991
     locked: 0
+  - name: Curtains
+    uniqueID: 1148274677
+    locked: 0
+  - name: AboveAll
+    uniqueID: 3526594651
+    locked: 0

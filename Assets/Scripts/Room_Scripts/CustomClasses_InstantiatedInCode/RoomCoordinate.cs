@@ -42,6 +42,16 @@ public class RoomCoordinate
     public Vector2 GetRoomWorldPosition(){
         return new Vector2(roomCoordinate.x * xFactor, roomCoordinate.y * yFactor);
     }
+
+    public static bool Equals(RoomCoordinate r1, RoomCoordinate r2){
+        if (r1 == null && r2 == null){
+            return true;
+        }
+        else if (r1 == null || r2 == null){
+            return false;
+        }
+        return (r1.x == r2.x && r1.y == r2.y);
+    }
 }
 
 public class RoomCoordinateEqual : EqualityComparer<RoomCoordinate>{
