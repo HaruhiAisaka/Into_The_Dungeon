@@ -60,7 +60,6 @@ public class DoorDisplay : MonoBehaviour
         mainCamera = FindObjectOfType<CameraMovement>();
         playerAnimator = player.GetComponent<Animator>();
         ChangeDoorState();
-        doorOpenHitBox.enabled = false;
     }
 
     // Sets the sprites for the door. 
