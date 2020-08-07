@@ -1,7 +1,8 @@
 
 public class Door : RoomConnector
 {
-    public DoorState state {get; set;}
+    public DoorDisplay doorDisplay = null;
+    public DoorState state {get; private set;}
     public LockedDoorColor color {get; private set;} = LockedDoorColor.none;
     // DoorState is the state of the door. 
     // There are currenlty 4 states though more will be added.
@@ -27,6 +28,11 @@ public class Door : RoomConnector
 
         this.state = state;
         this.color = color;
+    }
+    
+    public void ChangeState(DoorState state){
+        this.state = state;
+        doorDisplay.ChangeDoorState();
     }
 
 }

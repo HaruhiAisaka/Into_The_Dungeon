@@ -9,6 +9,8 @@ public class Room
     private static RoomCoordinateEqual roomCoorEqual = new RoomCoordinateEqual();
 
     public List<RoomConnector> roomConnectors = new List<RoomConnector>();
+    public List<Door> doors = new List<Door>();
+    public List<Stair> stairs = new List<Stair>();
 
     public bool startRoom = false;
     public bool endRoom = false;
@@ -25,10 +27,20 @@ public class Room
         this.roomCoordinate = new RoomCoordinate(x,y);
         this.startRoom = startRoom;
         this.endRoom = endRoom;
+        if (startRoom){
+            Room dummyRoom = new Room(0,-1);
+            Door dummyDoor = new Door(dummyRoom, this, Door.DoorState.open);
+        }
     }
 
-    public Room BlankRoom(){
-        return new Room(0,0);
+    public void AddRoomConnector(RoomConnector roomConnector){  
+        roomConnectors.Add(roomConnector);
+        if (roomConnector is Door){
+            doors.Add((Door) roomConnector);
+        }
+        else if(roomConnector is Stair){
+            stairs.Add((Stair) roomConnector);
+        }
     }
     
     public static bool IsRoomAdjacent(Room room1, Room room2){

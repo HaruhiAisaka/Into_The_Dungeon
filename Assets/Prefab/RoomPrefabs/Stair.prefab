@@ -95,12 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6485642fae84d41aaf551ecaad09f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stair:
-    stairPosition1: {x: 0, y: 0}
-    stairPosition2: {x: 0, y: 0}
-  canEnterStairs: 0
-  x: 0
-  y: 0
+  fader: {fileID: 6042864618912916743, guid: 6c96192d3d1441942a8754d0d31ea134, type: 3}
 --- !u!61 &3946947723173319691
 BoxCollider2D:
   m_ObjectHideFlags: 0

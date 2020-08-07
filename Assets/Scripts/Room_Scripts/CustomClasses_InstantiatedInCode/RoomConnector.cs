@@ -17,12 +17,24 @@ public abstract class RoomConnector{
         this.room1 = room1;
         this.room2 = room2;
 
-        room1.roomConnectors.Add(this);
-        room2.roomConnectors.Add(this);
+        room1.AddRoomConnector(this);
+        room2.AddRoomConnector(this);
     }
 
     public Room GetNextRoom(Room currentRoom){
         if (currentRoom == room1) return room2;
         else return room1;
+    }
+
+    public bool HasRoom(Room room){
+        bool inRoom1 = (room1 == room);
+        bool inRoom2 = (room2 == room);
+        return inRoom1 || inRoom2;
+    }
+
+    public bool HasRoom(RoomCoordinate roomCoordinate){
+        bool inRoom1 = RoomCoordinate.Equals(roomCoordinate, room1.roomCoordinate);
+        bool inRoom2 = RoomCoordinate.Equals(roomCoordinate, room2.roomCoordinate);
+        return inRoom1 || inRoom2;
     }
 }

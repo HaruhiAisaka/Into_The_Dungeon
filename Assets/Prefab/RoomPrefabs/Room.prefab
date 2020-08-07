@@ -322,6 +322,11 @@ PrefabInstance:
       propertyPath: currentRoomGenerator
       value: 
       objectReference: {fileID: 1510142671473405715}
+    - target: {fileID: 7089496071098651343, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 813cf6ad7a160a34486d6c195106be0d, type: 3}
 --- !u!4 &2037847937437395954 stripped
@@ -424,6 +429,11 @@ PrefabInstance:
       propertyPath: currentRoomGenerator
       value: 
       objectReference: {fileID: 1510142671473405715}
+    - target: {fileID: 7089496071098651343, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 813cf6ad7a160a34486d6c195106be0d, type: 3}
 --- !u!4 &2037847937424240574 stripped
@@ -521,6 +531,11 @@ PrefabInstance:
       propertyPath: currentRoomGenerator
       value: 
       objectReference: {fileID: 1510142671473405715}
+    - target: {fileID: 7089496071098651343, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 813cf6ad7a160a34486d6c195106be0d, type: 3}
 --- !u!4 &2037847936759783642 stripped
@@ -623,6 +638,11 @@ PrefabInstance:
       propertyPath: currentRoomGenerator
       value: 
       objectReference: {fileID: 1510142671473405715}
+    - target: {fileID: 7089496071098651343, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 813cf6ad7a160a34486d6c195106be0d, type: 3}
 --- !u!4 &2037847936120044547 stripped
