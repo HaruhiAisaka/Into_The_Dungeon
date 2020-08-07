@@ -69,6 +69,14 @@ public class Player : MonoBehaviour
         else {
             myAnimator.speed = 0;
         }
+
+        // Pauses Animation if there is no movement
+        if (deltaX == 0 && deltaY == 0){
+            myAnimator.speed = 0;
+        }
+        else {
+            myAnimator.speed = 1;
+        }
     }
 
     private void UpdatePlayerDirection(){
@@ -93,6 +101,7 @@ public class Player : MonoBehaviour
         float deltaX = 0;
         float deltaY = 0;
         AnimatorStateInfo state = myAnimator.GetNextAnimatorStateInfo(0);
+        myAnimator.speed = 1;
         // set direction
         if (state.IsName("walk_up")) {
             deltaY = 1;
