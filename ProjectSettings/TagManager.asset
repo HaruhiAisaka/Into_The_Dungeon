@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - enemy
+  - onPause
   layers:
   - Default
   - TransparentFX
@@ -75,4 +76,7 @@ TagManager:
     locked: 0
   - name: AboveAll
     uniqueID: 3526594651
+    locked: 0
+  - name: 
+    uniqueID: 557799807
     locked: 0

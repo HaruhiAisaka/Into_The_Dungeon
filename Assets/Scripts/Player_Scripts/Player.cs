@@ -37,17 +37,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Makes the Animator Speed 1 by default unless the player's movement is frozen.
-        if (!freezePlayer){
-            myAnimator.speed = 1;
+        if (!PauseHandler.isPaused) {
+            if(Input.GetButtonDown("Attack1") && !freezePlayer){
+                Attack();
+            }
+
+            // Makes the Animator Speed 1 by default unless the player's movement is frozen.
+            if (!freezePlayer){
+                myAnimator.speed = 1;
+            }
+
+            if (!freezePlayer){
+                Move();
+            }
+            UpdatePlayerDirection();
         }
-        if(Input.GetButtonDown("Attack1") && !freezePlayer){
-            Attack();
+
+        // Pause
+        if (Input.GetButtonDown("Pause")) {
+            playerUI.TooglePauseState();
         }
-        if (!freezePlayer){
-            Move();
-        }
-        UpdatePlayerDirection();
     }
 
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
