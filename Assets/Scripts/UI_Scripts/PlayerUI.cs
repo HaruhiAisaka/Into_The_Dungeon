@@ -19,6 +19,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Text pauseText;
     [SerializeField] PauseHandler pauseHandler;
 
+    public void Start() {
+        if (pauseText != null) {
+            pauseText.gameObject.SetActive(false);
+        }
+    }
+
     /// Updates all UI components based on the player
     public void UpdateAll(Player player) {
         UpdateHealth(player.GetHealth(), 14);
