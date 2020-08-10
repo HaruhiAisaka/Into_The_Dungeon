@@ -61,6 +61,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void TooglePauseState() {
+        Debug.Log("Toggle Pause State ?");
         if (pauseHandler != null) {
             pauseHandler.TogglePause(delegate(PauseHandler pauseHandler) {
                 Debug.Log("calling in the callback woohoo");
