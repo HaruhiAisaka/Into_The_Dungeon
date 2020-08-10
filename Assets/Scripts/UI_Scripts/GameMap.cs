@@ -12,8 +12,16 @@ public class GameMap : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        //  Resize map
+        map.ResizeBounds();
         // testing drawing
         Debug.Log("Adding to tilemap?");
+        Debug.Log("cell bounds:");
+        Debug.Log(map.cellBounds);
+
+        Debug.Log("origin:");
+        Debug.Log(map.origin);
+
         map.SetTile(new Vector3Int(1 , 1 , 0), tile);
         map.SetTile(new Vector3Int(2 , 2 , 0), tile);
         map.SetTile(new Vector3Int(3 , 3 , 0), tile);

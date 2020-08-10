@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public int playerHealth;
 
     [SerializeField] PlayerUI playerUI;
+    [SerializeField] PauseHandler pauseHandler;
 
     public BoxCollider2D attackHitBox;
 
@@ -48,6 +49,12 @@ public class Player : MonoBehaviour
             Move();
         }
         UpdatePlayerDirection();
+        // Pause
+        if (Input.GetButtonDown("Pause")) {
+            if (pauseHandler != null) {
+                pauseHandler.TogglePause();
+            }
+        }
     }
 
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
