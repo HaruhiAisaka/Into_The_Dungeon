@@ -9,9 +9,13 @@ public class RoomGenerator : MonoBehaviour
     private Room room;
     [SerializeField] private Chalice chalice;
     [SerializeField] private DoorDisplay[] doorDisplays;
-    [SerializeField] private StairDisplay stairDisplay;
+    [SerializeField] private StairDisplay stairDisplayPrefab;
     private List<StairDisplay> stairDisplays = 
         new List<StairDisplay>();
+
+    [SerializeField] private GameObject items;
+    [SerializeField] private ItemDrop itemDropPrefab;
+
     private Player player;
 
     public void GenerateRoom(Room room){
@@ -25,8 +29,10 @@ public class RoomGenerator : MonoBehaviour
             chalice.transform.localPosition = new Vector2 (0,0);
         }
         GenerateRoomConnections();
+        GenerateItems();
     }
 
+    #region roomConnector Generation
     private void GenerateRoomConnections(){
         foreach (RoomConnector connector in room.roomConnectors){
             if (connector is Door){
@@ -52,7 +58,7 @@ public class RoomGenerator : MonoBehaviour
     }
 
     private void GenerateStairs(Stair stair){
-        StairDisplay newStair = Instantiate(stairDisplay, this.transform);
+        StairDisplay newStair = Instantiate(stairDisplayPrefab, this.transform);
         newStair.transform.localPosition = (Vector3) stair.GetStairPosition(room);
         newStair.stair = stair;
 
@@ -72,4 +78,17 @@ public class RoomGenerator : MonoBehaviour
             stairDisplay.EnableAnimations(enable);
         }
     }
+    #endregion
+
+    #region Item Generation
+    private void GenerateItems(){
+        foreach (Item item in room.items){
+            ItemDrop newItemDrop = Instantiate(itemDropPrefab, items.transform);
+            newItemDrop.transform.localPosition = item.localPosition;
+            newItemDrop.item = item;
+        }
+    }
+
+    #endregion
+
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Inventory {
+public class Inventory {
     private List<EquipableItem> equipInventory = new List<EquipableItem>();
     private List<NonEquipableItem> nonequipInventory = new List<NonEquipableItem>();
     private List<Key> keyInventory = new List<Key>();

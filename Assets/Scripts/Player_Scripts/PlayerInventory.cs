@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-
     private ItemDatabase itemDatabase;
-    private PlayerUI playerUI;
-    private Inventory inventory = new Inventory();
+    public PlayerUI playerUI {get; protected set;}
+    public Inventory inventory {get; protected set;} = new Inventory();
 
     private void Start() {
         itemDatabase = FindObjectOfType<ItemDatabase>();
@@ -24,12 +23,7 @@ public class PlayerInventory : MonoBehaviour
     private void PickUpItem(ItemDrop drop) {
         if (drop != null && drop.GetItem() is Item item){
             inventory.Add(item);
-
-            // If the item was a [key], we have to update the UI to reflect that
-            if (item is Key key && playerUI != null) {
-                playerUI.UpdateKeys(inventory.GetKeys());
-            }
-
+            item.OnPickUp(this);
         }
     }
 

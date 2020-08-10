@@ -136,6 +136,16 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    public void HealPlayer(int healthCharge){
+        playerHealth += healthCharge;
+
+        // Update health in UI, if player has one
+        if (playerUI != null) {
+            playerUI.UpdateHealth(playerHealth, 14);
+        }
+    }
+    
     private void AttackEnd(){
         attackHitBox.transform.localPosition = new Vector2(0,0);
         attackHitBox.transform.rotation = Quaternion.identity;

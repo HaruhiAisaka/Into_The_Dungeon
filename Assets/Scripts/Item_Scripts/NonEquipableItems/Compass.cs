@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Compass : NonEquipableItem
 {
-    public override void OnPickUp(){
+    public override void OnPickUp(PlayerInventory playerInventory){
 
     }
 }
