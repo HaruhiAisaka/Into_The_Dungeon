@@ -17,7 +17,7 @@ public class ItemDatabase : MonoBehaviour
     [SerializeField] private Boomberang boomberang, legendaryBoomberang = new Boomberang();
     [SerializeField] private Instrument piccolo = new Instrument();
     [SerializeField] private ProjectileWeapon bow = new ProjectileWeapon();
-    [SerializeField] private Sword woodenSword, whiteSword , legendarySword = new Sword();
+    [SerializeField] private Sword woodenSword, ironSword , legendarySword = new Sword();
 
     #endregion
 
@@ -58,5 +58,7 @@ public class ItemDatabase : MonoBehaviour
         AddItem(greenKey);
         AddItem(yellowKey);
         AddItem(purpleKey);
+        AddItem(map);
+        AddItem(compass);
     }
 }

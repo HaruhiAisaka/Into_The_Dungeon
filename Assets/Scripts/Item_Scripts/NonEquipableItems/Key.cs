@@ -7,7 +7,7 @@ public class Key : NonEquipableItem
 {
     public Door.LockedDoorColor color;
 
-    public override void OnPickUp(){
-
+    public override void OnPickUp(PlayerInventory playerInventory){
+        playerInventory.playerUI.UpdateKeys(playerInventory.inventory.GetKeys());
     }
 }

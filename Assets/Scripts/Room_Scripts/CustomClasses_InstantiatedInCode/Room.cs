@@ -8,9 +8,10 @@ public class Room
 
     private static RoomCoordinateEqual roomCoorEqual = new RoomCoordinateEqual();
 
-    public List<RoomConnector> roomConnectors = new List<RoomConnector>();
-    public List<Door> doors = new List<Door>();
-    public List<Stair> stairs = new List<Stair>();
+    public List<RoomConnector> roomConnectors {get; private set;} = new List<RoomConnector>();
+    public List<Door> doors {get; private set;} = new List<Door>();
+    public List<Stair> stairs {get; private set;} = new List<Stair>();
+    public List<Item> items {get; private set;} = new List<Item>();
 
     public bool startRoom = false;
     public bool endRoom = false;
@@ -42,6 +43,11 @@ public class Room
             stairs.Add((Stair) roomConnector);
         }
     }
+
+    public void AddItem(Item item, Vector2 localPosition){
+        item.SetItemPosition(localPosition);
+        items.Add(item);
+    }
     
     public static bool IsRoomAdjacent(Room room1, Room room2){
         Vector2 room1V = room1.roomCoordinate.GetVector2();
@@ -49,6 +55,7 @@ public class Room
         float distance = Vector2.Distance(room1V,room2V);
         return (distance == 1);
     }
+
 
     #region IsInRoom Methods
 

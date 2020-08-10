@@ -7,7 +7,7 @@ public class Armor : NonEquipableItem
 {
     public float damageReduction;
 
-    public override void OnPickUp(){
+    public override void OnPickUp(PlayerInventory playerInventory){
 
     }
 }

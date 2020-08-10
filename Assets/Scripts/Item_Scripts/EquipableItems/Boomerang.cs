@@ -9,15 +9,19 @@ public class Boomberang : EquipableItem
 
     public float range;
     
-    public override void OnEquip(){
+    public override void OnEquip(PlayerInventory playerInventory){
         
     }
 
-    public override void Action(){
+    public override void Action(PlayerInventory playerInventory){
 
     }
 
-    public override void OnUnEquip(){
+    public override void OnUnEquip(PlayerInventory playerInventory){
     
+    }
+
+    public override void OnPickUp(PlayerInventory playerInventory){
+        
     }
 }

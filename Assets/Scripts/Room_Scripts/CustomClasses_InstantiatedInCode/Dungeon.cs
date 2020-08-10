@@ -7,6 +7,7 @@ public class Dungeon : MonoBehaviour
     private static RoomCoordinateEqual roomCoorEqual = 
         new RoomCoordinateEqual();
     [SerializeField] private RoomGenerator roomGenerator;
+    [SerializeField] private ItemDatabase itemDatabase;
 
     [SerializeField] private Curtains curtains;
 
@@ -20,8 +21,14 @@ public class Dungeon : MonoBehaviour
     private Room startRoom = new Room(0,0, startRoom:true);
     private Room endRoom = new Room(0,2, endRoom : true);
 
+    private void Start() {
+        CreateCurrentDungeon();
+        currentRoomGenerator = InstantiateRoom(startRoom);
+        currentRoomGenerator.EnableDoorAnimations(false);
+        StartCoroutine(EnterDungeonAnimation());
+    }
 
-    private void Awake() {
+    private void CreateCurrentDungeon(){
         AddRoom(startRoom);
         AddRoom(new Room(-1,0));
         AddRoom(new Room(1,0));
@@ -42,12 +49,7 @@ public class Dungeon : MonoBehaviour
         roomConnectors.Add(
             new Door(GetRoom(0,1),GetRoom(0,2),Door.DoorState.open)
         );
-    }
-
-    private void Start() {
-        currentRoomGenerator = InstantiateRoom(startRoom);
-        currentRoomGenerator.EnableDoorAnimations(false);
-        StartCoroutine(EnterDungeonAnimation());
+        startRoom.AddItem(itemDatabase.GetItem("Red Key"), new Vector2(3,0));
     }
 
     private void AddRoom(Room room){
