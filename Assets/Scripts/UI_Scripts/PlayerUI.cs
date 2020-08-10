@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /**
  * Central control point for controlling/updating elements of the UI
@@ -13,6 +14,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] EquippedWeaponUI equippedWeaponUI;
     [SerializeField] EquippedItemUI equippedItemUI;
     [SerializeField] KeysBar keysBar;
+
+    // Pause
+    [SerializeField] Text pauseText;
+    [SerializeField] PauseHandler pauseHandler;
 
     /// Updates all UI components based on the player
     public void UpdateAll(Player player) {
@@ -46,6 +51,17 @@ public class PlayerUI : MonoBehaviour
     public void UpdateKeys(List<Key> keysArr) {
         if (keysBar != null) {
             keysBar.UpdateKeys(keysArr);
+        }
+    }
+
+    public void TooglePauseState() {
+        if (pauseHandler != null) {
+            pauseHandler.TogglePause(delegate(PauseHandler pauseHandler) {
+                Debug.Log("calling in the callback woohoo");
+                if (pauseText != null) {
+                    pauseText.gameObject.SetActive(PauseHandler.isPaused);
+                }
+            });
         }
     }
 }

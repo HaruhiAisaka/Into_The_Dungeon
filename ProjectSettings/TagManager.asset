@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - enemy
+  - onPause
   layers:
   - Default
   - TransparentFX
@@ -69,4 +70,7 @@ TagManager:
     locked: 1
   - name: DoorsTop
     uniqueID: 2005859991
+    locked: 0
+  - name: 
+    uniqueID: 557799807
     locked: 0
