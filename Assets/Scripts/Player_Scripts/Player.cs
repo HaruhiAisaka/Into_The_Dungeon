@@ -21,15 +21,11 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D myRigidBody2D;
 
-    private Animator myAnimator;
+    protected Animator myAnimator;
     private bool swordIsVertical;
 
-    // direction of player for use by attack function
-    private int directionX = 0;
-    private int directionY = -1;
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         attackHitBox.enabled = false;
         myRigidBody2D = this.GetComponent<Rigidbody2D>();
@@ -45,6 +41,12 @@ public class Player : MonoBehaviour
             if(Input.GetButtonDown("Attack1") && !freezePlayer){
                 Attack();
             }
+
+            // Makes the Animator Speed 1 by default unless the player's movement is frozen.
+            if (!freezePlayer){
+                myAnimator.speed = 1;
+            }
+
             if (!freezePlayer){
                 Move();
             }
@@ -65,30 +67,16 @@ public class Player : MonoBehaviour
         deltaX = Input.GetAxisRaw("Horizontal") * speed;
         deltaY = Input.GetAxisRaw("Vertical") * speed;
         myRigidBody2D.velocity = new Vector2(deltaX, deltaY);
-        //set animation direction
-        if (deltaX > 0) {
-            myAnimator.SetBool("walkRight", true);
-            myAnimator.SetBool("walkLeft", false);
-            myAnimator.SetBool("walkUp", false);
-            myAnimator.SetBool("walkDown", false);
+
+        // Changes the animation only if there is movement.
+        if (deltaX != 0 || deltaY != 0){
+            myAnimator.speed = 1;
+            myAnimator.SetFloat("deltaX", deltaX);
+            myAnimator.SetFloat("deltaY", deltaY);
         }
-        else if (deltaX < 0) {
-            myAnimator.SetBool("walkLeft", true);
-            myAnimator.SetBool("walkRight", false);
-            myAnimator.SetBool("walkUp", false);
-            myAnimator.SetBool("walkDown", false);
-        }
-        else if (deltaY > 0) {
-            myAnimator.SetBool("walkUp", true);
-            myAnimator.SetBool("walkLeft", false);
-            myAnimator.SetBool("walkRight", false);
-            myAnimator.SetBool("walkDown", false);
-        }
-        else if (deltaY < 0) {
-            myAnimator.SetBool("walkDown", true);
-            myAnimator.SetBool("walkLeft", false);
-            myAnimator.SetBool("walkUp", false);
-            myAnimator.SetBool("walkRight", false);
+        // Pauses the animation but still keeps the player in the same direction.
+        else {
+            myAnimator.speed = 0;
         }
 
         // Pauses Animation if there is no movement
@@ -119,47 +107,31 @@ public class Player : MonoBehaviour
     }
 
     private void Attack(){
-        // Ensures that the attack animation is never paused.
+        float deltaX = 0;
+        float deltaY = 0;
+        AnimatorStateInfo state = myAnimator.GetNextAnimatorStateInfo(0);
         myAnimator.speed = 1;
         // set direction
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_down") ) {
-            directionX = 0;
-            directionY = -1;
-            if (!swordIsVertical) {
-                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
-                swordIsVertical = true;
-            }
+        if (state.IsName("walk_up")) {
+            deltaY = 1;
+            attackHitBox.transform.rotation = Quaternion.Euler(0,0,90);
         }
-        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_up") ) {
-            directionX = 0;
-            directionY = 1;
-            if (!swordIsVertical) {
-                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
-                swordIsVertical = true;
-            }
+        else if (state.IsName("walk_down") ) {
+            deltaY = -1;
+            attackHitBox.transform.rotation = Quaternion.Euler(0,0,90);
         }
-        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_left") ) {
-            directionX = -1;
-            directionY = 0;
-            if (swordIsVertical) {
-                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
-                swordIsVertical = false;
-            }
+        else if (state.IsName("walk_left") ) {
+            deltaX = -1;
         }
-        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("walk_right") ) {
-            directionX = 1;
-            directionY = 0;
-            if (swordIsVertical) {
-                attackHitBox.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
-                swordIsVertical = false;
-            }
+        else if (state.IsName("walk_right") ) {
+            deltaX = 1;
         }
         // attaaack!
         attackHitBox.transform.position =
-            new Vector3(attackHitBox.transform.position.x + directionX,
-            attackHitBox.transform.position.y + directionY,
+            new Vector3(attackHitBox.transform.position.x + deltaX,
+            attackHitBox.transform.position.y + deltaY,
             attackHitBox.transform.position.z);
-        myAnimator.SetTrigger("attack");
+        myAnimator.SetTrigger("action");
         attackHitBox.enabled = true;
         FreezePlayer();
     }
@@ -174,10 +146,8 @@ public class Player : MonoBehaviour
 
     }
     private void AttackEnd(){
-        attackHitBox.transform.position =
-            new Vector3(attackHitBox.transform.position.x - directionX,
-            attackHitBox.transform.position.y - directionY,
-            attackHitBox.transform.position.z);
+        attackHitBox.transform.localPosition = new Vector2(0,0);
+        attackHitBox.transform.rotation = Quaternion.identity;
         attackHitBox.enabled = false;
         UnfreezePlayer();
     }
@@ -191,6 +161,14 @@ public class Player : MonoBehaviour
     //UnfreezePlayer() Allows the player to move again.
     public void UnfreezePlayer(){
         freezePlayer = false;
+    }
+
+    public void FreezeAnimation(){
+        myAnimator.speed = 0;
+    }
+
+    public void UnfreezeAnimation(){
+        myAnimator.speed = 0;
     }
 
     //Get Functions
@@ -212,6 +190,5 @@ public class Player : MonoBehaviour
     
     public int GetHealth(){
         return playerHealth;
-
     }
 }

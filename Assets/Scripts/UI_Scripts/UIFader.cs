@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Used to fade UI elements. 
 // Must be attached to a UI element with a CanvasGroup component for it to work.
 public class UIFader : MonoBehaviour
 {
     private CanvasGroup uiElement;
+    private Image image;
 
     private void Start() {
         uiElement = gameObject.GetComponent<CanvasGroup>();
+        image = gameObject.GetComponent<Image>();
     }
 
     public IEnumerator FadeCanvasGroupGradual(float endAlpha, float totalTime){

@@ -19,10 +19,10 @@ public class StairDisplay : MonoBehaviour
     private CurrentRoom currentRoom;
 
     private void Start() {
-        fader = FindObjectOfType<PlayerUI>().GetComponentInChildren<UIFader>();
         mainCamera = FindObjectOfType<CameraMovement>();
         player = FindObjectOfType<Player>();
         currentRoom = FindObjectOfType<CurrentRoom>();
+        fader = GameObject.Find("FaderBlack").GetComponent<UIFader>();
     }   
 
     IEnumerator StairAnimation(){

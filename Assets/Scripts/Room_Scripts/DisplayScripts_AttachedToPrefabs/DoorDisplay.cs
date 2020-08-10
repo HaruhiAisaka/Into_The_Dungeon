@@ -127,7 +127,6 @@ public class DoorDisplay : MonoBehaviour
     IEnumerator DoorAnimation(){
         // Freezes player movement
         player.FreezePlayer();
-        
         // Instantiates the NextRoom
         RoomGenerator newRoomGenerator = 
             FindObjectOfType<Dungeon>()
@@ -138,14 +137,12 @@ public class DoorDisplay : MonoBehaviour
 
         // Changes the player animation to walk in appropreate direction.
         if (direction == Cardinal4.Direction.NORTH){
-            playerAnimator.SetBool("walkLeft", false);
-            playerAnimator.SetBool("walkRight", false);
-            playerAnimator.SetBool("walkUp", true);
+            playerAnimator.SetFloat("deltaX", 0);
+            playerAnimator.SetFloat("deltaY", 1);
         }
         else if(direction == Cardinal4.Direction.SOUTH){
-            playerAnimator.SetBool("walkLeft", false);
-            playerAnimator.SetBool("walkRight", false);
-            playerAnimator.SetBool("walkDown", true);
+            playerAnimator.SetFloat("deltaX", 0);
+            playerAnimator.SetFloat("deltaY", -1);
         }
 
         //Move player into the door
@@ -196,8 +193,7 @@ public class DoorDisplay : MonoBehaviour
                 Cardinal4.Vector2ToDirection(player.GetComponent<Player>().GetPlayerDirectionVector());
             bool playerGoingTowardsDoor = (playerDirection == direction);
             if(currentUnlockDelay <= 0 && playerGoingTowardsDoor && correctKey){
-                door.state = Door.DoorState.open;
-                ChangeDoorState();
+                door.ChangeState(Door.DoorState.open);
             }
             else if (playerGoingTowardsDoor && correctKey){
                 currentUnlockDelay -= 1 * Time.deltaTime;

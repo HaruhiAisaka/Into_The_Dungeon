@@ -48,6 +48,7 @@ public class RoomGenerator : MonoBehaviour
             Array.Find(doorDisplays, 
             element => element.direction == direction);
         doorDisplay.door = door;
+        door.doorDisplay = doorDisplay;
     }
 
     private void GenerateStairs(Stair stair){
