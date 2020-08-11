@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1510142671163740233}
   m_Layer: 0
   m_Name: Floor&Walls
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,6 +341,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorNorth
       objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
       propertyPath: direction
@@ -447,6 +457,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
@@ -555,6 +575,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorEast
       objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
       propertyPath: roomGenerator
@@ -656,6 +686,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}

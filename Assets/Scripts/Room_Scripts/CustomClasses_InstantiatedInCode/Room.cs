@@ -12,6 +12,7 @@ public class Room
     public List<Door> doors {get; private set;} = new List<Door>();
     public List<Stair> stairs {get; private set;} = new List<Stair>();
     public List<Item> items {get; private set;} = new List<Item>();
+    public List<GameObject> enemies {get; private set;} = new List<GameObject>();
 
     public bool startRoom = false;
     public bool endRoom = false;
@@ -47,6 +48,10 @@ public class Room
     public void AddItem(Item item, Vector2 localPosition){
         item.SetItemPosition(localPosition);
         items.Add(item);
+    }
+
+    public void AddEnemy(GameObject enemyPrefab, Vector2 localPosition){
+        enemies.Add(enemyPrefab);
     }
     
     public static bool IsRoomAdjacent(Room room1, Room room2){
