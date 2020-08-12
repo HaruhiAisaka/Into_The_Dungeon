@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
         title_screen = 0,
         tutorial_dungeon = 1
     }
-    
+
     private int currentSceneIndex;
 
     public void RestartScene(){
