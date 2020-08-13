@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDatabase: {fileID: 6646427078963164494}
+  dungeonDisplay: {fileID: 8530312997591754669}
 --- !u!114 &8530312997591754669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb281161619772146b7f7c153c3f24ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeon: {fileID: 2466658935084759094}
   roomGenerator: {fileID: 1510142671473405715, guid: 8ce5d154c9de3624688d8ac3c0a6df36,
     type: 3}
   curtains: {fileID: 8644052435636268551}

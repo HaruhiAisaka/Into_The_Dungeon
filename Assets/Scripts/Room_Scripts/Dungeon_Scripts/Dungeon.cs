@@ -6,6 +6,8 @@ public class Dungeon : MonoBehaviour
 {
     [SerializeField] protected ItemDatabase itemDatabase;
 
+    [SerializeField] protected DungeonDisplay dungeonDisplay;
+
     protected static RoomCoordinateEqual roomCoorEqual = 
         new RoomCoordinateEqual();
     public Dictionary<RoomCoordinate, Room> rooms {get; protected set;} = 

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DungeonDisplay : MonoBehaviour
 {
-    [SerializeField] private Dungeon dungeon;
+    private Dungeon dungeon;
     [SerializeField] private RoomGenerator roomGenerator;
     [SerializeField] private Curtains curtains;
 
     private RoomGenerator currentRoomGenerator;
 
 
-
-    private void Start() {
+    public void CreateDungeon(Dungeon dungeon){
+        this.dungeon = dungeon;
         currentRoomGenerator = InstantiateRoom(dungeon.startRoom);
         currentRoomGenerator.EnableDoorAnimations(false);
         StartCoroutine(EnterDungeonAnimation());

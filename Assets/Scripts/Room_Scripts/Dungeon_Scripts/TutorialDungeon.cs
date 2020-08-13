@@ -6,8 +6,9 @@ public class TutorialDungeon : Dungeon
 {
     private void Start() {
         CreateTutorialDungeon();
+        dungeonDisplay.CreateDungeon(this);
     }
-    
+
     private void CreateTutorialDungeon(){
         endRoom = new Room(0,2, endRoom : true);
         AddRoom(startRoom);
