@@ -129,7 +129,7 @@ public class DoorDisplay : MonoBehaviour
         player.FreezePlayer();
         // Instantiates the NextRoom
         RoomGenerator newRoomGenerator = 
-            FindObjectOfType<Dungeon>()
+            FindObjectOfType<DungeonDisplay>()
             .InstantiateRoom(door.GetNextRoom(currentRoom.GetCurrentRoom()));
 
         // Disables Door Animations For the new Room
