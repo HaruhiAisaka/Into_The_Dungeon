@@ -48,6 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDatabase: {fileID: 6646427078963164494}
   dungeonDisplay: {fileID: 8530312997591754669}
+  squareArea: 10
+  minRooms: 20
+  maxRooms: 20
+  minClusters: 1
+  maxClusters: 1
+  roomsInClusterRandomnessFactor: 0.2
 --- !u!114 &8530312997591754669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,10 +69,6 @@ MonoBehaviour:
   roomGenerator: {fileID: 1510142671473405715, guid: 8ce5d154c9de3624688d8ac3c0a6df36,
     type: 3}
   curtains: {fileID: 8644052435636268551}
-  skull: {fileID: 3369879212675486997, guid: 8e5b1e3384ff0094fad9c6694b6645ed, type: 3}
-  blob: {fileID: 4264228826745309087, guid: 63a1a80cca66d9c49b4b917ab2c1f9db, type: 3}
-  bat: {fileID: 2608908762084692569, guid: f2a808eb8b7aa2e4d824ce56867f9494, type: 3}
-  shooter: {fileID: 5991853777562127470, guid: a34e4c16bb2976b47b55ed699818c67b, type: 3}
 --- !u!1001 &2123574469174527552
 PrefabInstance:
   m_ObjectHideFlags: 0

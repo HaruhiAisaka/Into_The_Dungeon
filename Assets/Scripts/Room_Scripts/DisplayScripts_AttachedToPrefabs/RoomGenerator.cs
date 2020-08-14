@@ -16,6 +16,13 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private GameObject items;
     [SerializeField] private ItemDrop itemDropPrefab;
 
+    [SerializeField] private GameObject skull;
+    [SerializeField] private GameObject blob;
+    [SerializeField] private GameObject bat;
+    [SerializeField] private GameObject shooter;
+
+    private Dictionary<string, GameObject> enemyPrefabs;
+ 
     private Player player;
 
     public void GenerateRoom(Room room)
@@ -30,6 +37,12 @@ public class RoomGenerator : MonoBehaviour
             Instantiate(chalice, this.transform);
             chalice.transform.localPosition = new Vector2(0, 0);
         }
+        enemyPrefabs = new Dictionary<string, GameObject>();
+        enemyPrefabs.Add("skull", skull);
+        enemyPrefabs.Add("blob", blob);
+        enemyPrefabs.Add("bat", bat);
+        enemyPrefabs.Add("shooter", shooter);
+
         GenerateRoomConnections();
         GenerateItems();
         GenerateEnemies();
@@ -106,17 +119,20 @@ public class RoomGenerator : MonoBehaviour
 
     #endregion
 
-    #region Enemy Generation
 
     private void GenerateEnemies()
     {
-        foreach (GameObject enemyPrefab in room.enemies)
+        
+        if (room.enemies != null)
         {
-            GameObject enemy = Instantiate(enemyPrefab, transform);
-            enemy.transform.Translate(new Vector2(2,2));
+            foreach (string enemyName in room.enemies)
+            {
+
+                GameObject enemy = Instantiate(enemyPrefabs[enemyName], transform);
+                enemy.transform.Translate(new Vector2(2, 2));
+            }
         }
 
     }
-    #endregion
 
 }
