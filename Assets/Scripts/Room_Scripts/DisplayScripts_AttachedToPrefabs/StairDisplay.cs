@@ -32,7 +32,7 @@ public class StairDisplay : MonoBehaviour
         // Instantiate the next room
         Room nextRoom = stair.GetNextRoom(currentRoom.GetCurrentRoom());
         RoomGenerator newRoomGenerator = 
-            FindObjectOfType<Dungeon>().InstantiateRoom(nextRoom);
+            FindObjectOfType<DungeonDisplay>().InstantiateRoom(nextRoom);
         // Initially Disables all Stair Animations
         newRoomGenerator.EnableStairAnimations(false);
         // Moves player to the center of the stairs.

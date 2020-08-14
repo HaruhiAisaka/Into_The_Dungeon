@@ -43,6 +43,13 @@ public class RoomCoordinate
         return new Vector2(roomCoordinate.x * xFactor, roomCoordinate.y * yFactor);
     }
 
+    public bool Equals(RoomCoordinate r1){
+        if (r1 == null){
+            return false;
+        }
+        return (r1.x == roomCoordinate.x && r1.y == roomCoordinate.y);
+    }
+
     public static bool Equals(RoomCoordinate r1, RoomCoordinate r2){
         if (r1 == null && r2 == null){
             return true;

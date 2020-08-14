@@ -35,6 +35,17 @@ public class Room
         }
     }
 
+    public Room(RoomCoordinate roomCoordinate, bool startRoom = false, bool endRoom = false){
+        // Sets Room Coordinate for the room.
+        this.roomCoordinate = roomCoordinate;
+        this.startRoom = startRoom;
+        this.endRoom = endRoom;
+        if (startRoom){
+            Room dummyRoom = new Room(0,-1);
+            Door dummyDoor = new Door(dummyRoom, this, Door.DoorState.open);
+        }
+    }
+
     public void AddRoomConnector(RoomConnector roomConnector){  
         roomConnectors.Add(roomConnector);
         if (roomConnector is Door){
