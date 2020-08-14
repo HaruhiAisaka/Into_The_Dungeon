@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [Header("Player Movement")]
     public float speed = 1f;
 
-    // This vector records the direction in which the player is 
+    // This vector records the direction in which the player is
     //trying to move reguardless of collision events.
     private Vector2 playerDirection;
 
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseHandler.isPaused) {
+        if (!GameState.isPaused()) {
             if(Input.GetButtonDown("Attack1") && !freezePlayer){
                 Attack();
             }
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         float distance = Vector2.Distance(initialPlayerPosition, point);
         while (Vector2.Distance(this.transform.position, point)> Mathf.Epsilon){
             t += Time.deltaTime;
-            this.transform.position = 
+            this.transform.position =
                 Vector2.Lerp(initialPlayerPosition, point, t/(distance/speed));
             yield return null;
         }
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
             playerUI.UpdateHealth(playerHealth, 14);
         }
     }
-    
+
     private void AttackEnd(){
         attackHitBox.transform.localPosition = new Vector2(0,0);
         attackHitBox.transform.rotation = Quaternion.identity;
@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
     public Vector2 GetPlayerDirectionVector(){
         return playerDirection;
     }
-    
+
     public int GetHealth(){
         return playerHealth;
     }

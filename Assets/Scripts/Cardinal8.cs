@@ -15,7 +15,7 @@ public static class Cardinal8
         SOUTH_EAST = 7,
         ZERO_VECTOR = -1
     }
-    
+
     public static Direction Vector2ToDirection(Vector2 vector2){
         if (vector2 == new Vector2(0,0)) return Direction.ZERO_VECTOR;
         Vector2 vector2Normalized = vector2.normalized;
