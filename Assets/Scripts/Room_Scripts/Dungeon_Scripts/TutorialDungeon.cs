@@ -5,11 +5,11 @@ using UnityEngine;
 public class TutorialDungeon : Dungeon
 {
     private void Start() {
-        CreateTutorialDungeon();
+        GenerateTutorialDungeon();
         dungeonDisplay.CreateDungeon(this);
     }
 
-    private void CreateTutorialDungeon(){
+    private void GenerateTutorialDungeon(){
         endRoom = new Room(0,2, endRoom : true);
         AddRoom(startRoom);
         AddRoom(new Room(-1,0));

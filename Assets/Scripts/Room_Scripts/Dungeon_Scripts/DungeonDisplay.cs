@@ -28,9 +28,8 @@ public class DungeonDisplay : MonoBehaviour
 
     [ContextMenu("InstantiateAllRooms")]
     private void InstantiateAllRooms(){
-        foreach (KeyValuePair<RoomCoordinate,Room> keyValue in dungeon.rooms)
+        foreach (Room room in dungeon.rooms)
         {
-            Room room = keyValue.Value;
             InstantiateRoom(room);
         }
     }
