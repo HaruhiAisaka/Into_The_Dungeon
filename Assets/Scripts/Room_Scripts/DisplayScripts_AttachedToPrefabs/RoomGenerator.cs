@@ -113,6 +113,7 @@ public class RoomGenerator : MonoBehaviour
         foreach (GameObject enemyPrefab in room.enemies)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform);
+            enemy.transform.Translate(new Vector2(2,2));
         }
 
     }
