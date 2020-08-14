@@ -899,6 +899,30 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7429909861982331437, guid: 9c00c94a242acd14c927a33d9772c525,
+        type: 3}
+      propertyPath: bat
+      value: 
+      objectReference: {fileID: 2608908762084692569, guid: f2a808eb8b7aa2e4d824ce56867f9494,
+        type: 3}
+    - target: {fileID: 7429909861982331437, guid: 9c00c94a242acd14c927a33d9772c525,
+        type: 3}
+      propertyPath: shooter
+      value: 
+      objectReference: {fileID: 5991853777562127470, guid: a34e4c16bb2976b47b55ed699818c67b,
+        type: 3}
+    - target: {fileID: 7429909861982331437, guid: 9c00c94a242acd14c927a33d9772c525,
+        type: 3}
+      propertyPath: blob
+      value: 
+      objectReference: {fileID: 4264228826745309087, guid: 63a1a80cca66d9c49b4b917ab2c1f9db,
+        type: 3}
+    - target: {fileID: 7429909861982331437, guid: 9c00c94a242acd14c927a33d9772c525,
+        type: 3}
+      propertyPath: skull
+      value: 
+      objectReference: {fileID: 3369879212675486997, guid: 8e5b1e3384ff0094fad9c6694b6645ed,
+        type: 3}
     - target: {fileID: 8990593874468560850, guid: 9c00c94a242acd14c927a33d9772c525,
         type: 3}
       propertyPath: m_LocalPosition.x
