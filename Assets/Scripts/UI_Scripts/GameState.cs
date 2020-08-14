@@ -1,6 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Scenes {
+    private Scenes(string value) { Value = value; }
+
+    public string Value { get; set; }
+
+    public static Scenes Game { get { return new Scenes("LiamR_Dungeon_Room"); } }
+    public static Scenes Menu { get { return new Scenes("MapHUD"); } }
+}
 
 public enum State {
     InGame,
@@ -20,9 +30,8 @@ public static class GameState {
     }
 
     public static void EnterMenu() {
-        // TODO
-        //UnityEngine.SceneManangement.SceneManager.LoadScene("?");
-        //gameState = State.InMenu;
+        gameState = State.InMenu;
+        SceneManager.LoadScene(Scenes.Menu.Value);
     }
 
     public static void ExitMenu() {

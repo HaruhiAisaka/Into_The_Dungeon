@@ -55,7 +55,8 @@ public class Player : MonoBehaviour
 
         // Pause
         if (Input.GetButtonDown("Pause")) {
-            playerUI.TooglePauseState();
+            //playerUI.TooglePauseState();
+            GameState.EnterMenu();
         }
     }
 
