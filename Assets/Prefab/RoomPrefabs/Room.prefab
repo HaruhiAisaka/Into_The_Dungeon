@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1510142671163740233}
   m_Layer: 0
   m_Name: Floor&Walls
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,6 +210,10 @@ MonoBehaviour:
   items: {fileID: 6872175690479023386}
   itemDropPrefab: {fileID: 6125181426525722517, guid: 67ff95def127f1a48bd9a565655df653,
     type: 3}
+  skull: {fileID: 3369879212675486997, guid: 8e5b1e3384ff0094fad9c6694b6645ed, type: 3}
+  blob: {fileID: 4264228826745309087, guid: 63a1a80cca66d9c49b4b917ab2c1f9db, type: 3}
+  bat: {fileID: 2608908762084692569, guid: f2a808eb8b7aa2e4d824ce56867f9494, type: 3}
+  shooter: {fileID: 5991853777562127470, guid: a34e4c16bb2976b47b55ed699818c67b, type: 3}
 --- !u!1 &1510142672311258306
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +345,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorNorth
       objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
       propertyPath: direction
@@ -447,6 +461,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
@@ -555,6 +579,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorEast
       objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
       propertyPath: roomGenerator
@@ -656,6 +690,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DoorWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113386451907294163, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388711652450181394, guid: 813cf6ad7a160a34486d6c195106be0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 5388711652779321864, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}

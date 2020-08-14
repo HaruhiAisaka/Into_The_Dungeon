@@ -334,9 +334,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7235803257414263218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ce8c0b44daca246b0492491feba116, type: 3}
+  m_Script: {fileID: 11500000, guid: 42e7ffd73962f402fa36b08ed863aea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteFader: {fileID: 0}
-  myAnimator: {fileID: 6567293901036704795}
-  player: {fileID: 7235803257414263219}
+  speed: 1
+  freezePlayer: 0
+  playerHealth: 0
+  playerUI: {fileID: 0}
+  attackHitBox: {fileID: 0}
