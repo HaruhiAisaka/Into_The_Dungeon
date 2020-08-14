@@ -35,9 +35,8 @@ public static class GameState {
     }
 
     public static void ExitMenu() {
-        // TODO
-        //UnityEngine.SceneManangement.SceneManangement.LoadScene("?");
-        //gameState = State.InGame;
+        gameState = State.InGame;
+        SceneManager.LoadScene(Scenes.Game.Value);
     }
 
     public static void Pause(Completion completion) {

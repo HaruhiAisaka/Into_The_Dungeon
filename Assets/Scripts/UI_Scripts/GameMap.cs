@@ -12,6 +12,9 @@ public class GameMap : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        // TODO make this work
+        // Was adding tiles to see if I can get anything to draw
+
         //  Resize map
         map.ResizeBounds();
         // testing drawing
