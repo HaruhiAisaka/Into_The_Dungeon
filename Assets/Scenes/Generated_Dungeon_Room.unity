@@ -783,11 +783,6 @@ PrefabInstance:
       propertyPath: minClusters
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
-        type: 3}
-      propertyPath: squareArea
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 2108551494975498033, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: m_LocalPosition.x

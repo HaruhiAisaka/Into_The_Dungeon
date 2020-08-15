@@ -43,11 +43,12 @@ public class Dungeon : MonoBehaviour
 
     private void GenerateDungeon(){
         int numOfRoomsLeft = rand.Next(minRooms, maxRooms);
+        Debug.Log("Number of Rooms: " + numOfRoomsLeft);
         int numOfClusters = rand.Next(minClusters, maxClusters + 1);
+        Debug.Log("Number of Clusters: " + numOfClusters);
         int numOfRoomsForNextCluster;
         for (int numOfClustersLeft = numOfClusters; numOfClustersLeft >= 1 ; numOfClustersLeft--)
         {
-            Debug.Log("Numer of Rooms Left: " + numOfRoomsLeft);
             if (numOfClustersLeft == 1){
                 numOfRoomsForNextCluster = numOfRoomsLeft;
             }
@@ -57,8 +58,6 @@ public class Dungeon : MonoBehaviour
                 (int)((numOfRoomsLeft/numOfClustersLeft)*(1+roomsInClusterRandomnessFactor)));
             }
             numOfRoomsLeft -= numOfRoomsForNextCluster;
-            Debug.Log("Numer of Rooms For Next Cluster: " + numOfRoomsForNextCluster);
-            Debug.Log("Numer of Rooms Left: " + numOfRoomsLeft);
             if (numOfClustersLeft == numOfClusters){
                 numOfRoomsForNextCluster --;
                 GenerateCluster(startRoom, numOfRoomsForNextCluster);
