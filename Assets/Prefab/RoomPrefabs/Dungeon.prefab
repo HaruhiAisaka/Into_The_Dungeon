@@ -48,6 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDatabase: {fileID: 6646427078963164494}
   dungeonDisplay: {fileID: 8530312997591754669}
+  squareArea: 10
+  minRooms: 20
+  maxRooms: 20
+  minClusters: 1
+  maxClusters: 1
+  roomsInClusterRandomnessFactor: 0.2
 --- !u!114 &8530312997591754669
 MonoBehaviour:
   m_ObjectHideFlags: 0

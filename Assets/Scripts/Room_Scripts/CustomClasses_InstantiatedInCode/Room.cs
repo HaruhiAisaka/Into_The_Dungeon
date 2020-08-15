@@ -12,6 +12,8 @@ public class Room
     public List<Door> doors {get; private set;} = new List<Door>();
     public List<Stair> stairs {get; private set;} = new List<Stair>();
     public List<Item> items {get; private set;} = new List<Item>();
+    public List<string> enemies {get; private set;} = new List<string>();
+
 
     public bool startRoom = false;
     public bool endRoom = false;
@@ -22,27 +24,32 @@ public class Room
     public const int LENGTH_FROM_CENTER_Y = 3;
 
     // Is the doors that exist in this room.
-    public Room(int x, int y, bool startRoom = false, bool endRoom = false)
+    
+    public Room(int x, int y, bool startRoom = false, bool endRoom = false, List<string> enemies = null)
     {
         // Sets Room Coordinate for the room.
         this.roomCoordinate = new RoomCoordinate(x,y);
         this.startRoom = startRoom;
         this.endRoom = endRoom;
+        this.enemies = enemies;
         if (startRoom){
             Room dummyRoom = new Room(0,-1);
             Door dummyDoor = new Door(dummyRoom, this, Door.DoorState.open);
         }
     }
 
-    public Room(RoomCoordinate roomCoordinate, bool startRoom = false, bool endRoom = false){
+    public Room(RoomCoordinate roomCoordinate, bool startRoom = false, bool endRoom = false, List<string> enemies = null){
         // Sets Room Coordinate for the room.
+        Debug.Log(enemies.Count);
         this.roomCoordinate = roomCoordinate;
         this.startRoom = startRoom;
         this.endRoom = endRoom;
+        this.enemies = enemies;
         if (startRoom){
             Room dummyRoom = new Room(0,-1);
             Door dummyDoor = new Door(dummyRoom, this, Door.DoorState.open);
         }
+        
     }
 
     public void AddRoomConnector(RoomConnector roomConnector){  
@@ -58,6 +65,10 @@ public class Room
     public void AddItem(Item item, Vector2 localPosition){
         item.SetItemPosition(localPosition);
         items.Add(item);
+    }
+
+    public void AddEnemy(string enemyPrefab){
+        enemies.Add(enemyPrefab);
     }
     
     public static bool IsRoomAdjacent(Room room1, Room room2){
