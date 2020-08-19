@@ -361,6 +361,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1752757027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &659776370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7235803257414263219, guid: 05588fb3b0c1a412d9fd67a1f785bd31,
+    type: 3}
+  m_PrefabInstance: {fileID: 1591763923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e7ffd73962f402fa36b08ed863aea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1002483322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2876602399292329757, guid: 05588fb3b0c1a412d9fd67a1f785bd31,
@@ -377,6 +389,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85a1d8ab3e08bcf4ab7490b526d89671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1096172940 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1617851040136255204, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+    type: 3}
+  m_PrefabInstance: {fileID: 2108551495828160645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b367e1dc96b4c4ba96237aeb7751da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1341307853
@@ -475,6 +499,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec10742efb604341916b658265c9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1437955872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2108551494975498039, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+    type: 3}
+  m_PrefabInstance: {fileID: 2108551495828160645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1437955873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437955872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35744ab2ef43a954e9711d275708add7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomGenerator: {fileID: 1510142671473405715, guid: 8ce5d154c9de3624688d8ac3c0a6df36,
+    type: 3}
+  curtains: {fileID: 1096172940}
+  mainCamera: {fileID: 1341307857}
+  player: {fileID: 659776370}
 --- !u!1001 &1591763923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -766,12 +813,12 @@ PrefabInstance:
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: minRooms
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: maxRooms
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
@@ -781,7 +828,27 @@ PrefabInstance:
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: minClusters
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+        type: 3}
+      propertyPath: squareArea
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+        type: 3}
+      propertyPath: dungeonDisplay
+      value: 
+      objectReference: {fileID: 1437955873}
+    - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+        type: 3}
+      propertyPath: minRoomsPerCluster
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+        type: 3}
+      propertyPath: maxRoomsPerCluster
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2108551494975498033, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
@@ -843,7 +910,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Generated_Dungeon
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1722582252413050702, guid: dfaef3f32c2e75748a9d6fbb23479b28, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dfaef3f32c2e75748a9d6fbb23479b28, type: 3}
 --- !u!1001 &5122885146244033534
 PrefabInstance:

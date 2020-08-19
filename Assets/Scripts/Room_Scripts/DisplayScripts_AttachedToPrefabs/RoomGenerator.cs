@@ -5,8 +5,8 @@ using UnityEngine;
 using System.IO;
 public class RoomGenerator : MonoBehaviour
 {
-    private RoomCoordinate roomCoordinate;
-    private Room room;
+    public RoomCoordinate roomCoordinate {get; private set;}
+    public Room room {get; private set;}
     [SerializeField] private Chalice chalice;
     [SerializeField] private DoorDisplay[] doorDisplays;
     [SerializeField] private StairDisplay stairDisplayPrefab;
@@ -15,6 +15,8 @@ public class RoomGenerator : MonoBehaviour
 
     [SerializeField] private GameObject items;
     [SerializeField] private ItemDrop itemDropPrefab;
+
+    [SerializeField] public GameObject DebugOverlays;
 
     [SerializeField] private GameObject skull;
     [SerializeField] private GameObject blob;
@@ -127,12 +129,15 @@ public class RoomGenerator : MonoBehaviour
         {
             foreach (string enemyName in room.enemies)
             {
-
                 GameObject enemy = Instantiate(enemyPrefabs[enemyName], transform);
                 enemy.transform.Translate(new Vector2(2, 2));
             }
         }
 
+    }
+
+    public void EnableDebugOverlays(bool enable){
+        DebugOverlays.SetActive(enable);
     }
 
 }

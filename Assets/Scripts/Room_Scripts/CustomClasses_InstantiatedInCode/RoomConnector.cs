@@ -37,4 +37,17 @@ public abstract class RoomConnector{
         bool inRoom2 = RoomCoordinate.Equals(roomCoordinate, room2.roomCoordinate);
         return inRoom1 || inRoom2;
     }
+
+    public bool Equals(RoomConnector roomConnector){
+        bool room1 = this.room1.Equals(roomConnector.room1);
+        bool room2 = this.room2.Equals(roomConnector.room2);
+        return room1 && room2;
+    }
+
+    public bool Equals(Room room1, Room room2){
+        bool room1Equals = this.room1.Equals(room1);
+        bool room2Equals = this.room2.Equals(room2);
+        return room1Equals && room2Equals;
+    }
+
 }
