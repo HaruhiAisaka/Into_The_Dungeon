@@ -21,6 +21,10 @@ public abstract class RoomConnector{
         room2.AddRoomConnector(this);
     }
 
+    public (Room, Room) GetRoomTuplet(){
+        return (room1,room2);
+    }
+
     public Room GetNextRoom(Room currentRoom){
         if (currentRoom == room1) return room2;
         else return room1;
