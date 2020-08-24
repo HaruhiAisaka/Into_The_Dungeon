@@ -163,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510142671473405714}
   - component: {fileID: 1510142671473405715}
+  - component: {fileID: 357309675873381806}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -216,6 +217,21 @@ MonoBehaviour:
   blob: {fileID: 4264228826745309087, guid: 63a1a80cca66d9c49b4b917ab2c1f9db, type: 3}
   bat: {fileID: 2608908762084692569, guid: f2a808eb8b7aa2e4d824ce56867f9494, type: 3}
   shooter: {fileID: 5991853777562127470, guid: a34e4c16bb2976b47b55ed699818c67b, type: 3}
+--- !u!114 &357309675873381806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510142671473405740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee1772f6c23a3840a89bc41170d7eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomGenerator: {fileID: 1510142671473405715}
+  clusterOverlay: {fileID: 4769265192987926391}
+  clusterNum: 0
 --- !u!1 &1510142672311258306
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,21 +266,6 @@ Transform:
   m_Father: {fileID: 1510142671473405714}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6300364655086305861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4844250332990659017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ee1772f6c23a3840a89bc41170d7eb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomGenerator: {fileID: 1510142671473405715}
-  clusterOverlay: {fileID: 4769265192987926391}
-  cluster: 0
 --- !u!1 &6872175690479023386
 GameObject:
   m_ObjectHideFlags: 0

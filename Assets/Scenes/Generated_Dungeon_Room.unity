@@ -823,17 +823,17 @@ PrefabInstance:
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: maxClusters
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: minClusters
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: squareArea
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}

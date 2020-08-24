@@ -10,7 +10,6 @@ public class Dungeon : MonoBehaviour
 
     [SerializeField] protected DungeonDisplay dungeonDisplay;
 
-
     [SerializeField] protected int squareArea = 10;
 
     [Header("Procedural Generation Parameters")]
@@ -22,9 +21,9 @@ public class Dungeon : MonoBehaviour
 
     [SerializeField] [Range(0,1)] protected float stairDoorRatio = .2f;
 
-    private static List<String> enemies = new List<string>(){"skull", "blob", "bat", "shooter"};
+    [SerializeField] protected Vector2 positionOfItems = new Vector2(0,0);
 
-    public System.Random rand {get; private set;}
+    private static List<String> enemies = new List<string>(){"skull", "blob", "bat", "shooter"};
 
     public Dictionary<RoomCoordinate, Room> rooms {get; private set;} = 
         new Dictionary<RoomCoordinate, Room>(new RoomCoordinateEqual());
@@ -47,18 +46,36 @@ public class Dungeon : MonoBehaviour
         public int clusterNum {get; private set;}
         private static int nextClusterNum = 0;
 
+        // Distance to the starting cluster. 
+        // The int represents how many cluster connections between it and the start cluster.
+        public int distanceToStartCluster = -1;
+
+        public static int maxDistanceToStartCluster = 0;
+
+        // List of items the player needs to access the cluster.
+        List<Item> neededItems = new List<Item>();
+
         // Room adjacentRoom is a room outside of the current cluster that is adjacent to the cluster. 
         // This information is used when two clusters are ment to be connected by door.
         public List<(Cluster,List<(Room,Room)>)> adjacentClusters {get; private set;} =
             new List<(Cluster, List<(Room, Room)>)>();
+
+        public List<(Cluster,List<RoomConnector>)> connectedClusters {get; private set;} =
+            new List<(Cluster, List<RoomConnector>)>();
         public Cluster(Dungeon dungeon, Room startingRoom){
             this.dungeon = dungeon;
             this.clusterNum = nextClusterNum;
             nextClusterNum ++;
             dungeon.clusters.Add(this);
+            if(startingRoom == null){
+                throw new System.ArgumentException("startingRoom can not be null");
+            }
             // If the room doesn't already exist in the dungeon, add it.
             if (!dungeon.RoomExists(startingRoom)){
                 dungeon.AddRoom(startingRoom);
+            }
+            if (startingRoom.Equals(dungeon.startRoom)){
+                distanceToStartCluster = 0;
             }
             startingRoom.cluster = this.clusterNum;
             rooms[startingRoom.roomCoordinate] = startingRoom;
@@ -68,7 +85,7 @@ public class Dungeon : MonoBehaviour
         public void AddRoom(Room room, Room connectingRoom){
             // Assertions
             if(room == null) {
-                throw new ArgumentNullException("Room can not be null when added to the dungeon");
+                throw new ArgumentNullException("Room can not be null when added to the cluster");
             }
             else if (connectingRoom == null){
                 throw new ArgumentNullException("Connecting room can not be null");
@@ -146,6 +163,27 @@ public class Dungeon : MonoBehaviour
             return clusterAndRooms.Item2;
         }
 
+        private void AddConnectedCluster(Cluster clusterToConnectTo, RoomConnector roomConnector){
+            if(!this.connectedClusters.Exists(aCluster => aCluster.Item1.Equals(clusterToConnectTo))){
+                this.connectedClusters.Add(
+                    (clusterToConnectTo,
+                    new List<RoomConnector>(){roomConnector}));
+            }
+            else{
+                (Cluster,List<RoomConnector>) roomList = 
+                    this.connectedClusters.Find(aCluster => aCluster.Item1.Equals(clusterToConnectTo));
+                roomList.Item2.Add(roomConnector);
+            }
+            if(clusterToConnectTo.distanceToStartCluster != -1 && (this.distanceToStartCluster == -1 ||
+            this.distanceToStartCluster > clusterToConnectTo.distanceToStartCluster))
+            {
+                this.distanceToStartCluster = clusterToConnectTo.distanceToStartCluster + 1;
+                if(this.distanceToStartCluster > maxDistanceToStartCluster){
+                    maxDistanceToStartCluster = this.distanceToStartCluster;
+                }
+            }
+        }
+
         public bool RoomExists(Room room){
             return rooms.ContainsKey(room.roomCoordinate);
         }
@@ -156,34 +194,39 @@ public class Dungeon : MonoBehaviour
         }
 
         public Room GetRandomRoom(){
-            Room[] rooms = Enumerable.ToArray(this.rooms.Values);
-            int index = dungeon.rand.Next(rooms.Length);
-            return rooms[index];
+            return RNG.RandomElementFromDictionary(rooms);
         }
 
         // Gets a random room that is adjacent to the cluster.
         public Room GetRandomAdjacentRoomInCluster(Room room)
         {
             List<Room> adjacentRooms = Dungeon.GetAdjacentRooms(room, this.rooms);
-            if (adjacentRooms.Count == 0) return null;
-            int index = dungeon.rand.Next(adjacentRooms.Count);
-            return adjacentRooms[index];
+            return RNG.RandomElementFromList(adjacentRooms);
+        }
+
+        public bool IsClusterEnclosed(){
+            List<Room> validRooms = 
+                rooms.Values.Where(
+                    aRoom => dungeon.HasSpaceForAdjacentRoom(aRoom)).ToList();
+            if (validRooms.Contains(dungeon.endRoom)){
+                validRooms.Remove(dungeon.endRoom);
+            }
+            return validRooms.Count == 0;
         }
 
         // Generates an adjacent room to the cluster.
         // The generatedroom is not added to any lists.
         public Room GenerateAdjacentRoomFromCluster(){
-            bool invalidRoom;
-            Room result;
-            do{
-                Room borderRoom = GetRandomRoom();
-                result = dungeon.GenerateAdjacentRoom(borderRoom);
-                if (result == null) invalidRoom = true;
-                else invalidRoom = false;
-            } while (invalidRoom);
-            return result;
+            Room[] validRooms = 
+                rooms.Values.Where(
+                    aRoom => dungeon.HasSpaceForAdjacentRoom(aRoom) && 
+                    !aRoom.Equals(dungeon.endRoom)).ToArray();
+            if(validRooms.Length == 0){
+                return null;
+            }
+            Room boarderRoom = RNG.RandomElementFromList(validRooms);
+            return dungeon.GenerateAdjacentRoom(boarderRoom);
         }
-
 
         public static Cluster GenerateEndRoomCluster(Dungeon dungeon){
             // Generates the end room (where the chalice is located)
@@ -192,6 +235,7 @@ public class Dungeon : MonoBehaviour
             Cluster result = new Cluster(dungeon, dungeon.endRoom);
             dungeon.finalBossRoom = dungeon.GenerateAdjacentRoom(dungeon.endRoom);
             result.AddRoom(dungeon.finalBossRoom,dungeon.endRoom);
+            result.neededItems.Add(dungeon.itemDatabase.GetKey(Door.LockedDoorColor.yellow));
             return result;
         }
 
@@ -231,11 +275,11 @@ public class Dungeon : MonoBehaviour
                 // the function returns the cluster anyway.
                 if (possibleRooms.Count <= 0){ Debug.Log("Return Incomplete"); return result;}
                 // Picks one coordinate from the pool of possible ones
-                int index = dungeon.rand.Next(possibleRooms.Count);
+                RoomCoordinate newRoomCoordinate = RNG.RandomElementFromList(possibleRooms);
                 // Creates new room from that coordinates
-                Room newRoom = new Room(possibleRooms[index]);
+                Room newRoom = new Room(newRoomCoordinate);
                 // Removes the used coordinate from the pool
-                possibleRooms.Remove(possibleRooms[index]);
+                possibleRooms.Remove(newRoomCoordinate);
                 // Finds a room that was created in the cluster that is adjecent to the newly created room.
                 Room adjacentRoom = result.GetRandomAdjacentRoomInCluster(newRoom);
                 // Adds the room to the cluster
@@ -245,7 +289,7 @@ public class Dungeon : MonoBehaviour
             return result;
         }
         // Function used to conntect the base room of a cluster to an already existing room in a previous cluster.
-        public static Stair ConnectTwoClustersStair(Cluster c1, Cluster c2){
+        public static Stair StairThatConnectsTwoClusters(Cluster c1, Cluster c2){
             if (c1.dungeon != c2.dungeon){
                 throw new ArgumentException("There shouldn't be two dungeons");
             }
@@ -281,7 +325,7 @@ public class Dungeon : MonoBehaviour
             return new Stair(room1, room2, new Vector2(6.5f,2.5f), new Vector2(6.5f,2.5f));
         }
 
-        public static Door ConnectTwoClustersDoor(
+        public static Door DoorThatConnectsTwoClusters(
             Cluster c1, Cluster c2, 
             Door.DoorState state, 
             Door.LockedDoorColor color = Door.LockedDoorColor.none)
@@ -295,15 +339,19 @@ public class Dungeon : MonoBehaviour
             if (possibleRoomConnections.Count <= 0){
                 return null;
             }
-            bool invalidDoor;
-            (Room,Room) roomsToConnect;
-            do {
-                int index = c1.dungeon.rand.Next(possibleRoomConnections.Count);
-                roomsToConnect = possibleRoomConnections[index];
-                invalidDoor = 
-                    dungeon.RoomConnectionExists(roomsToConnect.Item1, roomsToConnect.Item2);
-            } while (invalidDoor);
+            List<(Room,Room)> invalidRoomConnections = 
+                dungeon.roomConnectors.Select(aRoomConnector => aRoomConnector.GetRoomTuplet()).ToList();
+            (Room, Room) roomsToConnect = RNG.RandomElementFromListExcluding(possibleRoomConnections, invalidRoomConnections);
             return new Door(roomsToConnect.Item1, roomsToConnect.Item2, state, color);
+        }
+
+        public static void ConfirmClusterConnection(Cluster c1, Cluster c2, RoomConnector roomConnector){
+            c1.AddConnectedCluster(c2, roomConnector);
+            c2.AddConnectedCluster(c1, roomConnector);
+        }
+
+        public void AddItem(Item item){
+            GetRandomRoom().AddItem(item, dungeon.positionOfItems);
         }
     }
 
@@ -321,7 +369,7 @@ public class Dungeon : MonoBehaviour
 
     private void Start() 
     {
-        rand = new System.Random();
+        Debug.Log("RANDOM NUMBER GENERATOR SEED: " + RNG.seed);
         GenerateDungeon();
         dungeonDisplay.CreateDungeon(this);
     }
@@ -333,53 +381,50 @@ public class Dungeon : MonoBehaviour
     // 2. Rooms must fit in the area of the dungeon as defined by the Rect object in this class.
     private void GenerateDungeon()
     {
-        int numOfClusters = rand.Next(minClusters, maxClusters + 1);
+        int numOfClusters = RNG.Next(minClusters, maxClusters + 1);
         CreateEndRoomsCluster();
         numOfClusters --;
         CreateStartingRoomCluster();
         numOfClusters --;
         CreateRestOfRandomClusters(numOfClusters);
         ConnectEndClusterToDungeon();
+        AddKeys();
     }
 
     private void CreateEndRoomsCluster(){
         endRoomsCluster = Cluster.GenerateEndRoomCluster(this);
-        clusters.Add(endRoomsCluster);
     }
 
     private void CreateStartingRoomCluster(){
-        int numOfRoomsForNextCluster = rand.Next(minRoomsPerCluster, maxRoomsPerCluster+1);
+        int numOfRoomsForNextCluster = RNG.Next(minRoomsPerCluster, maxRoomsPerCluster+1);
         numOfRoomsForNextCluster --;
         startRoom = new Room(0,0, startRoom: true);
         List<RoomCoordinate> roomToExclude = new List<RoomCoordinate>()
             {new RoomCoordinate(startRoom.roomCoordinate.GetVector2()+new Vector2(0,-1))};
         Cluster startCluster = Cluster.GenerateRandomCluster(this, startRoom,numOfRoomsForNextCluster, roomToExclude);
-        clusters.Add(startCluster);
     }
     private void CreateRestOfRandomClusters(int numOfClusters){
         for (int numOfClustersLeft = numOfClusters; numOfClustersLeft >= 1; numOfClustersLeft--)
         {
-            int numOfRoomsForNextCluster = rand.Next(minRoomsPerCluster, maxRoomsPerCluster+1);
-            int doorOrStair = rand.Next(100);
+            int numOfRoomsForNextCluster = RNG.Next(minRoomsPerCluster, maxRoomsPerCluster+1);
+            int doorOrStair = RNG.Next(100);
             if (doorOrStair <= (int) (stairDoorRatio * 100)){
                 Room newRoom = GenerateRandomRoom();
                 AddRoom(newRoom);
                 numOfRoomsForNextCluster--;
                 Cluster newCluster = Cluster.GenerateRandomCluster(this, newRoom, numOfRoomsForNextCluster);
-                Cluster connectingCluster = GetRandomClustereExcluding(newCluster);
-                clusters.Add(newCluster);
-                Stair newStair = Cluster.ConnectTwoClustersStair(newCluster, connectingCluster);
-                roomConnectors.Add(newStair);
+                Cluster connectingCluster = GetRandomClusterExcluding(new List<Cluster>() {newCluster});
+                Stair newStair = Cluster.StairThatConnectsTwoClusters(newCluster, connectingCluster);
+                ConfirmClusterConnection(newCluster, connectingCluster, newStair);
             }
             else {
-                Debug.Log("Called");
-                Cluster connectingCluster = GetRandomCluster();
+                Cluster[] possibleConnectingClusters = clusters.Where(
+                    aCluster => !aCluster.IsClusterEnclosed() && !aCluster.Equals(endRoomsCluster)).ToArray();
+                Cluster connectingCluster = RNG.RandomElementFromList(possibleConnectingClusters);
                 Room newRoom = connectingCluster.GenerateAdjacentRoomFromCluster();
-                AddRoom(newRoom);
                 Cluster newCluster = Cluster.GenerateRandomCluster(this, newRoom, numOfRoomsForNextCluster);
-                clusters.Add(newCluster);
-                Door newDoor = Cluster.ConnectTwoClustersDoor(connectingCluster, newCluster,Door.DoorState.closed);
-                roomConnectors.Add(newDoor);
+                Door newDoor = Cluster.DoorThatConnectsTwoClusters(connectingCluster, newCluster,Door.DoorState.closed);
+                ConfirmClusterConnection(newCluster, connectingCluster, newDoor);
             }
         }
     }
@@ -387,37 +432,52 @@ public class Dungeon : MonoBehaviour
         List<(Cluster,List<(Room,Room)>)> adjacentClustersToEndRoom = 
             endRoomsCluster.adjacentClusters;
         bool mustBeStairs = adjacentClustersToEndRoom.Count == 0;
-        int doorOrStair = rand.Next(100);
-        if (mustBeStairs || doorOrStair <= (int) (stairDoorRatio * 100)){
+        bool mustBeDoor = !HasSpaceForAdjacentRoom(finalBossRoom);
+        int doorOrStair = RNG.Next(100);
+        if (mustBeStairs || (!mustBeDoor && doorOrStair <= (int) (doorOrStair * 100)))
+        {
             Room adjacentRoomToFinalDungeon = GenerateAdjacentRoom(finalBossRoom);
             Cluster clusterThatConnectsToEndRooms = 
                 new Cluster(this, adjacentRoomToFinalDungeon);
-            clusters.Add(clusterThatConnectsToEndRooms);
-            Door newDoor = Cluster.ConnectTwoClustersDoor(
+            Door newDoor = Cluster.DoorThatConnectsTwoClusters(
                 endRoomsCluster, 
                 clusterThatConnectsToEndRooms, 
                 Door.DoorState.locked, 
                 Door.LockedDoorColor.yellow);
-            roomConnectors.Add(newDoor);
+            ConfirmClusterConnection(endRoomsCluster, clusterThatConnectsToEndRooms, newDoor);
+
             Cluster clusterThatExistsInDungeon = 
-                GetRandomClustereExcluding(clusterThatConnectsToEndRooms);
+                GetRandomClusterExcluding(new List<Cluster>() {clusterThatConnectsToEndRooms,endRoomsCluster});
             Stair newStair = 
-                Cluster.ConnectTwoClustersStair(
+                Cluster.StairThatConnectsTwoClusters(
                     clusterThatExistsInDungeon,
                     clusterThatConnectsToEndRooms);
-            roomConnectors.Add(newStair);
+            ConfirmClusterConnection(clusterThatExistsInDungeon, clusterThatConnectsToEndRooms, newStair);
         }
         else{
-            int index = rand.Next(adjacentClustersToEndRoom.Count);
-            Cluster clusterToConnectTo = adjacentClustersToEndRoom[index].Item1;
+            Cluster clusterToConnectTo = RNG.RandomElementFromList(adjacentClustersToEndRoom).Item1;
             Door newDoor = 
-                Cluster.ConnectTwoClustersDoor(
+                Cluster.DoorThatConnectsTwoClusters(
                     endRoomsCluster, 
                     clusterToConnectTo, 
                     Door.DoorState.locked, 
                     Door.LockedDoorColor.yellow);
-            roomConnectors.Add(newDoor);
+            ConfirmClusterConnection(endRoomsCluster, clusterToConnectTo, newDoor);
         }  
+    }
+
+    private void ConfirmClusterConnection(Cluster c1, Cluster c2, RoomConnector roomConnector){
+        if(!(c1.RoomExists(roomConnector.room1) && c2.RoomExists(roomConnector.room2)) &&
+        !(c1.RoomExists(roomConnector.room2) && c2.RoomExists(roomConnector.room1)))
+        {
+            throw new System.ArgumentException("Room Connector does not connect the two clusters");
+        }
+        roomConnectors.Add(roomConnector);
+        Cluster.ConfirmClusterConnection(c1, c2, roomConnector);
+    }
+
+    private void AddKeys(){
+        GetRandomClusterExcluding(new List<Cluster>{endRoomsCluster});
     }
 
     // Generates a random room as long as it is inside of the borders of the 
@@ -428,8 +488,8 @@ public class Dungeon : MonoBehaviour
         RoomCoordinate newRC;
         do
         {
-            int x = rand.Next(-squareArea / 2, squareArea / 2 + 1);
-            int y = rand.Next(0, squareArea + 1);
+            int x = RNG.Next(-squareArea / 2, squareArea / 2 + 1);
+            int y = RNG.Next(0, squareArea + 1);
             newRC = new RoomCoordinate(x, y);
             dublicateRoomMade = RoomExists(newRC);
         } while (dublicateRoomMade);
@@ -464,24 +524,30 @@ public class Dungeon : MonoBehaviour
         bool inY = (y >= 0 && y <= squareArea);
         return inX && inY;
     }
+
+    private bool HasSpaceForAdjacentRoom(Room room){
+        RoomCoordinate[] surroundingRCs = RoomCoordinate.SurroundingsRoomCoordinates(room.roomCoordinate);
+        List<RoomCoordinate> possibleRooms = 
+            surroundingRCs.Where(
+                aRoomCoordinate => !RoomExists(aRoomCoordinate) && 
+                RCInDungeonBorders(aRoomCoordinate)).
+            ToList();
+        return possibleRooms.Count != 0;
+    }
+
     // Generates an adjacent room to the room inputed.
     private Room GenerateAdjacentRoom(Room room)
     {
         RoomCoordinate[] surroundingRCs = RoomCoordinate.SurroundingsRoomCoordinates(room.roomCoordinate);
-        List<RoomCoordinate> possibleRooms = new List<RoomCoordinate>();
-        foreach (RoomCoordinate surroundingRC in surroundingRCs)
-        {
-            if (!RoomExists(surroundingRC) &&
-            RCInDungeonBorders(surroundingRC))
-            {
-                possibleRooms.Add(surroundingRC);
-            }
-        }
+        List<RoomCoordinate> possibleRooms = 
+            surroundingRCs.Where(
+                aRoomCoordinate => !RoomExists(aRoomCoordinate) && 
+                RCInDungeonBorders(aRoomCoordinate)).
+            ToList();
         if (possibleRooms.Count == 0){
             return null;
         }
-        int index = rand.Next(possibleRooms.Count);
-        return new Room (possibleRooms[index]);
+        return new Room (RNG.RandomElementFromList(possibleRooms));
     }
 
     protected void AddRoom(Room room)
@@ -501,33 +567,14 @@ public class Dungeon : MonoBehaviour
     }
     
     private Cluster GetRandomCluster(){
-        if (clusters.Count == 0){
-            throw new InvalidOperationException("No clusters exists");
-        }
-        bool invalidCluster;
-        Cluster result;
-        do{
-            int index = rand.Next(clusters.Count);
-            result = clusters[index];
-            invalidCluster = result.Equals(endRoomsCluster);
-            if (invalidCluster && clusters.Count == 1){
-                throw new InvalidOperationException("Only end cluster exists");
-            }
-        } while (invalidCluster);
-        return result;
+        return RNG.RandomElementFromListExcluding(clusters, new Cluster[]{endRoomsCluster});
     }
 
-    private Cluster GetRandomClustereExcluding(Cluster cluster){
-        bool invalidCluster;
-        Cluster result;
-        do{
-            result = GetRandomCluster();
-            invalidCluster = result.Equals(cluster);
-            if (invalidCluster && clusters.Count == 2){
-                throw new InvalidOperationException("Only two cluster exists");
-            }
-        } while (invalidCluster);
-        return result;
+    private Cluster GetRandomClusterExcluding(List<Cluster> excluding){
+        if (!excluding.Exists(aCluster => aCluster.Equals(endRoomsCluster))){
+            excluding.Add(endRoomsCluster);
+        }
+        return RNG.RandomElementFromListExcluding(clusters, excluding);
     }
 
     // GetRoom is the Room that has the RoomCoordinate coordinate.
