@@ -124,13 +124,12 @@ public class RoomGenerator : MonoBehaviour
 
     private void GenerateEnemies()
     {
-        
         if (room.enemies != null)
         {
             foreach (string enemyName in room.enemies)
             {
                 GameObject enemy = Instantiate(enemyPrefabs[enemyName], transform);
-                enemy.transform.Translate(new Vector2(2, 2));
+                enemy.transform.Translate(new Vector2(RNG.Next(-2,3), RNG.Next(-2,3)));
             }
         }
 
