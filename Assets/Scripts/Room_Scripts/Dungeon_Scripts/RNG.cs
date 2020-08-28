@@ -3,11 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 
 public static class RNG {
-    // public static int seed {get; private set;} = Environment.TickCount;
     // Errors:
-    // 109695750
 
-    public static int seed {get; private set;} = 109695750;
+    public static int seed {get; private set;} = Environment.TickCount;
 
     public static System.Random rand {get; private set;} = new System.Random(RNG.seed);
 
@@ -51,6 +49,23 @@ public static class RNG {
     public static T RandomElementFromDictionaryExcludingKey<Key,T>(Dictionary<Key,T> dictionary, IList<Key> excluding){
         List<T> excludedElements = excluding.Select(aExludedKey => dictionary[aExludedKey]).ToList();
         return RandomElementFromDictionaryExcluding(dictionary, excludedElements);
+    }
+
+    public static T RandomEnumValue<T>(){
+        var values = Enum.GetValues(typeof(T));
+        return (T) values.GetValue (rand.Next(values.Length));
+    }
+
+    public static T RandomEnumValueExcluding<T>(IList<T> excluding){
+        Array values = Enum.GetValues(typeof(T));
+        List<T> acceptableValues = new List<T>();
+        foreach (T value in values)
+        {
+            if (!excluding.Contains(value)){
+                acceptableValues.Add(value);
+            }
+        }
+        return RandomElementFromList(acceptableValues);
     }
 
     public static String RandomString(int length){

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DungeonDisplayDebugger : DungeonDisplay
 {
     private bool draw = false;
+    [SerializeField] private int clusterToPrintInformation = 0;
 
     private void Update() {
         if(draw){
@@ -55,5 +56,4 @@ public class DungeonDisplayDebugger : DungeonDisplay
         InstantiateRoom(currentRoom);
         draw = false;
     }
-
 }

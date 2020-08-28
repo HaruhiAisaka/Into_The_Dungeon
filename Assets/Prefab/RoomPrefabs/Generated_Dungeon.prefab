@@ -49,11 +49,12 @@ MonoBehaviour:
   itemDatabase: {fileID: 4448095325105720749}
   dungeonDisplay: {fileID: 1722582252413050702}
   squareArea: 15
-  minRooms: 20
-  maxRooms: 20
+  minRoomsPerCluster: 20
+  maxRoomsPerCluster: 20
   minClusters: 1
   maxClusters: 1
-  roomsInClusterRandomnessFactor: 0.2
+  stairDoorRatio: 0.2
+  positionOfItems: {x: 0, y: 0}
 --- !u!114 &1722582252413050702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +70,8 @@ MonoBehaviour:
   roomGenerator: {fileID: 1510142671473405715, guid: 8ce5d154c9de3624688d8ac3c0a6df36,
     type: 3}
   curtains: {fileID: 1617851040136255204}
+  mainCamera: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &6767637466233136716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ItemDatabase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940527833734441953, guid: 33f805a9bc0ae20429ed2f58a5097303,
+        type: 3}
+      propertyPath: goldKey.color
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33f805a9bc0ae20429ed2f58a5097303, type: 3}

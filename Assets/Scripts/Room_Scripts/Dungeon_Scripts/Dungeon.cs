@@ -35,6 +35,9 @@ public class Dungeon : MonoBehaviour
     protected Room finalBossRoom;
     protected Room endRoom;
 
+    // A list of items that the dungeon needs to have in order for the player to be able to advance.
+    protected List<Item> neededItems = new List<Item>();
+
 
     // A cluster is a series of rooms all connected by open doors.
     // Meaning that the player can enter into all the rooms without the need of keys to open locked doors.
@@ -53,7 +56,8 @@ public class Dungeon : MonoBehaviour
         public static int maxDistanceToStartCluster = 0;
 
         // List of items the player needs to access the cluster.
-        List<Item> neededItems = new List<Item>();
+        public List<Item> neededItemsToAccessCluster {get; private set;} = new List<Item>();
+        public List<Item> itemsInCluster {get; private set;} = new List<Item>();
 
         // Room adjacentRoom is a room outside of the current cluster that is adjacent to the cluster. 
         // This information is used when two clusters are ment to be connected by door.
@@ -178,6 +182,8 @@ public class Dungeon : MonoBehaviour
             this.distanceToStartCluster > clusterToConnectTo.distanceToStartCluster))
             {
                 this.distanceToStartCluster = clusterToConnectTo.distanceToStartCluster + 1;
+                this.neededItemsToAccessCluster = 
+                    this.neededItemsToAccessCluster.Union(clusterToConnectTo.neededItemsToAccessCluster).ToList();
                 if(this.distanceToStartCluster > maxDistanceToStartCluster){
                     maxDistanceToStartCluster = this.distanceToStartCluster;
                 }
@@ -235,7 +241,7 @@ public class Dungeon : MonoBehaviour
             Cluster result = new Cluster(dungeon, dungeon.endRoom);
             dungeon.finalBossRoom = dungeon.GenerateAdjacentRoom(dungeon.endRoom);
             result.AddRoom(dungeon.finalBossRoom,dungeon.endRoom);
-            result.neededItems.Add(dungeon.itemDatabase.GetKey(Door.LockedDoorColor.yellow));
+            result.AddNeededItem(dungeon.itemDatabase.GetKey(Door.LockedDoorColor.gold));
             return result;
         }
 
@@ -348,10 +354,33 @@ public class Dungeon : MonoBehaviour
         public static void ConfirmClusterConnection(Cluster c1, Cluster c2, RoomConnector roomConnector){
             c1.AddConnectedCluster(c2, roomConnector);
             c2.AddConnectedCluster(c1, roomConnector);
+            if(roomConnector is Door door && door.color != Door.LockedDoorColor.none){
+                Key key = c1.dungeon.itemDatabase.GetKey(door.color);
+                if(c1.distanceToStartCluster > c2.distanceToStartCluster){
+                    c1.AddNeededItem(key);
+                }
+                else if(c2.distanceToStartCluster > c1.distanceToStartCluster){
+                    c2.AddNeededItem(key);
+                }
+            }
         }
 
-        public void AddItem(Item item){
-            GetRandomRoom().AddItem(item, dungeon.positionOfItems);
+        public void AddNeededItem(Item item){
+            neededItemsToAccessCluster.Add(item);
+            if(!dungeon.neededItems.Contains(item)){
+                dungeon.neededItems.Add(item);
+            }
+        }
+
+        public void AddItemToRandomRoom(Item item){
+            itemsInCluster.Add(item);
+            Room[] possibleRooms = 
+                rooms.Values.Where(aRoom => aRoom.items.Count <= 0).ToArray();
+            if(possibleRooms.Length == 0){
+                possibleRooms = rooms.Values.ToArray();
+            }
+            Room chosenRoom = RNG.RandomElementFromList(possibleRooms);
+            chosenRoom.AddItem(item, new Vector2(0,0));
         }
     }
 
@@ -366,6 +395,8 @@ public class Dungeon : MonoBehaviour
     // The creation of this cluster and the function, create endRoomsCluster()
     // makes sure that these conditions are followed.
     private Cluster endRoomsCluster;
+
+    private Cluster clusterThatConnectsToEndRooms;
 
     private void Start() 
     {
@@ -388,7 +419,7 @@ public class Dungeon : MonoBehaviour
         numOfClusters --;
         CreateRestOfRandomClusters(numOfClusters);
         ConnectEndClusterToDungeon();
-        AddKeys();
+        AddItems();
     }
 
     private void CreateEndRoomsCluster(){
@@ -423,7 +454,10 @@ public class Dungeon : MonoBehaviour
                 Cluster connectingCluster = RNG.RandomElementFromList(possibleConnectingClusters);
                 Room newRoom = connectingCluster.GenerateAdjacentRoomFromCluster();
                 Cluster newCluster = Cluster.GenerateRandomCluster(this, newRoom, numOfRoomsForNextCluster);
-                Door newDoor = Cluster.DoorThatConnectsTwoClusters(connectingCluster, newCluster,Door.DoorState.closed);
+                Door.LockedDoorColor doorColor = 
+                    RNG.RandomEnumValueExcluding<Door.LockedDoorColor>(new Door.LockedDoorColor[]
+                    {Door.LockedDoorColor.gold, Door.LockedDoorColor.none});
+                Door newDoor = Cluster.DoorThatConnectsTwoClusters(connectingCluster, newCluster,Door.DoorState.locked, doorColor);
                 ConfirmClusterConnection(newCluster, connectingCluster, newDoor);
             }
         }
@@ -437,13 +471,13 @@ public class Dungeon : MonoBehaviour
         if (mustBeStairs || (!mustBeDoor && doorOrStair <= (int) (doorOrStair * 100)))
         {
             Room adjacentRoomToFinalDungeon = GenerateAdjacentRoom(finalBossRoom);
-            Cluster clusterThatConnectsToEndRooms = 
+            clusterThatConnectsToEndRooms = 
                 new Cluster(this, adjacentRoomToFinalDungeon);
             Door newDoor = Cluster.DoorThatConnectsTwoClusters(
                 endRoomsCluster, 
                 clusterThatConnectsToEndRooms, 
                 Door.DoorState.locked, 
-                Door.LockedDoorColor.yellow);
+                Door.LockedDoorColor.gold);
             ConfirmClusterConnection(endRoomsCluster, clusterThatConnectsToEndRooms, newDoor);
 
             Cluster clusterThatExistsInDungeon = 
@@ -453,6 +487,7 @@ public class Dungeon : MonoBehaviour
                     clusterThatExistsInDungeon,
                     clusterThatConnectsToEndRooms);
             ConfirmClusterConnection(clusterThatExistsInDungeon, clusterThatConnectsToEndRooms, newStair);
+            
         }
         else{
             Cluster clusterToConnectTo = RNG.RandomElementFromList(adjacentClustersToEndRoom).Item1;
@@ -461,7 +496,7 @@ public class Dungeon : MonoBehaviour
                     endRoomsCluster, 
                     clusterToConnectTo, 
                     Door.DoorState.locked, 
-                    Door.LockedDoorColor.yellow);
+                    Door.LockedDoorColor.gold);
             ConfirmClusterConnection(endRoomsCluster, clusterToConnectTo, newDoor);
         }  
     }
@@ -476,8 +511,34 @@ public class Dungeon : MonoBehaviour
         Cluster.ConfirmClusterConnection(c1, c2, roomConnector);
     }
 
-    private void AddKeys(){
-        GetRandomClusterExcluding(new List<Cluster>{endRoomsCluster});
+    private void AddItems(){
+        AddNeededItems();
+    }
+
+    private void AddNeededItems(){
+        foreach (Item item in neededItems)
+        {
+            List<Cluster> possibleClusters = 
+                clusters.Where(aCluster => !aCluster.neededItemsToAccessCluster.Contains(item)).ToList();
+            if(clusterThatConnectsToEndRooms != null && 
+            possibleClusters.Contains(clusterThatConnectsToEndRooms))
+            {
+                possibleClusters.Remove(clusterThatConnectsToEndRooms);
+            }
+            int maxClusterDistance = 
+                possibleClusters.Max(aCluster => aCluster.distanceToStartCluster);
+            Cluster chosenCluster = 
+                possibleClusters.Find(aCluster => aCluster.distanceToStartCluster == maxClusterDistance);
+            chosenCluster.AddItemToRandomRoom(item);
+            Cluster[] clusterThatNeedItem = 
+                clusters.Where(aCluster => aCluster.neededItemsToAccessCluster.Contains(item)).ToArray();
+            foreach (Cluster cluster in clusterThatNeedItem){
+                foreach (Item neededItem in chosenCluster.neededItemsToAccessCluster)
+                {
+                    cluster.AddNeededItem(neededItem);
+                }
+            }
+        }
     }
 
     // Generates a random room as long as it is inside of the borders of the 
@@ -557,6 +618,7 @@ public class Dungeon : MonoBehaviour
         rooms[room.roomCoordinate] = room;
     }
 
+
     // Generate a list of enemies to put in the room.
     // TODO : number of enemies depends on the cluster
     private static List<string> GenerateEnemies(){
@@ -571,14 +633,9 @@ public class Dungeon : MonoBehaviour
     {
         return clusters.Find(aCluster => aCluster.clusterNum == clusterNum);
     }
-
     private Cluster InWhatCluster(Room room)
     {
         return clusters.Find(aCluster => aCluster.RoomExists(room));
-    }
-    
-    private Cluster GetRandomCluster(){
-        return RNG.RandomElementFromListExcluding(clusters, new Cluster[]{endRoomsCluster});
     }
 
     private Cluster GetRandomClusterExcluding(List<Cluster> excluding){
@@ -622,5 +679,4 @@ public class Dungeon : MonoBehaviour
     public bool RoomConnectionExists(Room room1, Room room2){
         return roomConnectors.Exists(aRoomConnector => aRoomConnector.Equals(room1, room2));
     }
-
 }
