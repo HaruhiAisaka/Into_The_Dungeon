@@ -373,6 +373,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e7ffd73962f402fa36b08ed863aea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &793972922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5194361010231953228, guid: e3d9f3b9283c546c4807e13dafd6b259,
+    type: 3}
+  m_PrefabInstance: {fileID: 5122885146244033534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eede4369232f463f89a552d371435f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1002483322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2876602399292329757, guid: 05588fb3b0c1a412d9fd67a1f785bd31,
@@ -522,6 +534,7 @@ MonoBehaviour:
   curtains: {fileID: 1096172940}
   mainCamera: {fileID: 1341307857}
   player: {fileID: 659776370}
+  clusterToPrintInformation: 0
 --- !u!1001 &1591763923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -603,7 +616,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 793972922}
     - target: {fileID: 7840927199204458352, guid: 05588fb3b0c1a412d9fd67a1f785bd31,
         type: 3}
       propertyPath: whiteFader
@@ -823,17 +836,17 @@ PrefabInstance:
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: maxClusters
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: minClusters
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: squareArea
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
@@ -843,12 +856,17 @@ PrefabInstance:
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: minRoomsPerCluster
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: maxRoomsPerCluster
-      value: 10
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
+        type: 3}
+      propertyPath: stairDoorRatio
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2108551494975498033, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}

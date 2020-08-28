@@ -34,7 +34,7 @@ public class DoorDisplay : MonoBehaviour
     [SerializeField] private Sprite[] lockedRedDoor;
     [SerializeField] private Sprite[] lockedBlueDoor;
     [SerializeField] private Sprite[] lockedGreenDoor;
-    [SerializeField] private Sprite[] lockedYellowDoor;
+    [SerializeField] private Sprite[] lockedGoldDoor;
     [SerializeField] private Sprite[] lockedPurpleDoor;
 
     [Header("DoorParts")]
@@ -52,7 +52,7 @@ public class DoorDisplay : MonoBehaviour
         lockedDoorSprites.Add(Door.LockedDoorColor.red, lockedRedDoor);
         lockedDoorSprites.Add(Door.LockedDoorColor.blue, lockedBlueDoor);
         lockedDoorSprites.Add(Door.LockedDoorColor.green, lockedGreenDoor);
-        lockedDoorSprites.Add(Door.LockedDoorColor.yellow, lockedYellowDoor);
+        lockedDoorSprites.Add(Door.LockedDoorColor.gold, lockedGoldDoor);
         lockedDoorSprites.Add(Door.LockedDoorColor.purple, lockedPurpleDoor);
         currentUnlockDelay = unlockDelay;
         currentRoom = FindObjectOfType<CurrentRoom>();

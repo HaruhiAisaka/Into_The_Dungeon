@@ -6,7 +6,7 @@ public class ItemDatabase : MonoBehaviour
 {
     #region Non-Equipable-Items
     
-    [SerializeField] private Key redKey, blueKey, greenKey, yellowKey, purpleKey = new Key();
+    [SerializeField] private Key redKey, blueKey, greenKey, goldKey, purpleKey = new Key();
     [SerializeField] private Map map = new Map();
     [SerializeField] private Compass compass = new Compass();
     [SerializeField] private Heart heart = new Heart();
@@ -56,7 +56,7 @@ public class ItemDatabase : MonoBehaviour
         AddItem(redKey);
         AddItem(blueKey);
         AddItem(greenKey);
-        AddItem(yellowKey);
+        AddItem(goldKey);
         AddItem(purpleKey);
         AddItem(map);
         AddItem(compass);

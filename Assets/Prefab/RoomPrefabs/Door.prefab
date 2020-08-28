@@ -92,7 +92,7 @@ MonoBehaviour:
   lockedGreenDoor:
   - {fileID: 9057347110469538871, guid: e4ed2b9ea0160be45b3d0cf226600bc9, type: 3}
   - {fileID: -2441091369575412386, guid: e4ed2b9ea0160be45b3d0cf226600bc9, type: 3}
-  lockedYellowDoor:
+  lockedGoldDoor:
   - {fileID: -7004767494100715723, guid: 981bb33625fc53041b28d3e053b0dc02, type: 3}
   - {fileID: -8379036527537852688, guid: 981bb33625fc53041b28d3e053b0dc02, type: 3}
   lockedPurpleDoor:
