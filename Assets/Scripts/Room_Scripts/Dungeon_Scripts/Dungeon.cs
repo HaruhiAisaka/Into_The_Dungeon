@@ -283,7 +283,7 @@ public class Dungeon : MonoBehaviour
                 // Picks one coordinate from the pool of possible ones
                 RoomCoordinate newRoomCoordinate = RNG.RandomElementFromList(possibleRooms);
                 // Creates new room from that coordinates
-                Room newRoom = new Room(newRoomCoordinate);
+                Room newRoom = new Room(newRoomCoordinate, enemies: GenerateEnemies());
                 // Removes the used coordinate from the pool
                 possibleRooms.Remove(newRoomCoordinate);
                 // Finds a room that was created in the cluster that is adjecent to the newly created room.
@@ -555,6 +555,7 @@ public class Dungeon : MonoBehaviour
             dublicateRoomMade = RoomExists(newRC);
         } while (dublicateRoomMade);
         return new Room(newRC);
+        //return new Room(newRC, enemies : GenerateEnemies());
     }
 
     private static List<Room> GetAdjacentRooms (
@@ -617,6 +618,21 @@ public class Dungeon : MonoBehaviour
         rooms[room.roomCoordinate] = room;
     }
 
+
+    // Generate a list of enemies to put in the room.
+    // TODO : number of enemies depends on the cluster
+    private static List<string> GenerateEnemies(){
+        List<string> roomEnemies = new List<string>();
+        int numEnemies = RNG.Next(1,4);
+        for (int i = 0; i < numEnemies; i++){
+            roomEnemies.Add(RNG.RandomElementFromList(enemies));
+        }
+        return roomEnemies;
+    }
+    private Cluster GetCluster(int clusterNum)
+    {
+        return clusters.Find(aCluster => aCluster.clusterNum == clusterNum);
+    }
     private Cluster InWhatCluster(Room room)
     {
         return clusters.Find(aCluster => aCluster.RoomExists(room));
