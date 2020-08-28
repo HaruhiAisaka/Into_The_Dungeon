@@ -35,12 +35,25 @@ public class RoomCoordinate
         this.roomCoordinate = new Vector2 (x,y);
     }
 
+    public RoomCoordinate(Vector2 vector2){
+        this.x = (int) vector2.x;
+        this.y = (int) vector2.y;
+        this.roomCoordinate = vector2;
+    }
+
     public Vector2 GetVector2() {
         return roomCoordinate;
     }
 
     public Vector2 GetRoomWorldPosition(){
         return new Vector2(roomCoordinate.x * xFactor, roomCoordinate.y * yFactor);
+    }
+
+    public bool Equals(RoomCoordinate r1){
+        if (r1 == null){
+            return false;
+        }
+        return (r1.x == roomCoordinate.x && r1.y == roomCoordinate.y);
     }
 
     public static bool Equals(RoomCoordinate r1, RoomCoordinate r2){
@@ -51,6 +64,19 @@ public class RoomCoordinate
             return false;
         }
         return (r1.x == r2.x && r1.y == r2.y);
+    }
+
+    // Returns a list of room coordinates that surround the current room coordinate.
+    public static RoomCoordinate[] SurroundingsRoomCoordinates(RoomCoordinate roomCoordinate)
+    {
+        int x = roomCoordinate.x;
+        int y = roomCoordinate.y;
+        RoomCoordinate[] result =
+            {new RoomCoordinate(x-1,y),
+            new RoomCoordinate(x+1,y),
+            new RoomCoordinate(x,y-1),
+            new RoomCoordinate(x,y+1)};
+        return result;
     }
 }
 

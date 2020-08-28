@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿/**
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dungeon : MonoBehaviour
+public class DungeonOld : MonoBehaviour
 {
     private static RoomCoordinateEqual roomCoorEqual = 
         new RoomCoordinateEqual();
@@ -20,6 +21,11 @@ public class Dungeon : MonoBehaviour
 
     private Room startRoom = new Room(0,0, startRoom:true);
     private Room endRoom = new Room(0,2, endRoom : true);
+
+    [SerializeField] private GameObject skull;
+    [SerializeField] private GameObject blob;
+    [SerializeField] private GameObject bat;
+    [SerializeField] private GameObject shooter;
 
     private void Start() {
         CreateCurrentDungeon();
@@ -50,6 +56,12 @@ public class Dungeon : MonoBehaviour
             new Door(GetRoom(0,1),GetRoom(0,2),Door.DoorState.open)
         );
         startRoom.AddItem(itemDatabase.GetItem("Red Key"), new Vector2(3,0));
+
+        //Enemies
+        startRoom.AddEnemy(skull);
+        GetRoom(1,0).AddEnemy(blob);
+        GetRoom(-1,0).AddEnemy(shooter);
+        
     }
 
     private void AddRoom(Room room){
@@ -101,3 +113,4 @@ public class Dungeon : MonoBehaviour
         currentRoomGenerator.EnableStairAnimations(true);
     }
 }
+*/

@@ -18,7 +18,7 @@ public class CurrentRoom : MonoBehaviour
     void Awake()
     {
         dungeon = FindObjectOfType<Dungeon>();
-        currentRoom = dungeon.GetStartRoom();
+        currentRoom = dungeon.startRoom;
     }
 
     public RoomCoordinate GetCurrentRoomCoordinate(){

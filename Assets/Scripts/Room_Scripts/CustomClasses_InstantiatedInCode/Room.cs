@@ -5,13 +5,15 @@ using UnityEngine;
 public class Room
 {
     public RoomCoordinate roomCoordinate {get; private set;}
-
+    public int cluster {get; set;}
     private static RoomCoordinateEqual roomCoorEqual = new RoomCoordinateEqual();
 
     public List<RoomConnector> roomConnectors {get; private set;} = new List<RoomConnector>();
     public List<Door> doors {get; private set;} = new List<Door>();
     public List<Stair> stairs {get; private set;} = new List<Stair>();
     public List<Item> items {get; private set;} = new List<Item>();
+    public List<string> enemies {get; private set;} = new List<string>();
+
 
     public bool startRoom = false;
     public bool endRoom = false;
@@ -22,17 +24,33 @@ public class Room
     public const int LENGTH_FROM_CENTER_Y = 3;
 
     // Is the doors that exist in this room.
-    public Room(int x, int y, bool startRoom = false, bool endRoom = false)
+    
+    public Room(int x, int y, bool startRoom = false, bool endRoom = false, List<string> enemies = null)
     {
         // Sets Room Coordinate for the room.
         this.roomCoordinate = new RoomCoordinate(x,y);
+        this.cluster = cluster;
         this.startRoom = startRoom;
         this.endRoom = endRoom;
+        this.enemies = enemies;
+    }
+
+    public Room(RoomCoordinate roomCoordinate, bool startRoom = false, bool endRoom = false, List<string> enemies = null){
+        // Sets Room Coordinate for the room.
+        // Debug.Log(enemies.Count);
+        this.roomCoordinate = roomCoordinate;
+        this.cluster = cluster;
+        this.startRoom = startRoom;
+        this.endRoom = endRoom;
+        this.enemies = enemies;
         if (startRoom){
             Room dummyRoom = new Room(0,-1);
             Door dummyDoor = new Door(dummyRoom, this, Door.DoorState.open);
         }
+        
     }
+
+    #region Add Functions
 
     public void AddRoomConnector(RoomConnector roomConnector){  
         roomConnectors.Add(roomConnector);
@@ -48,6 +66,23 @@ public class Room
         item.SetItemPosition(localPosition);
         items.Add(item);
     }
+
+    public void AddEnemy(string enemyPrefab){
+        enemies.Add(enemyPrefab);
+    }
+
+
+    #endregion
+
+    public bool HasStair(){
+        return roomConnectors.Exists(connector => connector is Stair stair);
+    }
+
+    public bool Equals(Room room){
+        if (room == null) return false;
+        return this.roomCoordinate.Equals(room.roomCoordinate);
+    }
+
     
     public static bool IsRoomAdjacent(Room room1, Room room2){
         Vector2 room1V = room1.roomCoordinate.GetVector2();
@@ -57,6 +92,7 @@ public class Room
     }
 
 
+
     #region IsInRoom Methods
 
     public static bool IsInRoom(GameObject gameObject){
@@ -64,33 +100,23 @@ public class Room
         float y = gameObject.transform.position.y;
         float xSize = gameObject.transform.localScale.x;
         float ySize = gameObject.transform.localScale.y;
-        bool inX = 
-            (x - xSize >= -LENGTH_FROM_CENTER_X && 
-            x + xSize <= LENGTH_FROM_CENTER_X);
-        bool inY = 
-            (y - ySize >= -LENGTH_FROM_CENTER_Y &&
-            y + ySize <= LENGTH_FROM_CENTER_Y);
-        return (inX && inY);
+        return IsInRoom(x,y,xSize,ySize);
     }
 
     public static bool IsInRoom(float x, float y, float xSize, float ySize){
         bool inX = 
-            (x - xSize >= -LENGTH_FROM_CENTER_X && 
-            x + xSize <= LENGTH_FROM_CENTER_X);
+            (x - xSize/2 >= -LENGTH_FROM_CENTER_X && 
+            x + xSize/2 <= LENGTH_FROM_CENTER_X);
         bool inY = 
-            (y - ySize >= -LENGTH_FROM_CENTER_Y &&
-            y + ySize <= LENGTH_FROM_CENTER_Y);
+            (y - ySize/2 >= -LENGTH_FROM_CENTER_Y &&
+            y + ySize/2 <= LENGTH_FROM_CENTER_Y);
         return (inX && inY);
     }
 
     public static bool IsInRoom(Vector2 position, float xSize, float ySize){
-        bool inX = 
-            (position.x - xSize >= -LENGTH_FROM_CENTER_X && 
-            position.x + xSize <= LENGTH_FROM_CENTER_X);
-        bool inY = 
-            (position.y - ySize >= -LENGTH_FROM_CENTER_Y &&
-            position.y + ySize <= LENGTH_FROM_CENTER_Y);
-        return (inX && inY);
+        float x = position.x;
+        float y = position.y;
+        return IsInRoom(x,y,xSize,ySize);
     }
 
     #endregion

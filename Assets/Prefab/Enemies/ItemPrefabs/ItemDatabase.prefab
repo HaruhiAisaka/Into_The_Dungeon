@@ -61,12 +61,12 @@ MonoBehaviour:
     description: Used to open green doors
     sprite: {fileID: 21300000, guid: dd25101f7384b36408fa80dc99aed60a, type: 3}
     color: 3
-  yellowKey:
-    name: Yellow Key
+  goldKey:
+    name: Gold Key
     itemID: 3
-    description: Used to open yellow doors
+    description: 
     sprite: {fileID: 21300000, guid: cb5c96f8f94fae2458793d465bb6c6db, type: 3}
-    color: 4
+    color: 0
   purpleKey:
     name: Purple Key
     itemID: 4

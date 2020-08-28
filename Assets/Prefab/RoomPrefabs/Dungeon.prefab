@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8990593874468560850}
-  - component: {fileID: 8990593874468560853}
+  - component: {fileID: 2466658935084759094}
+  - component: {fileID: 8530312997591754669}
   m_Layer: 0
   m_Name: Dungeon
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8990593874468560853
+--- !u!114 &2466658935084759094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +43,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8990593874468560852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d794b7232b92d2478208be07e4dfc92, type: 3}
+  m_Script: {fileID: 11500000, guid: e3053eb6bb8afff40b499293339dc17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatabase: {fileID: 6646427078963164494}
+  dungeonDisplay: {fileID: 8530312997591754669}
+  squareArea: 10
+  minRooms: 20
+  maxRooms: 20
+  minClusters: 1
+  maxClusters: 1
+  roomsInClusterRandomnessFactor: 0.2
+--- !u!114 &8530312997591754669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8990593874468560852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb281161619772146b7f7c153c3f24ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomGenerator: {fileID: 1510142671473405715, guid: 8ce5d154c9de3624688d8ac3c0a6df36,
     type: 3}
-  itemDatabase: {fileID: 6646427078963164494}
   curtains: {fileID: 8644052435636268551}
 --- !u!1001 &2123574469174527552
 PrefabInstance:

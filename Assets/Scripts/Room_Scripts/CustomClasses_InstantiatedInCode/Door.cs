@@ -9,7 +9,7 @@ public class Door : RoomConnector
     // None means that there is no door, 
     // the sprite renderer is disabled and what is left is the doorCollider.
     public enum DoorState {open, closed, locked};
-    public enum LockedDoorColor {none, red, blue, green, yellow, purple};
+    public enum LockedDoorColor {none, red, blue, green, gold, purple};
 
     public Door (
         Room room1, Room room2, 
