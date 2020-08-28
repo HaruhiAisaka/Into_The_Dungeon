@@ -30,6 +30,5 @@ public abstract class Item
     }
 
     public abstract void OnPickUp(PlayerInventory playerInventory);
-
     
 }

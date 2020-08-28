@@ -9,13 +9,11 @@ public class Scenes {
     public string Value { get; set; }
 
     public static Scenes Game { get { return new Scenes("LiamR_Dungeon_Room"); } }
-    public static Scenes Menu { get { return new Scenes("MapHUD"); } }
 }
 
 public enum State {
     InGame,
-    InMenu,
-    Paused
+    InMenu
 }
 
 public static class GameState {
@@ -46,45 +44,6 @@ public static class GameState {
     public static void ExitMenu() {
         gameState = State.InGame;
         Time.timeScale = 1;
-    }
-
-    public static void TogglePause(Completion completion) {
-        TogglePause();
-        completion();
-    }
-
-    public static void TogglePause() {
-        if (gameState == State.Paused) {
-            Unpause();
-        } else {
-            Pause();
-        }
-    }
-
-    public static void Pause(Completion completion) {
-        Pause();
-        completion();
-    }
-
-    public static void Pause() {
-        gameState = State.Paused;
-        Time.timeScale = 0;
-    }
-
-    public static void Unpause(Completion completion) {
-        Unpause();
-        completion();
-    }
-
-    public static void Unpause() {
-        gameState = State.InGame;
-        Time.timeScale = 1;
-        Debug.Log("UNPAUSE");
-
-    }
-
-    public static bool IsPaused() {
-        return gameState == State.Paused || gameState == State.InMenu;
     }
 
     public static bool InMenu() {

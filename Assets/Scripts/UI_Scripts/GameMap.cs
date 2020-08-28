@@ -18,12 +18,12 @@ public class GameMap : MonoBehaviour
         //  Resize map
         map.ResizeBounds();
         // testing drawing
-        Debug.Log("Adding to tilemap?");
-        Debug.Log("cell bounds:");
-        Debug.Log(map.cellBounds);
+        //Debug.Log("Adding to tilemap?");
+        //Debug.Log("cell bounds:");
+        //Debug.Log(map.cellBounds);
 
-        Debug.Log("origin:");
-        Debug.Log(map.origin);
+        //Debug.Log("origin:");
+        //Debug.Log(map.origin);
 
         map.SetTile(new Vector3Int(1 , 1 , 0), tile);
         map.SetTile(new Vector3Int(2 , 2 , 0), tile);

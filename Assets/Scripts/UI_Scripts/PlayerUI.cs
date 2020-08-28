@@ -17,12 +17,8 @@ public class PlayerUI : MonoBehaviour
 
     // Pause
     [SerializeField] Menu menu;
-    [SerializeField] Text pauseText;
 
     public void Start() {
-        if (pauseText != null) {
-            pauseText.gameObject.SetActive(false);
-        }
         if (menu != null) {
             menu.gameObject.SetActive(false);
         }
@@ -61,14 +57,6 @@ public class PlayerUI : MonoBehaviour
         if (keysBar != null) {
             keysBar.UpdateKeys(keysArr);
         }
-    }
-
-    public void TogglePauseState() {
-        GameState.TogglePause(delegate() {
-            if (pauseText != null) {
-                pauseText.gameObject.SetActive(GameState.IsPaused());
-            }
-        });
     }
 
     public void ToggleMenuState() {

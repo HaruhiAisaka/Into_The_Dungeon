@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameState.IsPaused()) {
+        if (!GameState.InMenu()) {
             if(Input.GetButtonDown("Attack1") && !freezePlayer){
                 Attack();
             }
