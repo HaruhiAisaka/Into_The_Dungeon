@@ -25,40 +25,27 @@ public static class GameState {
     // Pause Callbacks
     public delegate void Completion();
 
-    public static bool isPaused() {
-        return gameState == State.Paused;
+    public static void ToggleMenu(Completion completion) {
+        ToggleMenu();
+        completion();
+    }
+
+    public static void ToggleMenu() {
+        if (gameState == State.InMenu) {
+            ExitMenu();
+        } else {
+            EnterMenu();
+        }
     }
 
     public static void EnterMenu() {
         gameState = State.InMenu;
-        SceneManager.LoadScene(Scenes.Menu.Value);
+        Time.timeScale = 0;
     }
 
     public static void ExitMenu() {
         gameState = State.InGame;
-        SceneManager.LoadScene(Scenes.Game.Value);
-    }
-
-    public static void Pause(Completion completion) {
-        Pause();
-        completion();
-    }
-
-    public static void Pause() {
-        gameState = State.Paused;
-        Time.timeScale = 0;
-        Debug.Log("PAUSE");
-    }
-
-    public static void Unpause(Completion completion) {
-        Unpause();
-        completion();
-    }
-    public static void Unpause() {
-        gameState = State.InGame;
         Time.timeScale = 1;
-        Debug.Log("UNPAUSE");
-
     }
 
     public static void TogglePause(Completion completion) {
@@ -72,5 +59,35 @@ public static class GameState {
         } else {
             Pause();
         }
+    }
+
+    public static void Pause(Completion completion) {
+        Pause();
+        completion();
+    }
+
+    public static void Pause() {
+        gameState = State.Paused;
+        Time.timeScale = 0;
+    }
+
+    public static void Unpause(Completion completion) {
+        Unpause();
+        completion();
+    }
+
+    public static void Unpause() {
+        gameState = State.InGame;
+        Time.timeScale = 1;
+        Debug.Log("UNPAUSE");
+
+    }
+
+    public static bool IsPaused() {
+        return gameState == State.Paused || gameState == State.InMenu;
+    }
+
+    public static bool InMenu() {
+        return gameState == State.InMenu;
     }
 }

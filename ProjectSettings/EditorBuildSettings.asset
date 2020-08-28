@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/LiamR_Dungeon_Room.unity
     guid: 1d5ef6f48566af04daf01c3f2eba39e8
   - enabled: 1
-    path: Assets/Scenes/MapHUD.unity
+    path: Assets/Prefab/UI/MapHUD.unity
     guid: eef0e108d861e4af59d4be97a514f6de
   m_configObjects: {}

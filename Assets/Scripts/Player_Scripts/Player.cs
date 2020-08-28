@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameState.isPaused()) {
+        if (!GameState.IsPaused()) {
             if(Input.GetButtonDown("Attack1") && !freezePlayer){
                 Attack();
             }
@@ -55,8 +55,8 @@ public class Player : MonoBehaviour
 
         // Pause
         if (Input.GetButtonDown("Pause")) {
-            //playerUI.TooglePauseState();
-            GameState.EnterMenu();
+            Debug.Log("Toggling the menu state");
+            playerUI.ToggleMenuState();
         }
     }
 
