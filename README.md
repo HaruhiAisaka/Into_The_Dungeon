@@ -15,6 +15,8 @@ Programmed by:
 - Liam Riley
 
 Art by:
-- Liam Riley \\
-*Player Sprite is a placeholder from the original Legend of Zelda* full intention to replace with an original character.\\
+- Liam Riley 
+
+*Player Sprite is a placeholder from the original Legend of Zelda* full intention to replace with an original character.
+
 Enemy Sprites are also placeholders.
