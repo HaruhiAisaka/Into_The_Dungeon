@@ -6,14 +6,15 @@ Find the chalice to complete the game.
 
 All dungeons are randomly generated but are all beatable.
 
+## Credits
 Designed by Liam Riley
 
-Programmers:
+Programmed by:
 Liam Cordero
 Phillip O'Reggio
 Liam Riley
 
-Art:
+Art by:
 Liam Riley
 *Player Sprite is a placeholder from the original Legend of Zelda* full intention to replace with an original character.
 Enemy Sprites are also placeholders.
