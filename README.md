@@ -22,6 +22,7 @@ Programmed by:
 - Liam Cordero
 - Phillip O'Reggio
 - Liam Riley
+- Quinn Theobald
 
 Art by:
 - Liam Riley 
