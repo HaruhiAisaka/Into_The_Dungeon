@@ -856,12 +856,12 @@ PrefabInstance:
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: minRoomsPerCluster
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
       propertyPath: maxRoomsPerCluster
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4273092546705273253, guid: dfaef3f32c2e75748a9d6fbb23479b28,
         type: 3}
