@@ -57,6 +57,10 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Pause")) {
             playerUI.TooglePauseState();
         }
+
+        if (Input.GetButtonDown("escape")){
+            Application.Quit();
+        }
     }
 
     // Move horizontally: left if `a` or left-button is pressed, right if `d` or right-button is pressed
