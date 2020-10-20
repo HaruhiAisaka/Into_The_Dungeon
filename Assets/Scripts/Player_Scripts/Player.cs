@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
             playerUI.TooglePauseState();
         }
 
-        if (Input.GetButtonDown("escape")){
+        if (Input.GetKeyDown("escape")){
             Application.Quit();
         }
     }
