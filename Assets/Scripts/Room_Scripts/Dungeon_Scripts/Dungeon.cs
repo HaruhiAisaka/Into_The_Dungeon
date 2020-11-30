@@ -328,7 +328,7 @@ public class Dungeon : MonoBehaviour
                     room2.Equals(dungeon.startRoom);
                 nonValidRoomGot = nonValidRoomGot || dungeon.RoomConnectionExists(room1, room2);
             } while(nonValidRoomGot);
-            return new Stair(room1, room2, new Vector2(6.5f,2.5f), new Vector2(6.5f,2.5f));
+            return new Stair(room1, room2, new Vector2(6.5f,3f), new Vector2(6.5f,3f));
         }
 
         public static Door DoorThatConnectsTwoClusters(

@@ -20,8 +20,8 @@ public class Room
 
 
     // Dimentions of a room.
-    public const int LENGTH_FROM_CENTER_X = 7;
-    public const int LENGTH_FROM_CENTER_Y = 3;
+    public const float LENGTH_FROM_CENTER_X = 7f;
+    public const float LENGTH_FROM_CENTER_Y = 3.5f;
 
     // Is the doors that exist in this room.
     

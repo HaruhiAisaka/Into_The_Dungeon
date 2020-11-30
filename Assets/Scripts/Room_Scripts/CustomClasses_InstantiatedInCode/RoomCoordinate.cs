@@ -21,13 +21,13 @@ public class RoomCoordinate
     in the horizontal direction. 
     For example, if the current room is positioned at (0,0), 
     then the center of the room on the left is positioned at (-xFactor,0).*/
-    private int xFactor = 18;
+    private float xFactor = 18;
 
     /* The yFactor is the distance between the centers of two rooms 
     in the vertical direction. 
     For example, if the current room is positioned at (0,0), 
     then the center of the room above is positioned at (0,yFactor).*/
-    private int yFactor = 10;
+    private float yFactor = 11;
 
     public RoomCoordinate(int x, int y){
         this.x = x;

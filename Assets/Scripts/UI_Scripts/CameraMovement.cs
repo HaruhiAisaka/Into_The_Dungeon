@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     public void SetCameraToNewRoom(Room room){
         Vector3 newCenter = room.roomCoordinate.GetRoomWorldPosition();
+        newCenter.y += .5f;
         newCenter.z = this.transform.position.z;
         this.transform.position = newCenter;
     }
@@ -14,6 +15,7 @@ public class CameraMovement : MonoBehaviour
         Vector3 initialCameraPosition = this.transform.position;
         Vector3 newCenter = room.roomCoordinate.GetRoomWorldPosition();
         newCenter.z = this.transform.position.z;
+        newCenter.y += .5f;
         float t = 0;
         while (Vector3.Distance(this.transform.position, newCenter)>0){
             // player.FreezePlayer();

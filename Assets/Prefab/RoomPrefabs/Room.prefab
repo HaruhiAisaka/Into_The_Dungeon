@@ -100,7 +100,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 18, y: 10}
+    oldSize: {x: 18, y: 11}
     newSize: {x: 2.88, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -108,30 +108,30 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -9, y: -1}
-      - {x: -9, y: -5}
-      - {x: -1, y: -5}
-      - {x: -1, y: -3}
-      - {x: -7, y: -3}
-      - {x: -7, y: -1}
-    - - {x: -9, y: 1}
-      - {x: -9, y: 5}
-      - {x: -1, y: 5}
-      - {x: -1, y: 3}
-      - {x: -7, y: 3}
-      - {x: -7, y: 1}
-    - - {x: 7, y: 1}
-      - {x: 7, y: 3}
-      - {x: 1, y: 3}
-      - {x: 1, y: 5}
-      - {x: 9, y: 5}
-      - {x: 9, y: 1}
-    - - {x: 1, y: -5}
-      - {x: 1, y: -3}
-      - {x: 7, y: -3}
-      - {x: 7, y: -1}
-      - {x: 9, y: -1}
-      - {x: 9, y: -5}
+    - - {x: -8.994327, y: -1.0794289}
+      - {x: -8.971977, y: -5.485722}
+      - {x: -1.1063201, y: -5.499231}
+      - {x: -0.9606955, y: -3.4669688}
+      - {x: -7.004116, y: -3.4808965}
+      - {x: -7, y: -0.9660812}
+    - - {x: -9, y: 1.0397143}
+      - {x: -8.959063, y: 5.450323}
+      - {x: -1, y: 5.4516516}
+      - {x: -0.9305448, y: 3.5776362}
+      - {x: -7, y: 3.5957906}
+      - {x: -7.010542, y: 0.9827374}
+    - - {x: 6.9955287, y: 1.000997}
+      - {x: 7, y: 3.5780835}
+      - {x: 0.93258256, y: 3.5839064}
+      - {x: 0.99108994, y: 5.454413}
+      - {x: 8.985503, y: 5.493179}
+      - {x: 8.973143, y: 1.0671443}
+    - - {x: 1.0734471, y: -5.4971194}
+      - {x: 0.9455503, y: -3.4596035}
+      - {x: 6.993512, y: -3.471527}
+      - {x: 7, y: -1.0371581}
+      - {x: 8.9789505, y: -1.0491159}
+      - {x: 8.984258, y: -5.495877}
 --- !u!50 &1510142671163740233
 Rigidbody2D:
   serializedVersion: 4
@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 626837235029371220, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 626837235029371220, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
@@ -428,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 626837235029371220, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 626837235029371220, guid: 813cf6ad7a160a34486d6c195106be0d,
         type: 3}

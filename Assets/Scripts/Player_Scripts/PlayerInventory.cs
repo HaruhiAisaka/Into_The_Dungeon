@@ -50,6 +50,4 @@ public class PlayerInventory : MonoBehaviour
     public bool KeyInInventory(Door.LockedDoorColor color){
         return inventory.KeyInInventory(color);
     }
-
-
 }

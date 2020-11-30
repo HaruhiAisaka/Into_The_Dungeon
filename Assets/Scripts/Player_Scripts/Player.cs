@@ -54,9 +54,9 @@ public class Player : MonoBehaviour
         }
 
         // Pause
-        if (Input.GetButtonDown("Pause")) {
-            playerUI.TooglePauseState();
-        }
+        // if (Input.GetButtonDown("Pause")) {
+        //     playerUI.TooglePauseState();
+        // }
 
         if (Input.GetKeyDown("escape")){
             Application.Quit();
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
 
         // Update health in UI, if player has one
         if (playerUI != null) {
-            playerUI.UpdateHealth(playerHealth, 14);
+            playerUI.UpdateHealth(playerHealth);
         }
 
     }
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
 
         // Update health in UI, if player has one
         if (playerUI != null) {
-            playerUI.UpdateHealth(playerHealth, 14);
+            playerUI.UpdateHealth(playerHealth);
         }
     }
     

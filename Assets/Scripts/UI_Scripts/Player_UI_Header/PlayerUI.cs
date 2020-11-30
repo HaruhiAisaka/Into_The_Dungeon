@@ -15,32 +15,18 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] EquippedItemUI equippedItemUI;
     [SerializeField] KeysBar keysBar;
 
-    // Pause
-    [SerializeField] Text pauseText;
-    [SerializeField] PauseHandler pauseHandler;
-
-    public void Start() {
-        if (pauseText != null) {
-            pauseText.gameObject.SetActive(false);
-        }
-    }
 
     /// Updates all UI components based on the player
     public void UpdateAll(Player player) {
-        UpdateHealth(player.GetHealth(), 14);
+        UpdateHealth(player.GetHealth());
     }
 
-    public void UpdateHealth(int newCurrentHealth, int newMaxHealth) {
+    public void UpdateHealth(int newCurrentHealth) {
         if (healthbar != null) {
-            healthbar.UpdateHealth(newCurrentHealth, newMaxHealth);
+            healthbar.UpdateHealth(newCurrentHealth);
         }
     }
 
-    public void UpdateHeartsDisplay(int newMaxHealth) {
-        if (healthbar != null) {
-            healthbar.UpdateHeartsDisplay(newMaxHealth);
-        }
-    }
 
     public void UpdateEquippedWeapon(EquipableItem weapon) {
         if (equippedWeaponUI != null) {
@@ -60,15 +46,4 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void TooglePauseState() {
-        Debug.Log("Toggle Pause State ?");
-        if (pauseHandler != null) {
-            pauseHandler.TogglePause(delegate(PauseHandler pauseHandler) {
-                Debug.Log("calling in the callback woohoo");
-                if (pauseText != null) {
-                    pauseText.gameObject.SetActive(PauseHandler.isPaused);
-                }
-            });
-        }
-    }
 }
