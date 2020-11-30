@@ -8,6 +8,7 @@ Find the chalice to complete the game.
 
 All dungeons are randomly generated but are all beatable.
 
+## Play the game here: https://haruhiaisaka.itch.io/into-the-dungeon
 ## Project takeaways:
 - Learned how to use the Unity Game Engine
 - Learned C#
