@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public int playerHealth;
 
     [SerializeField] PlayerUI playerUI;
+    [SerializeField] GameState gameState;
 
     public BoxCollider2D attackHitBox;
 
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseHandler.isPaused) {
+        if (!gameState.isPaused) {
             if(Input.GetButtonDown("Attack1") && !freezePlayer){
                 Attack();
             }
@@ -54,9 +55,9 @@ public class Player : MonoBehaviour
         }
 
         // Pause
-        // if (Input.GetButtonDown("Pause")) {
-        //     playerUI.TooglePauseState();
-        // }
+        if (Input.GetButtonDown("Pause")) {
+            gameState.TogglePause();
+        }
 
         if (Input.GetKeyDown("escape")){
             Application.Quit();

@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   currentRoomGenerator: {fileID: 0}
-  cameraMovementTime: 2
+  cameraMovementTime: 1.5
   distanceFromDoor: 2
   openDoor:
   - {fileID: 23517867199702739, guid: 5aeb64e094fc6854ca8590de04009dfc, type: 3}

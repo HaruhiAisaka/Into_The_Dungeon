@@ -22,7 +22,7 @@ public class DoorDisplay : MonoBehaviour
     [SerializeField] private RoomGenerator currentRoomGenerator;
 
     [Header("Animation Settings")]
-    [SerializeField] private float cameraMovementTime = 2f;
+    [SerializeField] private float cameraMovementTime = 1.5f;
 
     /*Used to determine how far the player should walk until he is 
     considered away from the door.*/

@@ -14,6 +14,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] EquippedWeaponUI equippedWeaponUI;
     [SerializeField] EquippedItemUI equippedItemUI;
     [SerializeField] KeysBar keysBar;
+    [SerializeField] MainUI mainUI;
+
+    [SerializeField] Player_UI_Map map; 
 
 
     /// Updates all UI components based on the player
@@ -22,28 +25,31 @@ public class PlayerUI : MonoBehaviour
     }
 
     public void UpdateHealth(int newCurrentHealth) {
-        if (healthbar != null) {
-            healthbar.UpdateHealth(newCurrentHealth);
-        }
+        healthbar.UpdateHealth(newCurrentHealth);
     }
 
 
     public void UpdateEquippedWeapon(EquipableItem weapon) {
-        if (equippedWeaponUI != null) {
-            equippedWeaponUI.UpdateItemImage(weapon);
-        }
+        equippedWeaponUI.UpdateItemImage(weapon);
     }
 
     public void UpdateEquippedItem(EquipableItem item) {
-        if (equippedItemUI != null) {
-            equippedItemUI.UpdateItemImage(item);
-        }
+        equippedItemUI.UpdateItemImage(item);
     }
 
     public void UpdateKeys(List<Key> keysArr) {
-        if (keysBar != null) {
-            keysBar.UpdateKeys(keysArr);
-        }
+        keysBar.UpdateKeys(keysArr);
     }
 
+    public void EnableMainUI(){
+        mainUI.EnableMainUI();
+    }
+
+    public void DisableMainUI(){
+        mainUI.DisableMainUI();
+    }
+    
+    public void SetMap(){
+        map.SetMap();
+    }
 }

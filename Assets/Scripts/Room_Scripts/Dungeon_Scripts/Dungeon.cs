@@ -10,7 +10,9 @@ public class Dungeon : MonoBehaviour
 
     [SerializeField] protected DungeonDisplay dungeonDisplay;
 
-    [SerializeField] protected int squareArea = 10;
+    [SerializeField] protected PlayerUI playerUI;
+
+    [SerializeField] protected int squareArea = 9;
 
     [Header("Procedural Generation Parameters")]
     [SerializeField] [Range(1,30)] protected int minRoomsPerCluster = 20;
@@ -420,6 +422,7 @@ public class Dungeon : MonoBehaviour
         CreateRestOfRandomClusters(numOfClusters);
         ConnectEndClusterToDungeon();
         AddItems();
+        playerUI.SetMap();
     }
 
     private void CreateEndRoomsCluster(){
