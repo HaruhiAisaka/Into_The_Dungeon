@@ -378,10 +378,11 @@ public class Dungeon : MonoBehaviour
             itemsInCluster.Add(item);
             Room[] possibleRooms = 
                 rooms.Values.Where(aRoom => aRoom.items.Count <= 0).ToArray();
+            Room[] forbidenRooms = {dungeon.startRoom, dungeon.endRoom, dungeon.finalBossRoom};
             if(possibleRooms.Length == 0){
                 possibleRooms = rooms.Values.ToArray();
             }
-            Room chosenRoom = RNG.RandomElementFromList(possibleRooms);
+            Room chosenRoom = RNG.RandomElementFromListExcluding(possibleRooms, forbidenRooms);
             chosenRoom.AddItem(item, new Vector2(0,0));
         }
     }
